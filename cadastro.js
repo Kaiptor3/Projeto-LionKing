@@ -26,16 +26,6 @@ $("#cadastro").addEventListener("click", (ev) => {
     return;
   }
 
-  function validateEmail(email) {
-   var re = /\S+@\S+\.\S+/;
-    return re.test(email);
-  }
-
-  if (validateEmail(email) === false) {
-  alert("Insira um email válido")
- return;
- }
-
   const usuarioCadastrado = {
     email,
     nome,

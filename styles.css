@@ -1,0 +1,204 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    list-style: none;
+}
+
+body {
+    background-color: white;
+    width: 100%;
+    min-height: 100vh;
+    color: black;
+    font-size: 16px;
+}
+
+header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    z-index: 10;
+    padding: 5px 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 58px;
+}
+
+header img {
+    width: 10vw;
+    margin-left: 90px;
+    transform: translateX(5%);
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    margin-left: 20%;
+    transform: translateX(-10%);
+}
+
+header nav ul {
+    display: flex;
+    gap: 20px;
+}
+
+header nav ul li {
+    display: inline-block;
+}
+
+header nav ul li a {
+    color: black;
+    text-decoration: none;
+    transition: transform 0.3s, color 0.3s;
+}
+
+header nav ul li a:hover {
+    transform: scale(1.1);
+    color: gray;
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    margin-top: 70px; /* Ajuste para o novo tamanho do header */
+}
+
+.background-section {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+.background-section video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.box {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    flex-direction: column;
+}
+
+h1 {
+    font-family: 'Pacifico', cursive;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.botão {
+    margin-top: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.botão button {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    border-radius: 25px;
+}
+
+.botão button:hover {
+    transform: scale(1.1);
+}
+
+/* Estilo da nova seção "carros" */
+.carros {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: white; /* Cor de fundo da seção */
+}
+
+.carros .modelos h1 {
+    font-family: 'Montserrat', sans-serif; /* Mudança para fonte Montserrat */
+    margin-bottom: 10px; /* Reduzido para aproximar do botão */
+}
+
+.carros .imgs {
+    display: flex;
+    justify-content: center;
+    position: relative; /* Define o contêiner como relativo */
+}
+
+.imagem-container {
+    position: relative; /* Define o contêiner como relativo */
+}
+
+.imagem-mustang {
+    width: 100%; /* Ajuste conforme necessário */
+}
+
+.imagem-lamborghini {
+    position: absolute; /* Posiciona a Lamborghini em relação ao contêiner */
+    top: 0; /* Ajuste conforme necessário */
+    left: 0; /* Ajuste conforme necessário */
+    width: 80%; /* Ajuste o tamanho da imagem sobreposta */
+    opacity: 0.8; /* Opcional: ajuste a opacidade para ver ambas as imagens */
+}
+
+.carros .boton {
+    margin-top: 10px; /* Mantido próximo das imagens */
+}
+
+.carros .boton button {
+    background-color: black; /* Fundo preto */
+    color: white; /* Cor do texto */
+    border: none; /* Sem borda */
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Muda o cursor ao passar o mouse */
+    transition: transform 0.3s; /* Animação suave */
+    border-radius: 50px; /* Bordas arredondadas (botão redondo) */
+}
+
+.carros .boton button:hover {
+    transform: scale(1.1); /* Aumenta o botão ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .box {
+        width: 80%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .carros .imgs img {
+        width: 300px; /* Ajusta o tamanho da imagem em telas menores */
+    }
+}
