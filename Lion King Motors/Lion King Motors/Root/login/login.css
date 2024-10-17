@@ -1,0 +1,138 @@
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw0aXpsog.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+body {
+    background-color: #ffffff;
+    color: white;
+}
+a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+p {
+    text-decoration: none;
+    color: black;
+}
+h1 {
+    color: black;
+}
+#login {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+.name input,
+.emails input,
+.emails2 input,
+.senhas input,
+.senhas2 input {
+    border-radius: 15px;
+    border: 2px solid #000000;
+    width: 250px;
+    height: 40px;
+    padding-left: 15px;
+    background-color: #ffffff;
+    color: #b6b6b6;
+    margin: -10px 0;
+}
+.name input {
+    margin-bottom: 15px;
+}
+.senhas input {
+    margin-top: 15px;
+}
+.senhas2 input {
+    margin-top: -20%;
+}
+.logar input {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(#134, 243, 134);
+    color: #141414;
+}
+input::placeholder {
+    color: #000000;
+}
+.box {
+    margin-top: 4px;
+    width: 400px;
+    padding: 0px;
+    margin: 0%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height: 705px;
+    position: relative;
+    display: block;
+}
+.box2 {
+    margin-top: 4%;
+    width: 400px;
+    padding: -0px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    height: 670px;
+    display: block;
+}
+.box h1 {
+    margin: -20px 0;
+    z-index: 1;
+    margin-bottom: 20px;
+}
+.box img,
+.box2 img {
+    width: 400px;
+    margin: 0;
+    z-index: 0;
+}
+#logo,
+#logo2 {
+    width: 350px;
+    translate: (5%);
+    margin: 0;
+    z-index: 0;
+}
+.detalhe{
+    position: absolute;
+    top: -7%;
+    left: 149%;
+    z-index: 10;
+}
+.detalhe2{
+    position: absolute;
+    top: 9.75%;
+    right: 150%;
+    z-index: 10;
+}
+.detalhe3 {
+    position: absolute;
+    top: -2%;
+    left: 74.90%;
+}
+.detalhe4 {
+    position: absolute;
+    top: 9.75%;
+    right: 75%;
+}
+input:focus {
+    outline: none;
+}
+.cadastro:hover,
+.limpa:hover {
+    transform: scale(1.1);
+}
