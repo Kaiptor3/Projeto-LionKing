@@ -50,24 +50,37 @@
     <button class="venda"  onClick="document.getElementById('modal-wrapper').style.display='block'"
     ><font style="font-weight:bold">3D</font> View</button>
     </div>
-    
+
     <div class="text-container">
     <h2><font color="#f44e52">911</font> Racing Car Porsche</h2>
-    <p2>911 racing car powerd by porsche.This is a beautifull racing car and super fast speed</p2>
-    <a href="#" class="price">R$868.000</a>
+    <p>911 racing car powered by Porsche. This is a beautiful racing car with super fast speed.</p>
+    <a href="#" class="price" id="price">R$868.000</a>
     <div class="cart">
-    <select>
-    <option value="q1">1</option>
-    <option value="q2">2</option>
-    <option value="q3">3</option>
-    </select>
-    <a href="#">ADD TO CART</a>
-    
+        <select id="carQuantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <a href="#">ADD TO CART</a>
     </div>
+</div>
+
+<script>
+    // Preço base do carro
+const basePrice = 868000;
     
+    // Função para formatar o preço
+    function formatPrice(value) {
+        return "R$" + value.toLocaleString('pt-BR', { minimumFractionDigits: 0 });
+    }
     
-    
-    </div>
+    // Atualizar o preço ao mudar a quantidade
+    document.getElementById('carQuantity').addEventListener('change', function() {
+        const quantity = parseInt(this.value);
+        const totalPrice = basePrice * quantity;
+        document.getElementById('price').innerText = formatPrice(totalPrice);
+    });
+</script>
     
     </div>
     
