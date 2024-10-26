@@ -1,0 +1,212 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Gantari:ital,wght@0,100..900;1,100..900&family=Montserrat:wght@115&family=REM:ital,wght@0,785;1,785&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
+
+
+
+*{
+   margin: 0;
+}
+
+body {
+    position: absolute;
+    height: 100%; /* 100% da altura da janela de visualização */
+    width: 100vw;
+    background-color: #ffffff;
+    object-fit: cover;
+    overflow: hidden;
+    overflow-y: auto;
+    
+    
+}
+#degrade{
+    position: absolute;
+    background-color: #000000;
+    height: 100%; /* 100% da altura da janela de visualização */
+    width: 100vw; 
+    background: linear-gradient(90deg, black 17.1%, transparent 70%);
+    background-size: 100%;
+}
+
+.fundo-car{
+    position: absolute;
+    background-size: cover; /* Ajusta a imagem para cobrir toda a área */
+    background-position: center; /* Centraliza a imagem */
+    height: 100%; /* 100% da altura da janela de visualização */
+    width: 100%; /* 100% da largura da janela de visualização */
+    z-index: -1;
+    object-fit: cover;
+   
+}
+
+    
+
+.titulo{
+    position: absolute;
+    margin-top: 50px ;
+    margin-left: 40px;
+    
+    
+    
+}
+.titulo h3 {
+    position: relative;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 80;
+    color: #ffffff;
+    font-size: 18px;
+    animation: movetext 2s ease-in-out forwards; /* Aplica a animação */
+    
+}
+
+
+
+
+.titulo h2 {
+    font-family: "Gantari", sans-serif;
+    font-weight: 20;
+    color: #ffffff;
+    font-size: 100px;
+    margin-left: 15px;
+    
+    
+    
+}
+.titulo h4{
+    position: relative;
+    font-family: "Gantari", sans-serif;
+    font-weight: 80;
+    color: #ffffff;
+    font-size: 40px;
+    margin-left: 20px;
+    animation: movetext 2s ease-in-out forwards; /* Aplica a animação */
+}
+
+
+.combustivel{
+    position: absolute;
+    color: #ffffff;
+    margin-left: 120px;
+    margin-top: -153px;
+    animation: movetext 2s ease-in-out forwards;
+    background-color: transparent;
+ 
+
+}
+.combustivel img{
+    transform: scale(35%);
+    margin-left: 170px;
+    margin-top: 165px ;
+    
+
+}
+.combustivel h2{
+    
+    font-family: "Montserrat", sans-serif;
+    font-weight: 10;
+    margin-left: 250px;
+    margin-top: -62px;
+    font-size: 15px;
+}
+.ficha {
+    position: absolute;
+    color: #ffffff;
+    animation: movetext 2s ease-in-out forwards; 
+    transform: scale(80%);
+}
+.ficha-image{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    transform: scale(63%);
+    margin-top: 160px;
+    margin-left: 50px;
+    animation: movetext 2s ease-in-out forwards; 
+   
+  
+     
+}
+.ficha-image img{
+    margin-top: 8px;
+
+}
+.ficha-text{
+    font-family: "Oxanium", sans-serif;
+    font-weight: 30px;
+    margin-left: 150px;
+    margin-top: 275px;
+    animation: movetext 3s ease-in-out forwards; 
+}
+
+.ficha-text h2{
+   font-weight: 150;
+    font-size: 25px;
+    margin-top: 14px;
+}
+
+
+
+
+@keyframes movetext {
+    0% {
+        left: -100px; /* Começa fora da tela à esquerda */
+        opacity: 0;
+    }
+    100% {
+        left: 0; /* Termina na posição original */
+        opacity: 1;
+    }
+}
+.titulo .combustivel,.ficha{
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 1s ease-
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+@media (max-width: 768px) {
+    .titulo h2 {
+        font-size: 6vw;
+    }
+
+    .titulo h4 {
+        font-size: 4vw;
+    }
+
+   
+    
+    
+}
+
+
+   
+
+
+
+@media (max-width: 480px) {
+    .titulo h2 {
+        font-size: 5vw;
+    }
+
+    .titulo h4 {
+        font-size: 3vw;
+    }
+
+    
+    
+   
+}
+    
+    
+
+    
+
+   
+
+
