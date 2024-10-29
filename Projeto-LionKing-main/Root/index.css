@@ -492,25 +492,28 @@
         max-width: 100%;
         height: auto;
         border-radius: 8px;
+        width: 1000px!important;
+        height: 550px!important;
     }
     
     .buttons {
         margin-top: 20px;
     }
     
-    button {
+    .containercar button {
         cursor: pointer;
         padding: 10px 15px;
         margin: 10px;
-        background-color: red; /* Fundo vermelho para os botões */
-        color: white; /* Texto dos botões em branco */
+        background-color: rgb(255, 255, 255); /* Fundo vermelho para os botões */
+        color: rgb(0, 0, 0); /* Texto dos botões em branco */
         border: none;
         border-radius: 5px;
         transition: background-color 0.3s ease; /* Transição para os botões */
+        font-size: 18px;
     }
     
-    button:hover {
-        background-color: darkred; /* Fundo vermelho escuro ao passar o mouse */
+    .containercar button:hover {
+        background-color: rgb(255, 255, 255); /* Fundo vermelho escuro ao passar o mouse */
     }
     
     /* Footer */
