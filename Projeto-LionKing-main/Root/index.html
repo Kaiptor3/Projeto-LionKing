@@ -46,7 +46,7 @@
         </div>
     </section>
 </select>
-<div class="content-container">
+<div id="carromatriz" class="content-container">
 
     <div class="img-container">
     <a href="#" onClick="document.getElementById('modal-wrapper').style.display='block'"><img src="./imgs/CAR.png"></a>
@@ -237,7 +237,7 @@ showImage(currentIndex);
             <ul>
                 <li><a href="./login/cadastro.html">Cadastro</a></li>
                 <li><a href="./catálogo/catalogo.html">Catálogo</a></li>
-                <li><a href="#">Promoção</a></li>
+                <a href="#carromatriz">Promoção</a>
                 <li><a href="#">Sobre Nós</a></li>
             </ul>
         </div>
@@ -260,8 +260,9 @@ showImage(currentIndex);
         <button class="button-up-box" onclick="voltarAoTopo()">
             <div class="button-up-arrow"></div>
         </button>
-        </div> 
-        <div id="cookiePopup" class="cookie-popup">
+        </div>    
+                   <!-- Pop-up de Cookies -->
+    <div id="cookiePopup" class="cookie-popup">
         <p>Este site utiliza cookies para melhorar sua experiência. Ao continuar navegando, você aceita nossa <a href="#">Política de Cookies</a>.</p>
         <button onclick="aceitarCookies()">Aceitar</button>
     </div>
