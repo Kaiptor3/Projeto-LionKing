@@ -1,4 +1,4 @@
-    /* Estilos globais */
+     /* Estilos globais */
     * {
         padding: 0;
         margin: 0;
@@ -515,7 +515,19 @@
     .containercar button:hover {
         background-color: rgb(255, 255, 255); /* Fundo vermelho escuro ao passar o mouse */
     }
+    /* Habilita a rolagem suave para links âncora */
+html {
+    scroll-behavior: smooth;
+    a {
+        text-decoration: none; /* Remove a linha de sublinhado */
+        color: inherit; /* Herda a cor do texto pai (sem cor azul) */
+        transition: color 0.3s; /* Transição suave para a mudança de cor */
+    }
     
+    a:hover {
+        color: #000000; /* Altera a cor do link ao passar o mouse (opcional) */
+    }
+}
     /* Footer */
     footer {
         background-color: #ffffff;
@@ -764,3 +776,4 @@
             font-size: 20px;
         }
     }
+
