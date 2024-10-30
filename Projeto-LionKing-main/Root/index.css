@@ -642,6 +642,47 @@
         display: flex;
         justify-content: flex-end;
     }
+.cookie-popup {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 0; /* Gruda o pop-up na parte inferior da janela */
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background-color: black;
+    color: #fff;
+    border-radius: 0; /* Remove a borda arredondada para que se encaixe melhor */
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+.cookie-popup p {
+    margin: 0;
+    font-size: 16px;
+    flex: 1;
+}
+
+.cookie-popup a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.cookie-popup button {
+    background-color: #ffffff;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.cookie-popup button:hover {
+    background-color: #ffffff94;
+}
 
     @media screen and (max-width: 1020px) {
 
