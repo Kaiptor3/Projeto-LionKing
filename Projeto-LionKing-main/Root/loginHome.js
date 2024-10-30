@@ -55,3 +55,9 @@ function logout() {
     window.location.href = "index.html";
   }
 }
+// Verifica se o usuário já aceitou os cookies
+window.onload = function() {
+  if (!localStorage.getItem("cookiesAceitos")) {
+      document.getElementById("cookiePopup").style.display = "flex";
+  }
+};
