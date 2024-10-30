@@ -1,3 +1,4 @@
+
 (function e(t, n, r) {
   function s(o, u) {
     if (!n[o]) {
@@ -638,3 +639,16 @@ searchButton.addEventListener("click", function () {
     searchInput.value = ""; // Limpa o campo de entrada
   }
 });
+
+// Função para aceitar cookies
+function aceitarCookies() {
+  document.getElementById("cookiePopup").style.display = "none";
+  localStorage.setItem("cookiesAceitos", "true");
+}
+
+// Verifica se o usuário já aceitou os cookies
+window.onload = function() {
+  if (!localStorage.getItem("cookiesAceitos")) {
+      document.getElementById("cookiePopup").style.display = "flex";
+  }
+};
