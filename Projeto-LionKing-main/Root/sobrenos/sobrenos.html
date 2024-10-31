@@ -1,72 +1,107 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sobre Nós</title>
-    <link rel="icon" type="image" href="/Root/imgs/favicon.png" sizes="16x16 16x16">
-    <link rel="stylesheet" href="sobrenos.css">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400&display=swap" rel="stylesheet">
-</head>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="/Root/catálogo/imgs/LK- Menu.png" alt="Logo">
-            </div>
-            <div class="nav-links">
-                <a href="/Root/index.html">Home</a>
-                <a href="/Root/catálogo/catalogo.html">Carros</a>
-                <a href="/Root/login/cadastro.html">Cadastrar</a>
-            </div>
-            <form id="login" class="login-form">
-                <input type="text" id="email" name="email" placeholder="Email" required>
-                <input type="password" id="senha" name="senha" placeholder="Senha" required>
-                <button type="submit" class="cadastro" id="entrar" value="Entrar">Login</button>
-            </form>
-            <div class="login-form logado" id="nav-usuario">
-                <img src="/Root/imgs/user-placeholder.png">
-                <span id="bem-vindo-usuario"></span>
-                <button onclick="logout()">Logout</button>
-            </div>
-        </nav>
-    </header>
-    <body>
- <!-- Footer -->
- <footer>
+    <link rel="stylesheet" href="./sobre.css" />
+    <link
+      rel="icon"
+      type="image"
+      href="/Projeto-LionKing-main/Root/imgs/favicon.png"
+      sizes="16x16 16x16"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img
+          src="/Projeto-LionKing-main/Root/catálogo/imgs/LK- Menu.png"
+          alt="Logo"
+        />
+      </div>
+      <div class="nav-links">
+        <a href="/Projeto-LionKing-main/Root/index.html">Home</a>
+        <a href="/Projeto-LionKing-main/Root/catálogo/catalogo.html">Carros</a>
+        <a href="/Projeto-LionKing-main/Root/login/cadastro.html">Cadastrar</a>
+      </div>
+      <form id="login" class="login-form">
+        <input
+          type="text"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        />
+        <input
+          type="password"
+          id="senha"
+          name="senha"
+          placeholder="Senha"
+          required
+        />
+        <button type="submit" class="cadastro" id="entrar" value="Entrar">
+          Login
+        </button>
+      </form>
+      <div class="login-form logado" id="nav-usuario">
+        <img src="/Projeto-LionKing-main/Root/imgs/user-placeholder.png" />
+        <span id="bem-vindo-usuario"></span>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </nav>
+  </header>
+  <body></body>
+  <!-- Footer -->
+  <footer>
     <div class="footer-container">
-        <div class="footer-logo">
-            <img src="/Root/imgs/LK- Menu.png" alt="Logomarcafooter">
-        </div>
-        <div class="footer-links">
-            <ul>
-                <li><a href="/Root/login/cadastro.html">Cadastro</a></li>
-                <li><a href="/Root/catálogo/catalogo.html">Catálogo</a></li>
-                <a href="#carromatriz">Promoção</a>
-                <li><a href="#">Sobre Nós</a></li>
-            </ul>
-        </div>
-        <div class="footer-socials">
-            <img src="/Root/imgs/facebook.png" alt="Logo">
-            <img src="/Root/imgs/linkedlin.png" alt="Logo">
-            <img src="/Root/imgs/x.png" alt="Logo">
-        </div>
-        <div class="footer-search">
-            <input type="text" placeholder="Pesquisar...">
-            <button class="pesquisa">Buscar</button>
-        </div>
+      <div class="footer-logo">
+        <img
+          src="/Projeto-LionKing-main/Projeto-LionKing-main/Root/imgs/LK- Menu.png"
+          alt="Logomarcafooter"
+        />
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li>
+            <a href="/Projeto-LionKing-main/Root/login/cadastro.html"
+              >Cadastro</a
+            >
+          </li>
+          <li>
+            <a href="/Projeto-LionKing-main/Root/catálogo/catalogo.html"
+              >Catálogo</a
+            >
+          </li>
+          <a href="#carromatriz">Promoção</a>
+          <li><a href="#">Sobre Nós</a></li>
+        </ul>
+      </div>
+      <div class="footer-socials">
+        <img src="/Projeto-LionKing-main/Root/imgs/facebook.png" alt="Logo" />
+        <img src="/Projeto-LionKing-main/Root/imgs/linkedlin.png" alt="Logo" />
+        <img src="/Projeto-LionKing-main/Root/imgs/x.png" alt="Logo" />
+      </div>
+      <div class="footer-search">
+        <input type="text" placeholder="Pesquisar..." />
+        <button class="pesquisa">Buscar</button>
+      </div>
     </div>
-    
+
     <!-- Copyright Section -->
     <div class="footer-copyright">
-        <p>&copy; 2024 Lion King Motors. Todos os direitos reservados.</p>
+      <p>&copy; 2024 Lion King Motors. Todos os direitos reservados.</p>
     </div>
     <div id="button-up">
-        <button class="button-up-box" onclick="voltarAoTopo()">
-            <div class="button-up-arrow"></div>
-        </button>
-        </div>    
-</footer>
-    <script src="/Root/login/login.js"></script>
-    <script src="/Root/script.js"></script>
-</body>
+      <button class="button-up-box" onclick="voltarAoTopo()">
+        <div class="button-up-arrow"></div>
+      </button>
+    </div>
+  </footer>
+  <script src="/Projeto-LionKing-main/Root/login/login.js"></script>
+  <script src="/Projeto-LionKing-main/Root/script.js"></script>
 </html>
