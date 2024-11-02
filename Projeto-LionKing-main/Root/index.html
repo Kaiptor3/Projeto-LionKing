@@ -1,35 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lion King</title>
     <link rel="icon" type="image" href="./imgs/favicon.png" sizes="16x16 16x16">
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400&display=swap"
+      rel="stylesheet"
+    />
 </head>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="./imgs/LK- Menu.png" alt="Logo">
-            </div>
-            <div class="nav-links">
-                <a href="./index.html">Home</a>
-                <a href="./catálogo/catalogo.html">Carros</a>
-                <a href="./login/cadastro.html">Cadastrar</a>
-            </div>
-            <form id="login" class="login-form">
-                <input type="text" id="email" name="email" placeholder="Email" required>
-                <input type="password" id="senha" name="senha" placeholder="Senha" required>
-                <button type="submit" class="cadastro" id="entrar" value="Entrar">Login</button>
-            </form>
-            <div class="login-form logado" id="nav-usuario">
-                <img src="imgs/user-placeholder.png">
-                <span id="bem-vindo-usuario"></span>
-                <button onclick="logout()">Logout</button>
-            </div>
-        </nav>
-    </header>
+<header class="menu">
+    <iframe src="/Projeto-LionKing-main/Root/partes/menu.html" style="width:100%; height:200px; border:none;"></iframe>
+</header>
     <body>
     <section>
         <div class="background-section">
@@ -227,47 +211,21 @@ function prevImage() {
 showImage(currentIndex);
 </script>
 
- <!-- Footer -->
 <footer>
-    <div class="footer-container">
-        <div class="footer-logo">
-            <img src="imgs/LK- Menu.png" alt="Logomarcafooter">
-        </div>
-        <div class="footer-links">
-            <ul>
-                <li><a href="./login/cadastro.html">Cadastro</a></li>
-                <li><a href="./catálogo/catalogo.html">Catálogo</a></li>
-                <a href="#carromatriz">Promoção</a>
-                <li><a href="/Projeto-LionKing-main/Root/sobrenos/sobrenos.html">Sobre Nós</a></li>
-            </ul>
-        </div>
-        <div class="footer-socials">
-            <img src="./imgs/facebook.png" alt="Logo">
-            <img src="./imgs/linkedlin.png" alt="Logo">
-            <img src="./imgs/x.png" alt="Logo">
-        </div>
-        <div class="footer-search">
-            <input type="text" placeholder="Pesquisar...">
-            <button class="pesquisa">Buscar</button>
-        </div>
-    </div>
-    
-    <!-- Copyright Section -->
-    <div class="footer-copyright">
-        <p>&copy; 2024 Lion King Motors. Todos os direitos reservados.</p>
-    </div>
+    <iframe src="/Projeto-LionKing-main/Root/partes/rodape.html" style="width:100%; height:200px; border:none;"></iframe>
     <div id="button-up">
-        <button class="button-up-box" onclick="voltarAoTopo()">
-            <div class="button-up-arrow"></div>
-        </button>
-        </div>    
+      <button class="button-up-box" onclick="voltarAoTopo()">
+        <div class="button-up-arrow"></div>
+      </button>
+    </div>
+  </footer>
+    <script src="/Projeto-LionKing-main/Root/script.js"></script>
                    <!-- Pop-up de Cookies -->
     <div id="cookiePopup" class="cookie-popup">
         <p>Este site utiliza cookies para melhorar sua experiência. Ao continuar navegando, você aceita nossa <a href="#">Política de Cookies</a>.</p>
         <button onclick="aceitarCookies()">Aceitar</button>
     </div>
 </footer>
-    <script src="login/login.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
