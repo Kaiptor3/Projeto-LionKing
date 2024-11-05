@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lion King</title>
+    <link rel="icon" type="image" href="./imgs/favicon.png" sizes="16x16 16x16">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400&display=swap"
+      rel="stylesheet"
+    />
+</head>
+<header class="menu">
+    <iframe src="../Root/partes/menu.html" style="width:100%; height:200px; border:none;"></iframe>
+</header>
+    <body>
+    <section>
+        <div class="background-section">
+            <video src="./vds/Video.mp4" autoplay loop muted></video>
+        </div>
+        <div class="box">
+            <div class="conteudo">
+                <h1>LUXO SOBRE RODAS</h1>
+                <p>Explore a excelência automotiva com nossa coleção exclusiva de veículos de luxo. Atendimento personalizado e sofisticação em cada detalhe. Encontre o seu próximo sonho sobre rodas!</p>
+            </div>
+            <div class="botão meio">
+                <a href="./catálogo/catalogo.html"class="modelo">Todos os nossos modelos</a>
+            </div>
+        </div>
+    </section>
+</select>
+<div id="carromatriz" class="content-container">
+
+    <div class="img-container">
+    <a href="#" onClick="document.getElementById('modal-wrapper').style.display='block'"><img src="./imgs/CAR.png"></a>
+    
+    <button class="venda"  onClick="document.getElementById('modal-wrapper').style.display='block'"
+    ><font style="font-weight:bold">3D</font> View</button>
+    </div>
+    
+    <div class="text-container">
+    <h2><font color="#f44e52">911</font> Racing Car Porsche</h2>
+    <p2>Carro de corrida 911 da Porsche. Um lindo carro de corrida, com uma velocidade impressionante.</p2>
+    <a href="#" class="price" id="price">R$868.000</a>
+    <div class="cart">
+        <select id="carQuantity">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <a href="./catálogo/catalogo.html">Comprar</a>
+    </div>
+</div>
+
+<script>
+    // Preço base do carro
+const basePrice = 868000;
+
+    // Função para formatar o preço
+    function formatPrice(value) {
+        return "R$" + value.toLocaleString('pt-BR', { minimumFractionDigits: 0 });
+    }
+
+    // Atualizar o preço ao mudar a quantidade
+    document.getElementById('carQuantity').addEventListener('change', function() {
+        const quantity = parseInt(this.value);
+        const totalPrice = basePrice * quantity;
+        document.getElementById('price').innerText = formatPrice(totalPrice);
+    });
+</script>
+    
+    
+    </div>
+    
+    </div>
+    
+    <!--3d modal-->
+    
+    <div id="modal-wrapper"  class="modal">
+    <div class="center">
+    <span onClick="document.getElementById('modal-wrapper').style.display='none'" class="close">&times;</span>
+    <div class="rotation">
+    
+    
+<img src="./360/2.png">
+<img src="./360/3.png">
+<img src="./360/4.png">
+<img src="./360/5.png">
+<img src="./360/6.png">
+<img src="./360/7.png">
+<img src="./360/8.png">
+<img src="./360/9.png">
+<img src="./360/10.png">
+<img src="./360/11.png">
+<img src="./360/12.png">
+<img src="./360/13.png">
+<img src="./360/14.png">
+<img src="./360/15.png">
+<img src="./360/16.png">
+<img src="./360/17.png">
+<img src="./360/18.png">
+<img src="./360/19.png">
+<img src="./360/20.png">
+<img src="./360/21.png">
+<img src="./360/22.png">
+<img src="./360/23.png">
+<img src="./360/24.png">
+<img src="./360/25.png">
+<img src="./360/26.png">
+<img src="./360/26.png">
+<img src="./360/27.png">
+<img src="./360/28.png">
+<img src="./360/29.png">
+<img src="./360/30.png">
+<img src="./360/31.png">
+<img src="./360/32.png">
+<img src="./360/33.png">
+<img src="./360/34.png">
+<img src="./360/35.png">
+<img src="./360/36.png">
+<img src="./360/37.png">
+<img src="./360/38.png">
+<img src="./360/39.png">
+<img src="./360/40.png">
+<img src="./360/41.png">
+<img src="./360/42.png">
+<img src="./360/43.png">
+<img src="./360/44.png">
+<img src="./360/45.png">
+
+
+
+
+
+</div>
+
+</div>
+</div>
+
+<div class="containercar">
+    <h1>Carros à Venda</h1>
+    <div class="image-containercar">
+        <div class="image-column show">
+            <img src="imgs/Carro1.webp" alt="Carro 1">
+            <p>BMW X6M</p>
+            <p>Valor: R$ 820.000</p>
+        </div>
+        <div class="image-column">
+            <img src="imgs/Carro2.jpeg" alt="Carro 2">
+            <p>BMW I8</p>
+            <p>Valor: R$ 710.000</p>
+        </div>
+        <div class="image-column">
+            <img src="imgs/Carro3.jpg" alt="Carro 3">
+            <p>Jaguar E-Pace</p>
+            <p>Valor: R$ 445.000</p>
+        </div>
+        <div class="image-column">
+            <img src="imgs/carro4.avif" alt="Carro 4">
+            <p>Porsche Macan</p>
+            <p>Valor: R$ 490.000</p>
+        </div>
+        <div class="image-column">
+            <img src="imgs/Carro5.jpg" alt="Carro 5">
+            <p>BMW-IX-M60</p>
+            <p>Valor: R$ 1.100.000</p>
+        </div>
+        <div class="image-column">
+            <img src="imgs/Carro6.jpg" alt="Carro 6">
+            <p>Porsche Cayenne</p>
+            <p>Valor: R$ 530.000</p>
+        </div>
+    </div>
+    <div class="buttoncar">
+        <button class="prev" onclick="prevImage()">&#10094; Anterior</button>
+        <button class="next" onclick="nextImage()">Próximo &#10095;</button>
+    </div>
+</div>
+<script>
+        let currentIndex = 0;
+const images = document.querySelectorAll('.image-column');
+const totalImages = images.length;
+
+function showImage(index) {
+    images.forEach((img, i) => {
+        img.classList.remove('show'); // Remove a classe 'show' de todas as imagens
+        if (i === index) {
+            img.classList.add('show'); // Adiciona a classe 'show' para a imagem atual
+        }
+    });
+}
+
+function nextImage() {
+    currentIndex += 1;
+    if (currentIndex >= totalImages) {
+        currentIndex = 0; // Reinicia o índice
+    }
+    showImage(currentIndex);
+}
+
+function prevImage() {
+    currentIndex -= 1;
+    if (currentIndex < 0) {
+        currentIndex = totalImages - 1; // Limita o índice
+    }
+    showImage(currentIndex);
+}
+
+// Inicializa a primeira imagem
+showImage(currentIndex);
+</script>
+
+<footer>
+    <iframe src="/Root/partes/rodape.html" style="width:100%; height:200px; border:none;"></iframe>
+    <div id="button-up">
+      <button class="button-up-box" onclick="voltarAoTopo()">
+        <div class="button-up-arrow"></div>
+      </button>
+    </div>
+  </footer>
+    <script src="/Projeto-LionKing-main/Root/script.js"></script>
+                   <!-- Pop-up de Cookies -->
+    <div id="cookiePopup" class="cookie-popup">
+        <p>Este site utiliza cookies para melhorar sua experiência. Ao continuar navegando, você aceita nossa <a href="#">Política de Cookies</a>.</p>
+        <button onclick="aceitarCookies()">Aceitar</button>
+    </div>
+</footer>
+    <script src="script.js"></script>
+</body>
+</html>
