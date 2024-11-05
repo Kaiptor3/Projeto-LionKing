@@ -36,13 +36,11 @@ window.onload = function() {
   const bemVindoUsuario = document.getElementById("bem-vindo-usuario");
 
   if (usuario && usuario.estaLogado) {
-    // Exibe o nome do usuário logado
     bemVindoUsuario.textContent = `${usuario.nome}`;
-    // Exibe o nav-usuario (contendo o botão de logout e a saudação)
-    navUsuario.style.display = "flex";
+    navUsuario.display = "inline";
     login.style.display = "none";
   } else {
-    navUsuario.style.display = "none";
+    navUsuario.display = "none";
   }
 };
 
