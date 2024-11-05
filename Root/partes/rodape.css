@@ -1,0 +1,124 @@
+/* Footer */
+footer {
+    margin-top: -2%;
+    background-color: #ffffff;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.footer-logo img {
+    width: 100px;
+    height: auto;
+}
+
+.footer-links ul {
+    list-style-type: none;
+    display: flex;
+    gap: 15px;
+}
+
+.footer-links ul li a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: black; /* Garante que a cor do link será preta */
+    font-size: 1.1em;
+}
+
+.footer-links ul li a:hover {
+    color: #000000; /* Define a cor ao passar o mouse (opção laranja, pode mudar) */
+}
+
+/* Adiciona um estilo para o link visitado (caso necessário) */
+.footer-links ul li a:visited {
+    color: #000000; /* Cor roxa após o link ser visitado */
+}
+
+/* Adiciona um estilo para o link ativo (quando está sendo clicado) */
+.footer-links ul li a:active {
+    color: #000000; /* Cor vermelha quando o link é clicado */
+}
+
+/* Estilos para os ícones sociais */
+.footer-socials {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-socials img {
+    width: 40px;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.footer-socials img:hover {
+    transform: scale(1.1);
+}
+
+.footer-search {
+    margin-top: 1%;
+}
+
+.footer-search input {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+
+.footer-search button {
+    padding: 10px 15px;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer-copyright {
+    margin-top: -5%;
+    background-color: #ffffff;
+    text-align: center;
+    color: black;
+    font-size: 0.9em;
+    border-top: 1px solid #ffffff;
+}
+
+/* Responsivo */
+@media screen and (max-width: 1020px) {
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links {
+        margin-bottom: 20px;
+        font-size: 25px;
+    }
+
+    .footer-socials {
+        text-align: center;
+    }
+
+    .footer-logo,
+    .footer-search {
+        display: none;
+    }
+
+    .footer-copyright {
+        font-size: 20px;
+    }
+}
