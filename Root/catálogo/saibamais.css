@@ -1,0 +1,316 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0D0D0D;
+    color: #FFF;
+    padding: 20px;
+    min-height: 100vh;
+   
+}
+
+.site {
+    max-width: 1200px;
+    width: 100%;
+    background-color: #1A1A1A;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+    padding: 20px;
+  
+}
+/*Personalização do botão de voltar*/
+
+.botao-voltar{
+    background-color: transparent;
+    color: #FFF;
+    padding: 10px 10px;
+    font-size: 30px;
+    border: 2px solid white;
+    border-radius: 15px;
+    margin-left: 4%;
+    cursor: pointer;
+}
+.botao-voltar:hover{
+    transform: scale(1.1);
+}
+
+/*Nome e modelo do carro */
+
+.titulo {
+    text-align: center;
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.titulo h3 {
+    font-size: 12px;
+    color: #AAAAAA;
+}
+
+
+.titulo h2 {
+    font-size: 100px;
+    color: #AAAAAA;
+}
+
+.titulo h4 {
+    font-size: 50px;
+    color: #AAAAAA;
+}
+
+ /*Imagem do carro*/
+
+.image-car {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.image-car img {
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+}
+ /*Personalização do botão de comprar*/
+
+.fazer-compra {
+    padding: 10px 80px;
+    border-radius: 5px;
+    border: 2px solid #000000;
+    background-color: transparent;
+    font-size: 20px;
+    color: #000000;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px rgb(0, 0, 0); /* Sombra flutuante */
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/*Parte informativa da página*/
+
+.content {
+    text-align: center;
+    margin-top: 20px;
+}
+.combustivel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+
+}
+
+.combustivel img {
+    width: 50px;
+    margin-bottom: 10px;
+}
+
+.combustivel h2 {
+    color: #d8d8d8;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.ficha {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center; /* Centraliza as colunas */
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.ficha-item { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    width: 85%;
+    height: auto;
+    margin: 0 auto; 
+}
+
+
+.balao {
+    position: absolute;
+    bottom: 100%; /* Coloca o balão acima do card */
+    left: 50%; /* Centraliza o balão horizontalmente */
+    transform: translateX(-50%); /* Garante que o balão fique exatamente no meio */
+    width: 50%; /* Largura fixa do balão */
+    height: 60px; /* Altura fixa do balão */
+    background-color: rgb(255, 0, 81); /* Cor do balão */
+    color: #FFF; /* Cor do texto */
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center; /* Centraliza o texto horizontalmente */
+    align-items: center; /* Centraliza o texto verticalmente */
+    text-align: center; /* Alinha o texto no centro */
+    overflow: hidden; /* Esconde qualquer texto que ultrapasse o limite */
+    visibility: hidden; /* Inicialmente, o balão não é visível */
+    opacity: 0; /* Transparência para quando o balão não estiver visível */
+    transition: opacity 0.3s ease; /* Animação para transição suave */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.ficha-item:hover .balao {
+    visibility: visible; /* Torna o balão visível quando o card é hoverizado */
+    opacity: 1; /* Aumenta a opacidade */
+}
+/* Mostra o balão de pensamento quando o mouse está sobre a ficha */
+.ficha-item:hover .balao {
+    display: block;
+    opacity: 1;
+    top: -50px; /* Faz o balão subir um pouco */
+}
+/* Animação para o texto do balão */
+.balao-texto {
+    font-weight: bold; 
+    font-size: 100%;   
+    font-family: 'Montserrat', sans-serif;
+}
+
+.botoes {
+  position: absolute;
+  z-index: 5;
+  margin: 1%;
+ 
+}
+
+@keyframes pulsar {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.botoes .fazer-compra:first-child {
+    animation: pulsar 1.5s infinite;
+}
+
+.ficha-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.551);
+}
+
+/*responsividade*/
+
+@media (max-width: 1024px) {
+    .ficha-item {
+        width: 100%;
+    }
+    
+    .balao-texto{
+        font-size: 15px;
+    }
+
+}
+
+/*Responsividade para despositivos médios*/
+
+@media (max-width: 768px) {
+    .botao-voltar{
+        margin: 0px;
+        background-color: transparent;
+        color: #FFF;
+        padding: 10px 10px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+
+    .titulo h3 {
+        font-size: 8px;
+    }
+
+    .titulo h2 {
+        font-size: 60px;
+    }
+
+    .titulo h4 {
+        font-size: 30px;
+    }
+    .fazer-compra{
+        padding: 5px 40px ;
+        font-size: 15px ;
+    }
+    .combustivel {
+        font-size: 10px;
+    }
+
+    .combustivel img {
+       width: 30px;
+    }
+
+    .ficha-item {
+        width: 100%;
+        font-size: 10px;  
+    }
+    .ficha-item img{
+        width: 40px;
+        height: auto;
+    }
+
+    .balao-texto{
+        font-size: 10px;
+    }
+
+}
+
+/*responsividade para dispositivos pequenos*/
+
+@media (max-width: 480px) {
+    .botao-voltar{
+        margin: 0px;
+        padding: 10px 10px;
+        font-size: 12px;
+        border-radius: 10px;
+    }
+
+    .titulo h3 {
+        font-size: 6px;
+    }
+
+    .titulo h2 {
+        font-size: 50px;
+    }
+
+    .titulo h4 {
+        font-size: 20px;
+    }
+
+    .ficha-item {
+        width: 100%;
+        font-size: 8px ;
+    }
+
+    .balao{
+      width: 100%;
+    }
+
+    .balao-texto{
+        font-size: 12px;
+    }   
+}
+
