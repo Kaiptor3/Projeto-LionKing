@@ -137,46 +137,57 @@ const basePrice = 868000;
 
 </div>
 </div>
-
-<div class="containercar">
-    <h1>Carros à Venda</h1>
-    <div class="image-containercar">
-        <div class="image-column show">
-            <img src="imgs/Carro1.webp" alt="Carro 1">
-            <p>BMW X6M</p>
-            <p>Valor: R$ 820.000</p>
-        </div>
-        <div class="image-column">
-            <img src="imgs/Carro2.jpeg" alt="Carro 2">
-            <p>BMW I8</p>
-            <p>Valor: R$ 710.000</p>
-        </div>
-        <div class="image-column">
-            <img src="imgs/Carro3.jpg" alt="Carro 3">
-            <p>Jaguar E-Pace</p>
-            <p>Valor: R$ 445.000</p>
-        </div>
-        <div class="image-column">
-            <img src="imgs/carro4.avif" alt="Carro 4">
-            <p>Porsche Macan</p>
-            <p>Valor: R$ 490.000</p>
-        </div>
-        <div class="image-column">
-            <img src="imgs/Carro5.jpg" alt="Carro 5">
-            <p>BMW-IX-M60</p>
-            <p>Valor: R$ 1.100.000</p>
-        </div>
-        <div class="image-column">
-            <img src="imgs/Carro6.jpg" alt="Carro 6">
-            <p>Porsche Cayenne</p>
-            <p>Valor: R$ 530.000</p>
-        </div>
-    </div>
-    <div class="buttoncar">
-        <button class="prev" onclick="prevImage()">&#10094; Anterior</button>
-        <button class="next" onclick="nextImage()">Próximo &#10095;</button>
-    </div>
+<section id="slideshow">
+    <div class="entire-content">
+        <div class="content-carrousel">
+            <figure class="shadow">
+                <a href="catálogo/carros/bmwx6m.html" target="_top">
+                    <img src="imgs/Carro1.webp" alt="bmwx6m"/>
+                </a>
+            </figure>
+            <figure class="shadow">
+                <a href="catálogo/carros/jaguarf-typer.html" target="_top">
+                    <img src="imgs/Carro2.jpeg" alt="jaguar-f-typer"/>
+                </a>
+            </figure>
+            <figure class="shadow">
+                <a href="catálogo/carros/jaguare-pace.html" target="_top">
+                    <img src="imgs/Carro3.jpg" alt="jaguar-e-pace"/> 
+                </a>    
+            </figure>
+            <figure class="shadow">
+                <a href="catálogo/carros/porschemacan.html" target="_top">
+                    <img src="imgs/carro4.avif" alt="porsche-macan"/>
+                </a>
+            </figure>
+            <figure class="shadow">
+                <a href="catálogo/carros/bmwixm60.html" target="_top">
+                    <img src="imgs/Carro5.jpg" alt="bmw-ixm-60"/>
+                </a>
+            </figure>
+            <figure class="shadow">
+                <a href="catálogo/carros/porschecayenne.html" target="_top">
+                    <img src="imgs/Carro6.jpg" alt="porsche-cayenne"/>
+                </a>    
+            </figure>
+            <figure class="shadow">
+                <a href="catálogo/carros/porschetaycan.html" target="_top">
+                    <img src="imgs/Carro7.jpg" alt="porsche-taycan">
+                </a>
+            </figure>
+            <figure class="shadow">
+                <a href="catálogo/carros/porschepanamera.html" target="_top">
+                    <img src="imgs/carro8.jpg" alt="porshce-panamera">
+                </a>
+            </figure>
+            <figure class="shadow">
+                <a href="catálogo/carros/jaguari-pace.html" target="_top">
+                    <img src="imgs/carro9.jpg" alt="jaguar-i-pace"/>
+                </a>
+            </figure>
 </div>
+</div>
+</section>
 <script>
         let currentIndex = 0;
 const images = document.querySelectorAll('.image-column');
@@ -214,7 +225,7 @@ showImage(currentIndex);
 
 
 <footer>
-    <iframe src="/Root/partes/rodape.html" style="width:100%; height:200px; border:none;"></iframe>
+    <iframe src="../Root/partes/rodape.html" style="width:100%; height:200px; border:none;"></iframe>
     <div id="button-up">
       <button class="button-up-box" onclick="voltarAoTopo()">
         <div class="button-up-arrow"></div>

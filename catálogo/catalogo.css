@@ -1,0 +1,383 @@
+* {
+    margin: 0px;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    height: auto;
+    /* Permite que a altura se ajuste ao conteúdo */
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    overflow-y: auto;
+
+}
+
+.container {
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centraliza os carros */
+    margin-top: -8%;
+    background-color: transparent;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.car {
+    text-align: center;
+    position: flex;
+    background-color: transparent;
+    margin: 15px;
+    /* Margens para espaçamento */
+
+
+}
+
+.image-container {
+    position: flex;
+    overflow: hidden;
+    width: 100%;
+    /* Largura flexível */
+    height: 25vw;
+    background-color: blue;
+    border-radius: 10px;
+    transform: scale(100%);
+
+
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+
+}
+
+#image {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+
+
+
+}
+
+
+#image:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s, background 0.3s;
+}
+
+.logo1 {
+    position: absolute;
+    height: 95px;
+    width: auto;
+    margin-left: 0px;
+    margin-top: 0px;
+    z-index: 1;
+
+}
+
+.logo2 {
+    position: absolute;
+    height: 45px;
+    width: auto;
+    margin-left: 5px;
+    margin-top: 5px;
+
+    z-index: 1;
+
+}
+
+.logo3 {
+    position: absolute;
+    height: 60px;
+    width: auto;
+    margin-left: 0px;
+    margin-top: 0px;
+    z-index: 1;
+
+
+}
+
+
+
+
+.butao-comprar button {
+    border: none;
+    padding: 10px 120px;
+    margin-top: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 20px;
+    font-size: 20px;
+    background-color: #000000;
+    color: #ffffff;
+    transition: transform 0.3s, background 0.3s;
+
+
+
+}
+
+
+
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.car h2 {
+    margin-top: 1%;
+    position: relative;
+    font-size: 30px;
+    color: #000000;
+    margin-left: 0px;
+    font-family: bebas kai;
+    letter-spacing: 3px;
+    font-weight: 0;
+}
+
+p {
+    margin-top: 1%;
+    color: #000000;
+    margin-left: 0px;
+    font-family: "", sans-serif;
+    font-size: 20px;
+    color: rgb(77, 77, 77);
+}
+/* Copyright no Footer */
+.footer-copyright {
+    background-color: #ffffff;
+    /* Cor de fundo para separar visualmente */
+    text-align: center;
+    color: black;
+    /* Cor do texto */
+    font-size: 0.9em;
+    /* Tamanho da fonte */
+    border-top: 1px solid #ffffff;
+    /* Linha separadora */
+}
+
+.button-up-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.button-up-arrow {
+    width: 14px;
+    height: 14px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    transform: rotate(135deg);
+}
+
+#button-up {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+
+    .image-container {
+
+
+        height: 25vw;
+    }
+
+
+    .button-comprar {
+        padding: 10px 70px;
+        font-size: 15px;
+
+
+
+    }
+
+    .butao-saiba-mais button {
+        padding: 10px 60px;
+        font-size: 15px;
+
+
+    }
+
+    .car h2 {
+        font-size: 28px;
+
+    }
+
+    .car p {
+        font-size: 15px;
+    }
+
+    .logo1 {
+        height: 75px;
+
+
+    }
+
+    .logo2 {
+        height: 35px;
+
+    }
+
+    .logo3 {
+        height: 45px;
+
+
+    }
+}
+
+@media (max-width: 767px) {
+
+    .button-comprar {
+        padding: 10px 60px;
+        font-size: 10px;
+
+
+
+    }
+
+    .butao-saiba-mais button {
+        padding: 10px 50px;
+        font-size: 10px;
+
+
+    }
+
+    .car h2 {
+        font-size: 20px;
+
+    }
+
+    .car p {
+        font-size: 10px;
+
+
+
+    }
+
+    .logo1 {
+        height: 50px;
+
+
+    }
+
+    .logo2 {
+        height: 25px;
+
+    }
+
+    .logo3 {
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes de background */
+
+
+    /* Layout em uma coluna para o contêiner de carros */
+    .container {
+        display: grid;
+        grid-template-columns: 1fr;
+        /* Define uma única coluna */
+        gap: 10px;
+        /* Espaçamento entre os itens */
+        margin-top: 80px;
+        /* Ajuste a margem conforme necessário */
+    }
+
+    /* Ajustes para os botões */
+    .button-comprar {
+        padding: 10px 40px;
+        font-size: 12px;
+    }
+
+    .butao-saiba-mais button {
+        padding: 10px 30px;
+        font-size: 12px;
+    }
+
+    /* Ajuste do texto para carros */
+    .car h2 {
+        font-size: 18px;
+    }
+
+    .car p {
+        font-size: 10px;
+    }
+
+    /* Ajustes nas logos */
+    .logo1 {
+        height: 45px;
+    }
+
+    .logo2 {
+        height: 25px;
+    }
+
+    .logo3 {
+        height: 35px;
+    }
+
+    /* Imagens em contêineres flexíveis */
+    .image-container {
+        height: 50vw;
+        /* Ajusta a altura da imagem para se adequar a uma coluna */
+    }
+
+    /* Footer ajustado para centralizar conteúdo em mobile */
+    .footer-container {
+        overflow: hidden;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links {
+        font-size: 20px;
+    }
+
+    .footer-copyright {
+        font-size: 18px;
+    }
+}
+
+
+
+.footer-container {
+
+    display: flex;
+    flex-direction: column;
+    /* Altera a direção para coluna */
+    align-items: center;
+    /* Centraliza os itens horizontalmente */
+}
+
+.footer-links {
+    margin-bottom: 20px;
+    /* Espaço abaixo dos links */
+    font-size: 25px;
+}
+
+.footer-socials {
+    /* Ajuste adicional, se necessário */
+    text-align: center;
+    /* Centraliza os ícones sociais, se desejado */
+}
+
+.footer-logo, .footer-search {
+    display: none;
+}
+
+.footer-copyright {
+    font-size: 20px;
+}
