@@ -295,30 +295,9 @@ img {
 }
 
 
-.button-comprar {
-    margin-top: 1%;
-    padding: 10px 130px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 20px;
-    font-size: 20px;
-    background-color: #000000;
-    color: #ffffff;
-    transition: transform 0.3s, background 0.3s;
-    border: none;
 
-}
 
-.butao-saiba-mais button {
-    margin-top: 1%;
-    padding: 10px 130px;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 20px;
-    font-size: 20px;
-    background-color: #000000;
-    color: #ffffff;
-    transition: transform 0.3s, background 0.3s;
+.butao-comprar button {
     border: none;
     padding: 10px 120px;
     margin-top: 8px;
@@ -326,8 +305,8 @@ img {
     font-weight: bold;
     border-radius: 20px;
     font-size: 20px;
-    background-color: #d1d1d1;
-    color: #000000;
+    background-color: #000000;
+    color: #ffffff;
     transition: transform 0.3s, background 0.3s;
 
 
