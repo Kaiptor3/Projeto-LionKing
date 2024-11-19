@@ -12,13 +12,15 @@ body {
     overflow-y: auto;
 
 }
-
+.bmw{
+    margin-top: -8%;
+}
 .container {
+    
     display: grid;
     flex-wrap: wrap;
     justify-content: center;
     /* Centraliza os carros */
-    margin-top: -8%;
     background-color: transparent;
     grid-template-columns: repeat(2, 1fr);
 }
@@ -28,7 +30,6 @@ body {
     position: flex;
     background-color: transparent;
     margin: 15px;
-   
     /* Margens para espaçamento */
 
 
@@ -59,7 +60,6 @@ img {
     object-fit: cover;
     height: 100%;
     width: 100%;
-    margin-top: 0%;
 
 
 
@@ -109,7 +109,7 @@ img {
 .butao-comprar button {
     border: none;
     padding: 10px 120px;
-    margin-top: 20px;
+    margin-top: 8px;
     cursor: pointer;
     font-weight: bold;
     border-radius: 20px;
@@ -188,31 +188,23 @@ p {
 
 /* Responsividade */
 @media (max-width: 1024px) {
+    .bmw{
+        margin-top: -10%;
+    }
 
     .image-container {
-
-
         height: 25vw;
     }
-
-
-    .button-comprar {
-        padding: 10px 70px;
-        font-size: 15px;
-
-
-
-    }
-
-    .butao-saiba-mais button {
+    .butao-comprar button {
         padding: 10px 60px;
         font-size: 15px;
 
 
     }
 
+
     .car h2 {
-        font-size: 28px;
+        font-size: 26px;
 
     }
 
@@ -239,16 +231,11 @@ p {
 }
 
 @media (max-width: 767px) {
-
-    .button-comprar {
-        padding: 10px 60px;
-        font-size: 10px;
-
-
-
+    .bmw{
+        margin-top: -15%;
     }
 
-    .butao-saiba-mais button {
+    .butao-comprar button {
         padding: 10px 50px;
         font-size: 10px;
 
@@ -256,7 +243,7 @@ p {
     }
 
     .car h2 {
-        font-size: 20px;
+        font-size: 18px;
 
     }
 
@@ -284,9 +271,10 @@ p {
 }
 
 @media (max-width: 480px) {
-    /* Ajustes de background */
-
-
+    .bmw{
+        margin-top: -20vh;
+    }
+    
     /* Layout em uma coluna para o contêiner de carros */
     .container {
         display: grid;
@@ -299,12 +287,8 @@ p {
     }
 
     /* Ajustes para os botões */
-    .button-comprar {
-        padding: 10px 40px;
-        font-size: 12px;
-    }
 
-    .butao-saiba-mais button {
+    .butao-comprar button {
         padding: 10px 30px;
         font-size: 12px;
     }
