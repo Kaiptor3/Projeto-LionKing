@@ -1,4 +1,6 @@
 
+console.log(localStorage.getItem("usuario"));
+
 (function e(t, n, r) {
   function s(o, u) {
     if (!n[o]) {
@@ -652,4 +654,6 @@ window.onload = function() {
       document.getElementById("cookiePopup").style.display = "flex";
   }
 };
+
+
 

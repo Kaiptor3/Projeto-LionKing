@@ -188,3 +188,7 @@
         color: white;
         cursor: pointer;
     }
+
+    #mensagem-erro{
+        font-size: 15px;
+    }

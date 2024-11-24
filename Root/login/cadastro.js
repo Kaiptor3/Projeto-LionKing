@@ -1,10 +1,9 @@
 $(document).ready(function () {
-
     // Máscara para o CPF (xxx.xxx.xxx-xx)
-    $('#cpf').mask('000.000.000-00', {reverse: false});
+    $('#cpf').mask('000.000.000-00', { reverse: false });
 
     // Máscara para o telefone (xx) xxxxx-xxxx
-    $('#telefone').mask('(00) 00000-0000', {reverse: false});
+    $('#telefone').mask('(00) 00000-0000', { reverse: false });
 
     let nomeInput = $('#nome');
     let nomeError = $('#nomeError');
@@ -56,24 +55,57 @@ $(document).ready(function () {
 
     // Validação do CPF
     function validarCPF() {
-        let cpf = cpfInput.val().trim();
-        let cpfValido = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/; // Exemplo: 123.456.789-01
+        let cpf = cpfInput.val().trim().replace(/\D/g, '');
+        let cpfValido = /^\d{11}$/;
 
         cpfError.text('');
         cpfInput.removeClass('error');
 
         if (!cpfValido.test(cpf)) {
-            cpfError.text('Insira um CPF válido (formato: 123.456.789-01).');
+            cpfError.text('Insira um CPF válido.');
             cpfInput.addClass('error');
             return false;
         }
+
+        if (/^(\d)\1+$/.test(cpf)) {
+            cpfError.text('CPF inválido (todos os dígitos iguais).');
+            cpfInput.addClass('error');
+            return false;
+        }
+
+        let soma = 0;
+        for (let i = 0; i < 9; i++) {
+            soma += parseInt(cpf[i]) * (10 - i);
+        }
+        let resto = (soma * 10) % 11;
+        let digito1 = resto === 10 ? 0 : resto;
+
+        if (parseInt(cpf[9]) !== digito1) {
+            cpfError.text('CPF inválido.');
+            cpfInput.addClass('error');
+            return false;
+        }
+
+        soma = 0;
+        for (let i = 0; i < 10; i++) {
+            soma += parseInt(cpf[i]) * (11 - i);
+        }
+        resto = (soma * 10) % 11;
+        let digito2 = resto === 10 ? 0 : resto;
+
+        if (parseInt(cpf[10]) !== digito2) {
+            cpfError.text('CPF inválido.');
+            cpfInput.addClass('error');
+            return false;
+        }
+
         return true;
     }
 
     // Validação do Número
     function validarNumero() {
         let numero = numeroInput.val().trim();
-        let numeroValido = /^\(\d{2}\)\s\d{4,5}-\d{4}$/; // Exemplo: (12) 12345-6789
+        let numeroValido = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
 
         numeroError.text('');
         numeroInput.removeClass('error');
@@ -87,48 +119,36 @@ $(document).ready(function () {
     }
 
     function validarNascimento() {
-        let nascimento = nascimentoInput.val().trim(); // Obtém o valor do campo
-    
-        console.log("Valor do nascimento:", nascimento); // Adicione para depurar o valor retornado
-    
+        let nascimento = nascimentoInput.val().trim();
         nascimentoError.text('');
         nascimentoInput.removeClass('error');
-    
-        // Verifica se o campo está vazio ou não preenchido
+
         if (!nascimento || isNaN(new Date(nascimento))) {
             nascimentoError.text('Selecione uma data de nascimento.');
             nascimentoInput.addClass('error');
             return false;
         }
-    
-        // Convertendo o valor do nascimento para um objeto Date
+
         let dataNascimento = new Date(nascimento);
         let hoje = new Date();
-    
-        // Calcula a idade
         let idade = hoje.getFullYear() - dataNascimento.getFullYear();
         let mesAtual = hoje.getMonth();
         let diaAtual = hoje.getDate();
         let mesNascimento = dataNascimento.getMonth();
         let diaNascimento = dataNascimento.getDate();
-    
+
         if (mesAtual < mesNascimento || (mesAtual === mesNascimento && diaAtual < diaNascimento)) {
-            idade--; // Ajusta a idade caso o aniversário não tenha ocorrido ainda
+            idade--;
         }
-    
-        console.log("Idade calculada:", idade); // Depuração para verificar a idade
-    
-        // Valida se a idade é maior ou igual a 18
+
         if (idade < 18) {
             nascimentoError.text('Você deve ter pelo menos 18 anos.');
             nascimentoInput.addClass('error');
             return false;
         }
-    
-        return true; // Validação passou
+
+        return true;
     }
-    
-    
 
     // Validação da Senha
     function validarSenha() {
@@ -169,7 +189,6 @@ $(document).ready(function () {
     senhaInput.on('blur', validarSenha);
     confirmaSenhaInput.on('blur', validarConfirmaSenha);
 
-    // Ação no botão de cadastro
     cadastroBtn.on('click', function (event) {
         event.preventDefault();
 
@@ -182,10 +201,18 @@ $(document).ready(function () {
         let confirmaSenhaValida = validarConfirmaSenha();
 
         if (nomeValido && emailValido && cpfValido && numeroValido && nascimentoValido && senhaValida && confirmaSenhaValida) {
-            alert('Cadastro realizado com sucesso!');
-            $('#login')[0].reset(); // Limpa o formulário
+            let usuario = {
+                nome: nomeInput.val().trim(),
+                email: emailInput.val().trim(),
+                cpf: cpfInput.val().trim(),
+                telefone: numeroInput.val().trim(),
+                nascimento: nascimentoInput.val().trim(),
+                senha: senhaInput.val().trim(),
+                estaLogado: false
+            };
+
+            localStorage.setItem("usuario", JSON.stringify(usuario)); // Salva no localStorage
+            window.location.href = "login.html"; // Redireciona para a página de login
         }
     });
-
-    
 });
