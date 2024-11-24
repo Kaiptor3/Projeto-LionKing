@@ -182,6 +182,7 @@ p {
 }
 
 #button-up {
+   margin-right: 1%;
     display: flex;
     justify-content: flex-end;
 }

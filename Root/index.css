@@ -475,6 +475,7 @@
      }
  
      #button-up {
+        margin-right: 1%;
          display: flex;
          justify-content: flex-end;
      }
@@ -526,7 +527,6 @@
          .content-container {
              flex-direction: column-reverse;
              margin: 0;
- 
          }
  
          .text-container {
@@ -536,42 +536,39 @@
          }
  
          .text-container h2 {
-             font-size: 30px;
+             font-size: 50px;
+             margin-top: 3%;
          }
  
          .text-container p2 {
-             font-size: 20px;
+            margin-top: 10px;
+             font-size: 30px;
              line-height: 30px;
              width: 300px;
-             flex-wrap: wrap;
              margin: 0 auto;
+            margin-bottom: 10px;
+         }
+
+         .text-container a{
+            font-size: 50px;
+            margin-bottom: -15%;
          }
  
          .img-container {
              width: 100%;
- 
-             margin: -70px 0;
+             margin-bottom: 1px;
  
          }
- 
+
          .venda {
-             display: flex;
-             align-items: center;
-             justify-content: center;
-             text-align: center;
-             position: relative;
-             margin-top: -60px;
-             margin: 0;
-             /* Centraliza horizontalmente */
-             left: 0;
-             /* Remover o left */
-             transform: none;
-             /* Remover a transformação */
-             margin-bottom: 30px;
-             margin-top: -20px;
- 
-         }
- 
+            left: unset;
+            margin: unset;
+            left: 50%; 
+            transform: translate(-50%, -50%);
+        }    
+        
+        
+
          .footer-container {
              display: flex;
              flex-direction: column;
@@ -599,4 +596,33 @@
          .footer-copyright {
              font-size: 20px;
          }
-     }
+         .cart{
+            display: none;
+         }
+         #slideshow {
+            height: 400px;
+            width: 100%;
+            overflow: hidden; /* Garante que o conteúdo que ultrapasse os limites seja escondido */
+          }
+          
+          .entire-content {
+            display: flex;
+            justify-content: center; /* Centraliza o carrossel na página */
+            align-items: center;
+          }
+          
+          .content-carrousel figure {
+            flex-shrink: 0; /* Garante que os itens não diminuam */
+            margin: 0 5px; /* Espaçamento entre os itens */
+          }
+          
+          figure img {
+            display: block; /* Remove espaços extras ao redor das imagens */
+            max-width: 100%; /* Garante que as imagens não ultrapassem seus contêineres */
+            height: auto; /* Mantém a proporção das imagens */
+          }
+          
+         .conteudo{
+            margin-bottom: 10px;
+         }
+        }
