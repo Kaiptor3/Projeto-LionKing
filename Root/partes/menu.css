@@ -13,17 +13,14 @@ body {
 }
 
 /* Header */
-header {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    
-    background-color: white;
-    z-index: 10;
-    height: 80px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.container {
+    display: flex;
     padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#nav-usuario{
+    margin-right: 5%;
 }
 
 #nav-usuario span{
@@ -36,37 +33,11 @@ header {
 }
 
 .logo{
+    margin-left: 5%;
     size: 10%;
     margin-right: 10px;    
 }
 
-header nav {
-    display: flex;
-    align-items: center;
-    margin-left: 36%;
-}
-
-header nav ul {
-    display: flex;
-    gap: 20px;
-}
-
-header nav ul li {
-    display: inline-block;
-}
-
-header nav ul li a {
-    color: black;
-    text-decoration: none;
-    transition: transform 0.3s, color 0.3s;
-}
-
-header nav ul li a:hover {
-    transform: scale(1.1);
-    color: gray;
-}
-
-/* Navbar e login form */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -75,29 +46,28 @@ header nav ul li a:hover {
 }
 
 .logo {
-    position: absolute;
-    left: 10%;
-    top: 6%;
-    font-size: 1.65rem;
     display: flex;
     align-items: center;
+    margin-right: 20px;
     transform: scale(1.1);
 }
 
 .logo img {
     height: 55px;
     width: auto;
-    margin-right: 10px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1; /* Faz os links ocuparem o espaço entre logo e formulário de login */
 }
 
 .nav-links {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
-    width: 100%;
+    gap: 20px; /* Espaçamento entre os links */
     font-size: 20px;
-    margin-left: -30%;
-    
 }
 
 .nav-links a {
@@ -112,24 +82,16 @@ header nav ul li a:hover {
     color: rgb(255, 255, 255);
 }
 
-.container {
-    display: flex;
-    justify-content: flex-end;
-    width: auto;
-    padding: 10px;
-}
-
 .login-form {
     display: flex;
     align-items: center;
-    margin-left: 60%;
+    margin-right: 5%;
 }
 
 .login-form input {
     padding: 5px;
     margin-right: 10px;
     border: 1px solid #ccc;
-    background-color: white;
     color: black;
     border-radius: 5px;
 }
@@ -146,4 +108,86 @@ header nav ul li a:hover {
 .login-form button:hover {
     background-color: #ffffff;
     color: black;
+}
+
+.menu-mobile{ 
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    font-size: 20px;
+    visibility: hidden;
+    background-color: white;
+}  
+
+.menu-mobile nav a{
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 10px 40px;
+}
+
+.menu-mobile a:hover{
+    background-color: rgba(0, 0, 0, 0.671);
+    color: white;
+}
+
+.btn-menu{
+    position: absolute;
+    display: block;
+    right: 7%;
+    top: 16%;
+    border: none; 
+    border-radius: 3px; 
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid black;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+.btn-menu.ativar .linha:nth-child(1){
+    transform: translateY(4px) rotate(-45deg);
+}
+
+.btn-menu.ativar .linha:nth-child(2){
+    display: none;
+}
+
+.btn-menu.ativar .linha:nth-child(3){
+    transform: translateY(-4px) rotate(45deg);
+}
+
+
+.linha{
+    display: block;
+    background-color: black;
+    width: 30px;
+    height: 3px;
+    margin: 5px auto;
+    position: relative;
+    transform-origin: center;
+    transition: 0.2;
+}
+
+.texto-M{
+    visibility: hidden;
+}
+
+@media screen and (max-width: 1020px) {
+
+    .navbar{
+        visibility: hidden;
+    }
+    .menu-mobile.abrir{
+        visibility: visible;
+    }
+    
+    .btn-menu{
+        visibility:visible;
+    }
+
+ 
 }

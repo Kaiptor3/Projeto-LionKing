@@ -42,10 +42,10 @@ window.onload = function() {
 
   if (usuario && usuario.estaLogado) {
     bemVindoUsuario.textContent = `${usuario.nome}`;
-    navUsuario.display = "inline";
+    navUsuario.display = "inline"; // Elemento aparece
     login.style.display = "none";
   } else {
-    navUsuario.display = "none";
+    navUsuario.style.display = "none";
   }
 };
 
