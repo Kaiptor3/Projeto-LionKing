@@ -16,6 +16,7 @@
         margin: 0;
         padding: auto;
         /* Remove qualquer margem padrão */
+        overflow: hidden;
     }
         /* Seções e layout */
         section {
@@ -191,4 +192,32 @@
 
     #mensagem-erro{
         font-size: 15px;
+    }
+
+    .botao-voltar{
+        background-color: transparent;
+        color: #FFF;
+        padding: 10px 10px;
+        font-size: 30px;
+        border: 2px solid white;
+        border-radius: 15px;
+        margin-left: 4%;
+        cursor: pointer;
+        position: fixed;
+        margin-top: 1%;
+    }
+    .botao-voltar:hover{
+        transform: scale(1.1);
+    }
+
+    @media screen and (max-width: 1020px) {
+
+        body{
+            overflow: auto;
+        }
+
+        .background-section{
+            margin-top: -10%;
+        }
+
     }
