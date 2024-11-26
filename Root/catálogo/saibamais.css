@@ -245,7 +245,7 @@ body {
     }
 
     .titulo h2 {
-        font-size: 60px;
+        font-size: 50px;
     }
 
     .titulo h4 {
@@ -281,6 +281,8 @@ body {
 /*responsividade para dispositivos pequenos*/
 
 @media (max-width: 480px) {
+
+        
     .botao-voltar{
         margin: 0px;
         padding: 10px 10px;
@@ -293,7 +295,7 @@ body {
     }
 
     .titulo h2 {
-        font-size: 50px;
+        font-size: 30px;
     }
 
     .titulo h4 {
@@ -313,4 +315,64 @@ body {
         font-size: 12px;
     }   
 }
+.contrast-button {
+    position: fixed;
+    bottom: 93%;
+    right: 20px;
+    z-index: 1000;
+    padding: 7px 15px;
+    background-color: rgb(159, 0, 0);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+    
+}
+
+
+.contrast-button:hover {
+    background-color: rgb(59, 0, 0);
+    color: rgb(255, 255, 255);
+}
+.high-contrast  {
+    background-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+
+   
+}
+.high-contrast .site  {
+    background-color: rgb(208, 208, 208);
+    color: rgb(255, 255, 255);
+    
+   
+}
+.high-contrast .titulo h2 {
+    color: #000;
+}
+
+
+.high-contrast .titulo h3 {
+    color: #000;
+}
+
+
+.high-contrast .titulo h4 {
+    color: #000;
+}
+
+
+.high-contrast .combustivel h2  {
+    color: rgb(0, 0, 0);
+    
+   
+}
+
+
+
+
+
+
+
 

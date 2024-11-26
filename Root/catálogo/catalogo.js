@@ -38,5 +38,28 @@ searchButton.addEventListener('click', function () {
         searchInput.value = ''; // Limpa o campo de entrada
     }
 });
+// Script para alternar o contraste
+document.getElementById("contrast-toggle").addEventListener("click", function () {
+    const body = document.body;
+    const button = this;
+
+    // Alterna a classe de alto contraste
+    body.classList.toggle("high-contrast");
+
+    // Atualiza o texto do botão
+    if (body.classList.contains("high-contrast")) {
+        button.textContent = "Desativar Alto Contraste";
+    } else {
+        button.textContent = "Ativar Alto Contraste";
+    }
+});
+
+
+
+
+
+
+
+
 
 

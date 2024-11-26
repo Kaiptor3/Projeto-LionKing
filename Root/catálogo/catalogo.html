@@ -12,7 +12,7 @@
     <title>catalogo</title>
 </head>
 <header>
-    <iframe src="../partes/menu.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 59%; z-index: 9999; border: none;"></iframe>
+    <iframe src="../partes/menu.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 15%; z-index: 9999; border: none;"></iframe>
 </header>
 <body>
     <div class="bmw">
@@ -151,6 +151,7 @@
     </div>
  <!-- Footer -->
  <footer>
+
     <iframe src="../partes/rodape.html" style="width:100%; height:200px; border:none;"></iframe>
     <div id="button-up">
         <button class="button-up-box" onclick="voltarAoTopo()">
@@ -160,7 +161,29 @@
   </footer>
     <script src="/Projeto-LionKing-main/Root/script.js"></script>
 </footer>
+<button id="contrast-toggle" class="contrast-button">Ativar Alto Contraste</button>
     <script src="loginHome.js"></script>
     <script src="script.js"></script>
+    <script>
+        // Script para alternar o contraste
+document.getElementById("contrast-toggle").addEventListener("click", function () {
+    const body = document.body;
+    const button = this;
+
+    // Alterna a classe de alto contraste
+    body.classList.toggle("high-contrast");
+
+    // Atualiza o texto do botão
+    if (body.classList.contains("high-contrast")) {
+        button.textContent = "Desativar Alto Contraste";
+    } else {
+        button.textContent = "Ativar Alto Contraste";
+    }
+});
+
+
+
+
+    </script>
 </body>
 </html>

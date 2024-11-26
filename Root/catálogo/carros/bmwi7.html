@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="site">
+   
         <a href="../catalogo.html"><button class="botao-voltar">←</button></a>
         <div class="titulo">
             <h3>DESIGN E PERFORMANCE</h3>
@@ -87,5 +88,22 @@
             </div>
         </div>
     </div>
+    <button id="contrast-toggle" class="contrast-button">Ativar Alto Contraste</button>
+    <script>
+        document.getElementById("contrast-toggle").addEventListener("click", function () {
+    const body = document.body;
+    const button = this;
+
+    // Alterna a classe de alto contraste
+    body.classList.toggle("high-contrast");
+
+    // Atualiza o texto do botão
+    if (body.classList.contains("high-contrast")) {
+        button.textContent = "Desativar Alto Contraste";
+    } else {
+        button.textContent = "Ativar Alto Contraste";
+    }
+});
+    </script>
 </body>
 </html>
