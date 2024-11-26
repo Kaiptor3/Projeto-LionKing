@@ -594,12 +594,12 @@
 
 @media screen and (max-width: 1020px) {
 
-    body{
-        margin-top: 110px;
-    }
+        body{
+            margin-top: 110px;
+        }
          .content-container {
-             flex-direction: column-reverse;
-             margin: 0;
+            flex-direction: column-reverse;
+            margin: 0;
          }
 
          .text-container {
@@ -721,4 +721,25 @@
             width: 85%;
          }
 
+         #ifooter{
+            height: 250px;
+         }
      }
+
+@media (max-width: 320px) {
+
+    .text-container h2 {
+        font-size: 40px;
+        margin-top: 3%;
+    }
+
+    .text-container p2 {
+        margin-top: 10px;
+        font-size: 25px;
+        line-height: 30px;
+        width: 300px;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+
+}

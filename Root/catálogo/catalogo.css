@@ -13,7 +13,7 @@ body {
 
 }
 .bmw{
-    margin-top: -8%;
+    margin-top: 76px;
 }
 .container {
     
@@ -190,7 +190,7 @@ p {
 /* Responsividade */
 @media (max-width: 1024px) {
     .bmw{
-        margin-top: -10%;
+         margin-top: 110px;
     }
 
     .image-container {
@@ -233,7 +233,7 @@ p {
 
 @media (max-width: 767px) {
     .bmw{
-        margin-top: -15%;
+       margin-top: 110px;
     }
 
     .butao-comprar button {
@@ -273,7 +273,7 @@ p {
 
 @media (max-width: 480px) {
     .bmw{
-        margin-top: -20vh;
+        margin-top: 110px;
     }
     
     /* Layout em uma coluna para o contêiner de carros */
