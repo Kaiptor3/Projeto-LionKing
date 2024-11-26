@@ -21,17 +21,19 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#nav-usuario{
+.nav-usuario{
     margin-right: 5%;
+    color: black;
 }
 
-#nav-usuario span{
+.nav-usuario span{
     font-size: 20px;
     margin: 0 10px 0 10px
 }
 
-#nav-usuario img{
+.nav-usuario img{
     width: 40px;
+    height: 40px;
 }
 
 .logo{
@@ -189,6 +191,10 @@ body {
     
     .btn-menu{
         visibility:visible;
+    }
+
+    .nav-usuario{
+        padding: 10px 40px;
     }
 
  

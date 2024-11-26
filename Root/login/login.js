@@ -31,23 +31,29 @@ $("#login").addEventListener("submit", (ev) => {
     // Atualiza a propriedade `estaLogado` para true antes de salvar no localStorage
     usuarioCadastrado.estaLogado = true;
     localStorage.setItem("usuario", JSON.stringify(usuarioCadastrado));
-
-    const caminhoIndex = window.location.pathname.includes("/login/") ? "../index.html" : "index.html";
-    window.location.href = caminhoIndex;
+    window.top.location.href = "../index.html";
 });
-window.onload = function() {
+
+window.onload = function () {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
-  const navUsuario = document.getElementById("nav-usuario");
-  const bemVindoUsuario = document.getElementById("bem-vindo-usuario");
+  const navUsuarios = document.querySelectorAll(".nav-usuario");
+  const bemVindos = document.querySelectorAll(".bem-vindo-usuario");
 
   if (usuario && usuario.estaLogado) {
-    bemVindoUsuario.textContent = `${usuario.nome}`;
-    navUsuario.display = "inline"; // Elemento aparece
-    login.style.display = "none";
+    bemVindos.forEach((bemVindo) => {
+      bemVindo.textContent = usuario.nome;
+    });
+    navUsuarios.forEach((navUsuario) => {
+      navUsuario.display = "inline"; // Mostra o elemento
+    });
+    login.style.display = "none"; // Oculta o formulário de login
   } else {
-    navUsuario.style.display = "none";
+    navUsuarios.forEach((navUsuario) => {
+      navUsuario.style.display = "none"; // Oculta o elemento
+    });
   }
 };
+
 
 // Função de logout
 function logout() {
@@ -55,6 +61,6 @@ function logout() {
   if (usuario) {
     usuario.estaLogado = false;
     localStorage.setItem("usuario", JSON.stringify(usuario));
-    window.location.href = "/index.html";
+    window.top.location.href = "../index.html";
   }
 }

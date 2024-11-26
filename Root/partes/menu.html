@@ -30,13 +30,14 @@
         </div>
       </nav>
       <form id="login" class="login-form">
-        <input type="text" id="email" name="email" placeholder="Email" required/>
-        <input type="password" id="senha" name="senha" placeholder="Senha" required/>
+        <input type="text" id="email" name="email" placeholder="Email" required>
+        <input type="password" id="senha" name="senha" placeholder="Senha" required>
+        <p id="mensagem-erro" style="color: red;"></p>
         <button type="submit" class="cadastro" id="entrar" value="Entrar">Login</button>
       </form>
-      <div class="login-form" id="nav-usuario">
+      <div class="login-form nav-usuario">
         <img src="../imgs/user-placeholder.png" />
-        <span id="bem-vindo-usuario"></span>
+        <span class="bem-vindo-usuario"></span>
         <button onclick="logout()">Logout</button>
       </div>
     </nav>
@@ -54,6 +55,11 @@
         <a href="../catálogo/catalogo.html " target="_top">Carros</a>
         <a href="../login/cadastro.html" target="_top">Cadastrar</a>
         <a href="../login/login.html" target="_top">Login</a>
+        <div class="login-form nav-usuario">
+          <img src="../imgs/user-placeholder.png" />
+          <span class="bem-vindo-usuario"></span>
+          <button onclick="logout()">Logout</button>
+        </div>
     </nav>
   </div>
   </header>
