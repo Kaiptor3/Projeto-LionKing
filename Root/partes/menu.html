@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>menu</title>
+    <link rel="stylesheet" href="./menu.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+<header>
+  <div class="container">
+    <div class="logo">
+      <img class="logo"
+        src="../catálogo/imgs/LK- Menu.png"
+        alt="Logo"
+      />
+    </div>
+    <nav class="navbar"> 
+      <div class="nav-links">
+        <a href="../index.html" target="_top">Home</a>
+        <a href="../catálogo/catalogo.html " target="_top">Carros</a>
+        <a href="../login/cadastro.html" target="_top">Cadastrar</a>
+      </div>
+      <nav class="navbar texto-M">
+        <div class="nav-links">
+          <p>Lion King Motors</p>
+        </div>
+      </nav>
+      <form id="login" class="login-form">
+        <input type="text" id="email" name="email" placeholder="Email" required/>
+        <input type="password" id="senha" name="senha" placeholder="Senha" required/>
+        <button type="submit" class="cadastro" id="entrar" value="Entrar">Login</button>
+      </form>
+      <div class="login-form" id="nav-usuario">
+        <img src="../imgs/user-placeholder.png" />
+        <span id="bem-vindo-usuario"></span>
+        <button onclick="logout()">Logout</button>
+      </div>
+    </nav>
+    <button onclick="animarMenu()" id="btn-menu" class="btn-menu">
+      <span class="linha"></span>
+      <span class="linha"></span>
+      <span class="linha"></span>
+    </button>
+  </div>
+
+
+  <div class="menu-mobile" id="menu-mobile">
+    <nav>
+        <a href="../index.html" target="_top">Home</a>
+        <a href="../catálogo/catalogo.html " target="_top">Carros</a>
+        <a href="../login/cadastro.html" target="_top">Cadastrar</a>
+        <a href="../login/login.html" target="_top">Login</a>
+    </nav>
+  </div>
+  </header>
+
+  <script src="/Root/partes/animar.js"></script>
+  <script src="/Root/login/login.js"></script>
+</html>
