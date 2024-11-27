@@ -12,8 +12,79 @@
     />
 </head>
 <header class="menu">
-    <iframe id="iframe" src="../Root/partes/menu.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; border: none;"></iframe>
-</header>
+    <!DOCTYPE html>
+    <html lang="pt-br">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>menu</title>
+        <link rel="stylesheet" href="./menu.css" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body>
+        <header>
+          <div class="container">
+            <div class="logo">
+              <img class="logo" src="imgs/LK- Menu.png" alt="Logo" />
+            </div>
+            <nav class="navbar">
+              <div class="nav-links">
+                <a href="../index.html" target="_top">Home</a>
+                <a href="../catálogo/catalogo.html " target="_top">Carros</a>
+                <a href="../login/cadastro.html" target="_top">Cadastrar</a>
+              </div>
+              <nav class="navbar texto-M">
+                <div class="nav-links">
+                  <p>Lion King Motors</p>
+                </div>
+              </nav>
+              <form id="login" class="login-form">
+                <input type="text" id="email" name="email" placeholder="Email" required />
+                <input type="password" id="senha" name="senha" placeholder="Senha" required />
+                <p id="mensagem-erro" style="font-size: 17px; color: red;"></p>
+                <button type="submit" class="cadastro" id="entrar" value="Entrar">Login</button>
+              </form>
+              <div class="login-form nav-usuario">
+                <img src="imgs/user-placeholder.png" />
+                <span class="bem-vindo-usuario"></span>
+                <button onclick="logout()">Logout</button>
+              </div>
+            </nav>
+    
+            <!-- Botão Dark Mode -->
+            <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+    
+            <button onclick="animarMenu()" id="btn-menu" class="btn-menu">
+              <span class="linha"></span>
+              <span class="linha"></span>
+              <span class="linha"></span>
+            </button>
+          </div>
+    
+          <div class="menu-mobile" id="menu-mobile">
+            <nav>
+              <a href="../index.html" target="_top">Home</a>
+              <a href="../catálogo/catalogo.html " target="_top">Carros</a>
+              <a href="../login/cadastro.html" target="_top">Cadastrar</a>
+              <a href="../login/login.html" target="_top">Login</a>
+              <div class="login-form nav-usuario">
+                <img src="imgs/user-placeholder.png" />
+                <span class="bem-vindo-usuario"></span>
+                <button onclick="logout()">Logout</button>
+              </div>
+            </nav>
+          </div>
+        </header>
+    
+        <script src="/Root/partes/animar.js"></script>
+        <script src="/Root/login/login.js"></script>
+        <script src="darkmode.js"></script>
+      </body>
+    </html>
+    </header>
     <body>
     <section>
         <div class="background-section">
@@ -42,14 +113,7 @@
     <div class="text-container">
     <h2><font color="#f44e52">911</font> Porche 911</h2>
     <p2>Imagine ter uma porche, agora imagine 2 ou 3 com 10% de desconto?</p2>
-    <a href="#" class="price" id="price">R$868.000</a>
-    <div class="cart">
-        <select id="carQuantity">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
-        <a href="./catálogo/catalogo.html">Comprar</a>
+        <a href="./catálogo/catalogo.html"></a>
     </div>
 </div>
 
@@ -221,7 +285,44 @@ function prevImage() {
 showImage(currentIndex);
 </script>
 <footer>
-    <iframe src="partes/rodape.html" style=" width: 100%; z-index: 9999;border: none;"></iframe>
+    <footer>
+        <div class="footer-container">
+          <div class="footer-logo">
+            <img
+              src="imgs/LK- Menu.png"
+              alt="Logomarcafooter"
+            />
+          </div>
+          <div class="footer-links">
+            <ul>
+              <li>
+                <a href="../login/cadastro.html"target="_top"
+                  >Cadastro</a
+                >
+              </li>
+              <li>
+                <a href="../catálogo/catalogo.html"target="_top"
+                  >Catálogo</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-socials">
+            <img src="imgs/facebook.png" alt="Logo" />
+            <img src="imgs/linkedlin.png" alt="Logo" />
+            <img src="imgs/x.png" alt="Logo" />
+          </div>
+          <div class="footer-search">
+            <input type="text" placeholder="Pesquisar..." />
+            <button class="pesquisa">Buscar</button>
+          </div>
+        </div>
+        <!-- Copyright Section -->
+        <div class="footer-copyright">
+          <p>&copy; 2024 Lion King Motors. Todos os direitos reservados.</p>
+        </div>
+    
+    </html>
     <script src="/Projeto-LionKing-main/Root/script.js"></script>
                    <!-- Pop-up de Cookies -->
     <div id="cookiePopup" class="cookie-popup">
@@ -235,5 +336,6 @@ showImage(currentIndex);
         </div>
 </footer>
     <script src="script.js"></script>
+    <script src="animar.js"></script>
 </body>
 </html>
