@@ -12,9 +12,67 @@
     <title>catalogo</title>
 </head>
 <header>
-    <iframe src="../partes/menu.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 15%; z-index: 9999; border: none;"></iframe>
-</header>
-<body>
+    <div class="container">
+      <div class="logo">
+        <img class="logo" src="imgs/LK- Menu.png" alt="Logo">
+      </div>
+      <div class="logodark" src="imgs/LK-Menu-Dark.png" alt="logodark">
+      </div>
+      <nav class="navbar">
+        <div class="nav-links">
+          <a href="../index.html" target="_top">Home</a>
+          <a href="../catálogo/catalogo.html " target="_top">Carros</a>
+          <a href="../login/cadastro.html" target="_top">Cadastrar</a>
+        </div>
+        <nav class="navbar texto-M">
+          <div class="nav-links">
+            <p>Lion King Motors</p>
+          </div>
+        </nav>
+        <form id="login" class="login-form">
+          <input type="text" id="email" name="email" placeholder="Email" required />
+          <input type="password" id="senha" name="senha" placeholder="Senha" required />
+          <p id="mensagem-erro" style="font-size: 17px; color: red;"></p>
+          <button type="submit" class="cadastro" id="entrar" value="Entrar">Login</button>
+        </form>
+        <div class="login-form nav-usuario">
+          <img src="imgs/user-placeholder.png" />
+          <span class="bem-vindo-usuario"></span>
+          <button onclick="logout()">Logout</button>
+        </div>
+      </nav>
+
+      <!-- Botão Dark Mode -->
+      <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
+
+      <button onclick="animarMenu()" id="btn-menu" class="btn-menu">
+        <span class="linha"></span>
+        <span class="linha"></span>
+        <span class="linha"></span>
+      </button>
+    </div>
+
+    <div class="menu-mobile" id="menu-mobile">
+      <nav>
+        <a href="../index.html" target="_top">Home</a>
+        <a href="../catálogo/catalogo.html " target="_top">Carros</a>
+        <a href="../login/cadastro.html" target="_top">Cadastrar</a>
+        <a href="../login/login.html" target="_top">Login</a>
+        <div class="login-form nav-usuario">
+          <img src="imgs/user-placeholder.png" />
+          <span class="bem-vindo-usuario"></span>
+          <button onclick="logout()">Logout</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <script src="/Root/partes/animar.js"></script>
+  <script src="/Root/login/login.js"></script>
+  <script src="../darkmode.js"></script>
+</body>
+</html>
+</header><body>
     <div class="bmw">
     <div class="container">
         <div class="car">
@@ -150,40 +208,51 @@
          </div>
     </div>
  <!-- Footer -->
- <footer>
-
-    <iframe src="../partes/rodape.html" style="width:100%; height:200px; border:none;"></iframe>
+  <footer>
+    <footer>
+        <div class="footer-container">
+          <div class="footer-logo">
+            <img
+              src="imgs/LK- Menu.png"
+              alt="Logomarcafooter"
+            />
+          </div>
+          <div class="footer-links">
+            <ul>
+              <li>
+                <a href="../login/cadastro.html"target="_top"
+                  >Cadastro</a
+                >
+              </li>
+              <li>
+                <a href="../catálogo/catalogo.html"target="_top"
+                  >Catálogo</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="footer-socials">
+            <img src="imgs/facebook.png" alt="Logo" />
+            <img src="imgs/linkedlin.png" alt="Logo" />
+            <img src="imgs/x.png" alt="Logo" />
+          </div>
+          <div class="footer-search">
+            <input type="text" placeholder="Pesquisar..." />
+            <button class="pesquisa">Buscar</button>
+          </div>
+        </div>
+        <!-- Copyright Section -->
+        <div class="footer-copyright">
+          <p>&copy; 2024 Lion King Motors. Todos os direitos reservados.</p>
+        </div>
+    
+    </html>
     <div id="button-up">
         <button class="button-up-box" onclick="voltarAoTopo()">
           <div class="button-up-arrow"></div>
         </button>
         </div>
-  </footer>
-    <script src="/Projeto-LionKing-main/Root/script.js"></script>
 </footer>
-<button id="contrast-toggle" class="contrast-button">Ativar Alto Contraste</button>
-    <script src="loginHome.js"></script>
-    <script src="script.js"></script>
-    <script>
-        // Script para alternar o contraste
-document.getElementById("contrast-toggle").addEventListener("click", function () {
-    const body = document.body;
-    const button = this;
-
-    // Alterna a classe de alto contraste
-    body.classList.toggle("high-contrast");
-
-    // Atualiza o texto do botão
-    if (body.classList.contains("high-contrast")) {
-        button.textContent = "Desativar Alto Contraste";
-    } else {
-        button.textContent = "Ativar Alto Contraste";
-    }
-});
-
-
-
-
     </script>
 </body>
 </html>
