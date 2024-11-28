@@ -34,7 +34,7 @@
          height: 100%;
          position: relative;
          z-index: 1;
-         background: radial-gradient(circle, rgba(255, 255, 255, 0.274) 80%, rgb(255, 255, 255) 100%);
+         background: radial-gradient(circle, rgba(0, 0, 0, 0.274) 20%, rgb(0, 0, 0) 100%);
          display: flex;
          justify-content: center;
          align-items: center;
@@ -252,12 +252,12 @@ body {
 
 /* Dark Mode - Ajustes */
 body.dark-mode {
-    background-color: #121212; /* Cor de fundo escuro */
+    background-color: #000000; /* Cor de fundo escuro */
     color: #e0e0e0; /* Cor de texto clara */
 }
 
 body.dark-mode .container {
-    background-color: #333;
+    background-color: #000000;
 }
 
 body.dark-mode .nav-links a {
@@ -265,7 +265,7 @@ body.dark-mode .nav-links a {
 }
 
 body.dark-mode .nav-links a:hover {
-    background-color: #555;
+    background-color: #ff0000;
 }
 
 body.dark-mode .login-form input {
@@ -275,10 +275,26 @@ body.dark-mode .login-form input {
 }
 
 body.dark-mode .login-form button {
-    background-color: #222;
+    background-color: #ff0000;
+    color: white;
+}
+body.dark-mode .footer-search button {
+    background-color: #ff0000;
+}
+body.dark-mode h2 {
     color: white;
 }
 
+body.dark-mode p2 {
+    color: white;
+}
+
+body.dark-mode p {
+    color: white;
+}
+body.dark-mode .footer-links ul li a {
+    color: #ffffff;
+}
 body.dark-mode .menu-mobile {
     background-color: #333;
 }
@@ -334,7 +350,6 @@ body.dark-mode .menu-mobile a:hover {
          justify-content: flex-end;
          margin: 80px;
      }
-
      .img-container {
          height: 450px;
          width: 1027px;
@@ -708,6 +723,7 @@ body.dark-mode .menu-mobile a:hover {
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
+        margin-top: 1%;
     }
     
     .footer-logo img {
@@ -781,11 +797,10 @@ body.dark-mode .menu-mobile a:hover {
     }
     
     .footer-copyright {
-        margin-top: -5%;
+        margin-top: -1%;
         text-align: center;
         color: black;
         font-size: 0.9em;
-        border-top: 1px solid #ffffff;
     }
     
 
