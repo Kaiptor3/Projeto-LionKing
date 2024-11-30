@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#cpf').mask('000.000.000-00', { reverse: false });
 
     // Máscara para o telefone (xx) xxxxx-xxxx
-    $('#telefone').mask('(00) 00000-0000', { reverse: false });
+    $('#numero').mask('(00) 00000-0000', { reverse: false });
 
     let nomeInput = $('#nome');
     let nomeError = $('#nomeError');
@@ -111,7 +111,7 @@ $(document).ready(function () {
         numeroInput.removeClass('error');
 
         if (!numeroValido.test(numero)) {
-            numeroError.text('Insira um número válido (formato: (12) 12345-6789).');
+            numeroError.text('Insira um número válido!.');
             numeroInput.addClass('error');
             return false;
         }
