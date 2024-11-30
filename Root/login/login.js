@@ -31,7 +31,15 @@ $("#login").addEventListener("submit", (ev) => {
     // Atualiza a propriedade `estaLogado` para true antes de salvar no localStorage
     usuarioCadastrado.estaLogado = true;
     localStorage.setItem("usuario", JSON.stringify(usuarioCadastrado));
-    window.top.location.href = "../index.html";
+    const paginaAtual = window.location.pathname;
+
+    if (paginaAtual.includes("login.html")) {
+        // Se a página for login.html, redireciona para a página inicial
+        window.location.href = "../index.html";
+    } else {
+        // Se a página for qualquer outra, recarrega a página
+        window.location.reload();
+    }
 });
 
 window.onload = function () {
@@ -61,6 +69,6 @@ function logout() {
   if (usuario) {
     usuario.estaLogado = false;
     localStorage.setItem("usuario", JSON.stringify(usuario));
-    window.top.location.href = "../index.html";
+    window.location.reload();
   }
 }
