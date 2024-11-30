@@ -198,6 +198,18 @@ body.dark-mode .btn-menu{
     border-color: #e0e0e0;
 }
 
+body.dark-mode .facebook{
+    content: url('/Root/imgs/facebook-dark.png');
+}
+
+body.dark-mode .linkedin{
+    content: url('/Root/imgs/linkedin-dark.png');
+}
+
+body.dark-mode .x{
+    content: url('/Root/imgs/x-dark.png');
+}
+
 body.dark-mode .linha{
     background-color: #e0e0e0;
 }
@@ -238,10 +250,16 @@ body.dark-mode .login-form input {
     color: #e0e0e0;
 }
 
-body.dark-mode .login-form button {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
+body.dark-mode .login-form input::placeholder{
+    color: white;
 }
+
+body.dark-mode .login-form button {
+    background-color: #444;
+    border: 1px solid #666;
+    color: white;
+}
+
 body.dark-mode .footer-search button {
     background-color: #ffffff;
     color: black;
@@ -250,9 +268,15 @@ body.dark-mode h2 {
     color: white;
 }
 
+body.dark-mode .butao-comprar button::placeholder{
+    color: white;
+}
+
 body.dark-mode p2 {
     color: white;
 }
+
+
 
 body.dark-mode p {
     color: white;
@@ -897,7 +921,7 @@ footer {
    margin-top: -1%;
    text-align: center;
    color: black;
-   font-size: 0.9em;
+   font-size: 0.8em;
 }
 
 

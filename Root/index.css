@@ -258,8 +258,20 @@ body.dark-mode {
     /* Cor de texto clara */
 }
 
-body.dark-mode .logo {
-    display: none;
+body.dark-mode .logo img{
+
+}
+
+body.dark-mode .facebook{
+    content: url('/Root/imgs/facebook-dark.png');
+}
+
+body.dark-mode .linkedin{
+    content: url('/Root/imgs/linkedin-dark.png');
+}
+
+body.dark-mode .x{
+    content: url('/Root/imgs/x-dark.png');
 }
 
 body.dark-mode .btn-menu{
@@ -309,9 +321,14 @@ body.dark-mode .login-form input {
     color: white;
 }
 
+body.dark-mode .login-form input::placeholder {
+    color: white;
+}
+
 body.dark-mode .login-form button {
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
+    background-color: #444;
+    border: 1px solid #666;
+    color: white;
 }
 
 body.dark-mode .footer-search button {
@@ -830,7 +847,7 @@ footer {
     /* Remove o sublinhado */
     color: black;
     /* Garante que a cor do link será preta */
-    font-size: 1.1em;
+    font-size: 1em;
 }
 
 .footer-links ul li a:hover {
@@ -893,7 +910,7 @@ footer {
     margin-top: -1%;
     text-align: center;
     color: black;
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 

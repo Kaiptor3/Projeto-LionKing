@@ -1,25 +1,25 @@
-    @font-face {
-        font-family: 'Montserrat';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw0aXpsog.woff2) format('woff2');
-        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
-    }
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw0aXpsog.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
 
-    body {
-        background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 1) 100%);
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center; 
-        margin: 0;
-        padding: auto;
-        /* Remove qualquer margem padrão */
-        overflow: hidden;
+body {
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 1) 100%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin: 0;
+    padding: auto;
+    /* Remove qualquer margem padrão */
+    overflow: hidden;
     }
-        /* Seções e layout */
-        section {
+    /* Seções e layout */
+    section {
             width: 100%;
 
             height: calc(100vh - 80px);
@@ -208,6 +208,78 @@
     }
     .botao-voltar:hover{
         transform: scale(1.1);
+    }
+
+    .dark-mode-toggle {
+        z-index: 1000;
+        position: fixed;
+        top: 2%;
+        right: 20px;
+        padding: 10px 15px;
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        background-color: #f1f1f1;
+        color: #444;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    
+    .dark-mode-toggle:hover {
+        background-color: #ddd;
+        color: #222;
+        transform: scale(1.1);
+        z-index: 100;
+    }
+    
+    
+    body.dark-mode .dark-mode-toggle {
+        background-color: #444;
+        color: #f1f1f1;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+        z-index: 100;
+    }
+
+    body.dark-mode .box{
+        background-color: black;
+        border: 1px solid #666;
+    }
+
+    body.dark-mode .box img{
+        content: url('/Root/imgs/LK\ -\ sem\ fundo\ branco.png');
+    }
+
+    body.dark-mode #login h1{
+        color: #e0e0e0;
+    }
+
+    body.dark-mode #login p{
+        color: #e0e0e0;
+    }
+
+    body.dark-mode #login a{
+        color: #e0e0e0;
+    }
+
+    body.dark-mode #login input{
+        background-color: #444;
+        border: 1px solid #666;
+        color: white;
+    }
+
+    body.dark-mode #login input::placeholder{
+        color: white;
+    }
+    
+    
+    body.dark-mode .dark-mode-toggle:hover {
+        background-color: #333;
+        color: #fff;
+        transform: scale(1.1);
+        z-index: 100;
     }
 
     @media screen and (max-width: 1020px) {
