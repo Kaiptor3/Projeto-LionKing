@@ -190,10 +190,6 @@ body.dark-mode {
     color: #e0e0e0; /* Cor de texto clara */
 }
 
-body.dark-mode .logo {
-    display: none;
-}
-
 body.dark-mode .btn-menu{
     border-color: #e0e0e0;
 }
@@ -252,6 +248,10 @@ body.dark-mode .login-form input {
 
 body.dark-mode .login-form input::placeholder{
     color: white;
+}
+
+body.dark-mode .logo img{
+    content: url('/Root/imgs/LK-Menu-Dark.png');
 }
 
 body.dark-mode .login-form button {

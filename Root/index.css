@@ -259,7 +259,7 @@ body.dark-mode {
 }
 
 body.dark-mode .logo img{
-
+    content: url('/Root/imgs/LK-Menu-Dark.png');
 }
 
 body.dark-mode .facebook{
