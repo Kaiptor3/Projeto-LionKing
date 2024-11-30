@@ -270,6 +270,7 @@ body {
         color: white;
     }
 
+
     body.dark-mode #login input::placeholder{
         color: white;
     }

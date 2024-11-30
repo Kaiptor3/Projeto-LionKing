@@ -240,6 +240,10 @@ body.dark-mode .nav-links a:hover {
     background-color: #ffffff;
 }
 
+body.dark-mode .footer-logo img{
+    content: url('/Root/imgs/LK-Menu-Dark.png');
+}
+
 body.dark-mode .login-form input {
     background-color: #444;
     border: 1px solid #666;
