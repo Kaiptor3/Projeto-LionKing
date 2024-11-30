@@ -36,7 +36,7 @@
           <button type="submit" class="cadastro" id="entrar" value="Entrar">Login</button>
         </form>
         <div class="login-form nav-usuario">
-          <img src="imgs/user-placeholder.png" />
+          <img src="/Root/imgs/user-placeholder.png" />
           <span class="bem-vindo-usuario"></span>
           <button onclick="logout()">Logout</button>
         </div>
@@ -52,29 +52,31 @@
       </button>
     </div>
 
-    <div class="menu-mobile" id="menu-mobile">
+    <div class="menu-mobile" id="menu-mobile" style="z-index: 9999999999999999;">
       <nav>
         <a href="../index.html" target="_top">Home</a>
         <a href="../catálogo/catalogo.html " target="_top">Carros</a>
         <a href="../login/cadastro.html" target="_top">Cadastrar</a>
         <a href="../login/login.html" target="_top">Login</a>
         <div class="login-form nav-usuario">
-          <img src="imgs/user-placeholder.png" />
+          <img src="/Root/imgs/user-placeholder.png" />
           <span class="bem-vindo-usuario"></span>
           <button onclick="logout()">Logout</button>
         </div>
       </nav>
     </div>
+    <button id="increaseFont">Aumentar Fonte</button>
+    <button id="decreaseFont">Diminuir Fonte</button>
+    <script src="../fonte.js"></script>
   </header>
 
-  <script src="/Root/partes/animar.js"></script>
-  <script src="/Root/login/login.js"></script>
-  <script src="../darkmode.js"></script>
-</body>
-</html>
-</header><body>
+  <script src="/Root/animar.js"></script>
+        <script src="/Root/login/login.js"></script>
+        <script src="/Root/darkmode.js"></script>
+</header>
+<body>
     <div class="bmw">
-    <div class="container">
+    <div class="container-car">
         <div class="car">
             <div class="image-container">
                 <img class="logo1" src="imagem/bmwlogotipo.webp" alt="Logo">
@@ -88,7 +90,7 @@
         <div class="car">
             <div class="image-container">
                 <img class="logo1" src="imagem/bmwlogotipo.webp" alt="Logo">
-                <img id="image" src="imagem/bmw x7 m60i.webp" alt="">
+                <img id="image" src="imagem/bmw x7 m60i.png" alt="">
             </div>
             <h2>BMW X7 </h2>
             <p>A partir de R$ 1.199.950,00 </p>
@@ -119,7 +121,7 @@
     <div> 
  
         <div class="Jaguar">
-            <div class="container">
+            <div class="container-car">
                 <div class="car">
                     <div class="image-container">
                         <img class="logo2" src="imagem/logotipo.jaguar.png" alt="Logo">
@@ -166,7 +168,7 @@
         </div>
     </div>
         </div>
-        <div class="container">
+        <div class="container-car">
             <div class="car">
                 <div class="image-container">
                 <img class="logo3" src="imagem/logotipoporsche.png" alt="Logo">
@@ -176,17 +178,7 @@
                 <p>A partir de R$ 890.000,00</p> 
                 
                 <a href="carros/porschecayenne.html"><div class="butao-comprar"><button>Comprar</button></div></a>                
-            </div>
-            <div class="car">
-                <div class="image-container">
-                    <img class="logo3" src="imagem/logotipoporsche.png" alt="Logo">
-                    <img id="image" src="imagem/porschemacan.jpg" alt="">
-                </div>
-                <h2>PORSCHE MACAN</h2>
-                <p>A partir de R$ 490.000,00</p>
-                
-                <a href="carros/porschemacan.html"><div class="butao-comprar"><button>Comprar</button></div></a>           
-            </div>
+            </div>  
             <div class="car">
                 <div class="image-container">
                     <img class="logo3" src="imagem/logotipoporsche.png" alt="Logo">
@@ -203,8 +195,16 @@
                     </div>
                     <h2>PORSCHE TAYCAN</h2>
                     <p>A partir de R$ 629.000,00 </p>
-                    
-                    <a href="carros/porschetaycan.html"><div class="butao-comprar"><button>Comprar</button></div></a>            </div>
+                    <a href="carros/porschetaycan.html"><div class="butao-comprar"><button>Comprar</button></div></a>
+                  </div>
+                  <div class="car">
+                    <div class="image-container">
+                        <img class="logo3" src="imagem/logotipoporsche.png" alt="Logo">
+                        <img id="image" src="imagem/Porsche-911_Turbo_S-2021-1024-02.jpg" alt="">
+                    </div>
+                    <h2>PORSCHE 911 TURBO S</h2>
+                    <p>A partir de R$ 1.795.000,00</p>
+                    <a href="carros/porsche911turboS.html"><div class="butao-comprar"><button>Comprar</button></div></a>
          </div>
     </div>
  <!-- Footer -->

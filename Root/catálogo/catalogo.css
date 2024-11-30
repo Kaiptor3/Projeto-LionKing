@@ -193,6 +193,14 @@ body.dark-mode {
 body.dark-mode .logo {
     display: none;
 }
+
+body.dark-mode .btn-menu{
+    border-color: #e0e0e0;
+}
+
+body.dark-mode .linha{
+    background-color: #e0e0e0;
+}
 body.dark-mode .logodark {
     display: flex;
     align-items: center;
@@ -211,6 +219,15 @@ body.dark-mode .nav-links a {
     color: #e0e0e0;
 }
 
+body.dark-mode .nav-usuario img{
+    background-color: white;
+    border-radius: 20px;
+}
+
+body.dark-mode .bem-vindo-usuario{
+    color: #e0e0e0;
+}
+
 body.dark-mode .nav-links a:hover {
     background-color: #ffffff;
 }
@@ -218,7 +235,7 @@ body.dark-mode .nav-links a:hover {
 body.dark-mode .login-form input {
     background-color: #444;
     border: 1px solid #666;
-    color: white;
+    color: #e0e0e0;
 }
 
 body.dark-mode .login-form button {
@@ -245,7 +262,7 @@ body.dark-mode .footer-links ul li a {
 }
 .dark-mode-toggle {
     position: fixed; 
-    top: 20px;
+    top: 11%;
     right: 20px;
     padding: 10px 15px;
     font-size: 18px;
@@ -340,12 +357,11 @@ body {
     transition: background-color 0.3s, color 0.3s; /* Transição suave para Dark Mode */
     /* Permite que a altura se ajuste ao conteúdo */
     color: rgb(0, 0, 0);
-    font-size: 25px;
     overflow-y: auto;
 
 }
 
-.container {
+.container-car {
     
     display: grid;
     flex-wrap: wrap;
@@ -468,6 +484,7 @@ button:hover {
     font-family: bebas kai;
     letter-spacing: 3px;
     font-weight: 0;
+    font-size: 1.1em;
 }
 
 p {
@@ -477,6 +494,7 @@ p {
     font-family: "", sans-serif;
     font-size: 20px;
     color: rgb(77, 77, 77);
+    font-size: 1.1em;
 }
 
 .button-up-box {
@@ -507,6 +525,11 @@ p {
 
 /* Responsividade */
 @media (max-width: 1024px) {
+    
+    .dark-mode-toggle{
+        margin-top: 14%;
+    }
+
     .bmw{
          margin-top: 110px;
     }
@@ -523,12 +546,14 @@ p {
 
 
     .car h2 {
-        font-size: 26px;
+        font-size: 20px;
+        font-size: 1.1em;
 
     }
 
     .car p {
         font-size: 15px;
+        font-size: 1.1em;
     }
 
     .logo1 {
@@ -562,12 +587,14 @@ p {
     }
 
     .car h2 {
-        font-size: 18px;
+        font-size: 15px;
+        font-size: 1.1em;
 
     }
 
     .car p {
         font-size: 10px;
+        font-size: 1.1em;
 
 
 
@@ -595,7 +622,7 @@ p {
     }
     
     /* Layout em uma coluna para o contêiner de carros */
-    .container {
+    .container-car {
         display: grid;
         grid-template-columns: 1fr;
         /* Define uma única coluna */
@@ -610,15 +637,19 @@ p {
     .butao-comprar button {
         padding: 10px 30px;
         font-size: 12px;
+        
     }
 
     /* Ajuste do texto para carros */
     .car h2 {
-        font-size: 18px;
+        font-size: 12px;
+        font-size: 1.1em;
+
     }
 
     .car p {
-        font-size: 10px;
+        font-size: 8px;
+        font-size: 1.1em;
     }
 
     /* Ajustes nas logos */
