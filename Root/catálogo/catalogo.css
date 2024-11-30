@@ -246,6 +246,10 @@ body.dark-mode .login-form input {
     color: #e0e0e0;
 }
 
+body.dark-mode .butao-comprar button{
+    background-color: #444;
+}
+
 body.dark-mode .login-form input::placeholder{
     color: white;
 }
