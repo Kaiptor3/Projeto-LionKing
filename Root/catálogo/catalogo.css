@@ -308,32 +308,28 @@ body.dark-mode .footer-links ul li a {
     transition: all 0.3s ease;
     z-index: 100;
 }
-
-
 .dark-mode-toggle:hover {
     background-color: #ddd;
     color: #222;
-    transform: scale(1.1); 
+    transform: scale(1.1);
     z-index: 100;
 }
 
 
 body.dark-mode .dark-mode-toggle {
-    background-color: #000000; 
-    color: #f1f1f1; 
+    background-color: #444;
+    color: #f1f1f1;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
     z-index: 100;
 }
 
 
 body.dark-mode .dark-mode-toggle:hover {
-    background-color: #000000;
+    background-color: #333;
     color: #fff;
     transform: scale(1.1);
     z-index: 100;
 }
-
-
 
 body.dark-mode .menu-mobile {
     background-color: #000000;
