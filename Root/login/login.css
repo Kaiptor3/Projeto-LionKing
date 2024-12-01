@@ -21,8 +21,7 @@ body {
     /* Seções e layout */
     section {
             width: 100%;
-
-            height: calc(100vh - 80px);
+            height: 100%;
         
         }
 
@@ -120,30 +119,13 @@ body {
 
     }
 
-    .box2 {
-        width: 400px;
-        padding: 0px;
-        background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgb(0, 0, 0);
-        text-align: center;
-        height: 620px;
-        /* Reduzido de 670px para 620px */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-top: 70px;
-    }
-
     .box h1 {
         margin: -20px 0;
         z-index: 1;
         margin-bottom: 20px;
     }
 
-    .box img,
-    .box2 img {
+    .box img{
         width: 400px;
         margin: 0;
         z-index: 0;
@@ -157,13 +139,7 @@ body {
         z-index: 0;
         scale: 0.5;
     }
-
-
-
-    input:focus {
-        outline: none;
-    }
-
+    
     .cadastro:hover,
     .limpa:hover,
     .entrar:hover {
@@ -287,10 +263,13 @@ body {
 
         body{
             overflow: auto;
+            background-color: black;
         }
 
-        .background-section{
+        .background-section {
             margin-top: -10%;
+            height: 100%;
         }
+
 
     }
