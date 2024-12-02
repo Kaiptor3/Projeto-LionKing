@@ -1,5 +1,20 @@
 // Tamanho base da fonte
-let currentFontSize = 16;
+let currentFontSize = parseInt(localStorage.getItem("fontSize")) || 16;
+
+// Aplica o tamanho de fonte ao carregar a página
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.style.fontSize = currentFontSize + "px";
+
+  // Seleciona todos os elementos dentro de #carromatriz
+  const carromatrizElements = document.querySelectorAll('#carromatriz *');
+  carromatrizElements.forEach(element => {
+    if (element.tagName === 'H2' || element.tagName === 'FONT') {
+      element.style.fontSize = (currentFontSize + 40) + "px";
+    } else {
+      element.style.fontSize = currentFontSize + "px";
+    }
+  });
+});
 
 function adjustFontSize(increase) {
   const adjustment = increase ? 2 : -2;
@@ -12,6 +27,9 @@ function adjustFontSize(increase) {
     currentFontSize = 30;
   }
 
+  // Salva o tamanho no localStorage
+  localStorage.setItem("fontSize", currentFontSize);
+
   // Aplica o novo tamanho de fonte ao body e aos filhos de #carromatriz
   document.body.style.fontSize = currentFontSize + "px";
   
@@ -19,17 +37,12 @@ function adjustFontSize(increase) {
   const carromatrizElements = document.querySelectorAll('#carromatriz *');
   carromatrizElements.forEach(element => {
     if (element.tagName === 'H2' || element.tagName === 'FONT') {
-      // Se for um <h2>, aplica o tamanho da fonte + 40px
       element.style.fontSize = (currentFontSize + 40) + "px";
     } else {
-      // Para todos os outros elementos (como <p>), aplica o tamanho de fonte normal
       element.style.fontSize = currentFontSize + "px";
     }
   });
 }
-
-
-
 
 // Evento para aumentar a fonte
 document.getElementById("increaseFont").addEventListener("click", () => {
