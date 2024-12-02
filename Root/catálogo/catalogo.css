@@ -168,6 +168,48 @@
 .btn-menu.ativar .linha:nth-child(3) {
     transform: translateY(-4px) rotate(45deg);
 }
+#increaseFont,
+#decreaseFont {
+    font-size: 24px; /* Tamanho dos ícones */
+    color: #fff; /* Cor dos ícones */
+    background-color: #000; /* Fundo preto */
+    border: none;
+    border-radius: 50%; /* Botões redondos */
+    width: 50px; /* Largura do botão */
+    height: 50px; /* Altura do botão */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: fixed; /* Fixa a posição */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#increaseFont {
+    top: 150px; /* Distância do topo */
+    right: 80px; /* Distância da borda direita */
+    z-index: 9999999;
+}
+
+#decreaseFont {
+    top: 150px;
+    right: 20px; /* Colocado ao lado do botão "aumentar" */
+    z-index: 9999999;
+
+}
+
+#increaseFont:hover,
+#decreaseFont:hover {
+    transform: scale(1.1); /* Aumenta ligeiramente ao passar o mouse */
+}
+
+#increaseFont:active,
+#decreaseFont:active {
+    transform: scale(0.9); /* Botão parece "pressionado" */
+}
+
+
+
 
 .linha {
     display: block;
