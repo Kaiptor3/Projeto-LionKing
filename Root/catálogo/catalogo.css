@@ -597,7 +597,8 @@ p {
 @media (max-width: 1024px) {
     
     .dark-mode-toggle{
-        margin-top: 8%;
+        margin-top: 0%;
+        top: 100px;
     }
 
     .bmw{
