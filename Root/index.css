@@ -997,7 +997,8 @@ footer {
 @media screen and (max-width: 1020px) {
 
     .dark-mode-toggle{
-        margin-top: 8%;
+        margin-top: 0%;
+        top: 100px;
     }
 
     .content-container {
