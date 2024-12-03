@@ -534,41 +534,32 @@ p2 {
     font-size: 20px;
 }
 
-.price {
-    color: #000000;
-    /* Mudou para preto */
-    font-size: 40px;
-    font-family: bebas kai;
-    text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
-}
 
-.cart {
-    margin-top: 10px;
+.carrinho {
     position: absolute;
-    bottom: 0px;
-}
-
-.cart select {
-    padding: 13px 35px;
-    border: 1px solid rgb(0, 0, 0);
-    /* Mudou para preto */
+    margin-top: 170px; /* Mantém a posição vertical */
+    margin-left: 90px; /* Adiciona um espaçamento da borda esquerda */
     outline: none;
+    text-decoration: none;
+    padding: 10px 20px; /* Ajusta o espaçamento interno */
+    height: auto; /* Remove altura fixa */
+    font-weight: 200;
+    border-radius: 5px;   
+    background-color: rgb(0, 0, 0); /* Fundo preto */
+    box-shadow: 0px 2px 12px rgba(255, 255, 255, 0.4); /* Sombra clara */
+    color: rgb(255, 255, 255); /* Texto branco */
+    font-size: 20px;
+    text-align: center; /* Centraliza o texto */
+    cursor: pointer; /* Cursor de botão */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Efeito suave */
 }
 
-.cart a {
-    color: #000000;
-    /* Mudou para preto */
-    background-color: #ffffff;
-    /* Mudou para branco */
-    text-decoration: none;
-    text-shadow: 0px 2px 12px rgba(255, 255, 255, 0.3);
-    padding: 5px;
-    width: 200px;
-    height: 50px;
-    font-weight: 200;
-    margin-left: 20px;
-    border-radius: 5px;
+.carrinho:hover {
+    color: rgb(255, 255, 255); /* Cor do texto ao passar o mouse */
+    transform: scale(1.1); /* Leve aumento ao passar o mouse */
 }
+
+
 
 .center {
     position: absolute;

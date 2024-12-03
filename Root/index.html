@@ -96,26 +96,10 @@
     
     <div class="text-container">
     <h2><font color="#f44e52">911</font> Porche 911</h2>
-    <p2>Imagine ter uma porche, agora imagine 2 ou 3 com 10% de desconto?</p2>
-        <a href="./catálogo/catalogo.html"></a>
+    <p2> onde o legado encontra a velocidade, e cada curva se transforma em arte sobre rodas!</p2>
     </div>
+    <a href="./catálogo/carros/porsche911turboS.html" class="carrinho"> Saiba mais!</a>
 </div>
-
-<script>
-    // Preço base do carro
-const basePrice = 868000;
-
-    // Função para formatar o preço
-    function formatPrice(value) {
-        return "R$" + value.toLocaleString('pt-BR', { minimumFractionDigits: 0 });
-    }
-
-    // Atualizar o preço ao mudar a quantidade
-    document.getElementById('carQuantity').addEventListener('change', function() {
-        const quantity = parseInt(this.value);
-        const totalPrice = basePrice * quantity;
-        document.getElementById('price').innerText = formatPrice(totalPrice);
-    });
 </script>
     
     
