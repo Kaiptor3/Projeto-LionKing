@@ -1,0 +1,15 @@
+* {
+    justify-content: center;
+    text-align: center;
+    padding: 0px;
+    color: white;
+}
+body {
+    min-height: 100vh;
+    font-size: 25px;
+    background-color: black;
+}
+.imagem{
+    opacity: 23%;
+    z-index: -1;
+}
