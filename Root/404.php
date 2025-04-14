@@ -20,7 +20,7 @@
         </div>
         
         <div class="imagem">
-            <img src="../imgs/LK-Menu-Dark.png" alt="logomarca">
+            <img src="/Root/imgs/LK-Menu-Dark.png" alt="logomarca">
         </div>
         
         <div class="subtitulo">
