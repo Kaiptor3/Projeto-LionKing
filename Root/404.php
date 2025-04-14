@@ -26,7 +26,7 @@
         <div class="subtitulo">
             <p>
                 A página parece estar faltando. <br>
-                <a href="/Root/home.html">Talvez seja hora de voltar para home?</a>
+                <a href="/Root/index.html">Talvez seja hora de voltar para home?</a>
             </p>
         </div>
     </main>
