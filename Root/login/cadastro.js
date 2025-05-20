@@ -19,8 +19,37 @@ $(document).ready(function () {
     let senhaError = $('#senhaError');
     let confirmaSenhaInput = $('#confirma-senha');
     let confirmaError = $('#confirmaError');
+    let cepInput = $("#cepError")
+    let cepError = $('#cepError');
+    let maeInput = $('#mae');
+    let maeError = $('#maeError');
     let cadastroBtn = $('#cadastro');
 
+    
+    function validarNome() {
+        let mae = maeInput.val().trim();
+        let maeValido = /^[A-Za-zÀ-ÿ]+(?:[-'\s][A-Za-zÀ-ÿ]+)*$/;
+
+        nomeError.text('');
+        nomeInput.removeClass('error');
+
+        if (nome.length < 2 || !nomeValido.test(nome)) {
+            nomeError.text('Insira um nome válido.');
+            nomeInput.addClass('error');
+            return false;
+        }
+        return true;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // Validação do Nome
     function validarNome() {
         let nome = nomeInput.val().trim();
