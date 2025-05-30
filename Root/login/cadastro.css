@@ -1,0 +1,127 @@
+ @import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Rubik', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5em;
+            color: #e63946;
+            text-shadow: 1px 1px 10px rgba(230, 57, 70, 0.4);
+        }
+
+        form {
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 30px 40px;
+            border-radius: 15px;
+            margin: 30px auto;
+            box-shadow: 0 0 20px rgba(230, 57, 70, 0.3);
+            width: 90%;
+            max-width: 500px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #1c1c1c;
+            color: #fff;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="date"]:focus {
+            border-color: #e63946;
+            outline: none;
+            box-shadow: 0 0 8px #e63946;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        input[type="submit"] {
+            background-color: #e63946;
+            color: #fff;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #cc2b3a;
+            transform: scale(1.05);
+        }
+
+        input[type="reset"] {
+            background-color: #444;
+            color: #fff;
+        }
+
+        input[type="reset"]:hover {
+            background-color: #666;
+            transform: scale(1.05);
+        }
+
+        p {
+            text-align: center;
+            color: #ffb3b3;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                padding: 25px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-group input {
+                width: 100%;
+            }
+        }
