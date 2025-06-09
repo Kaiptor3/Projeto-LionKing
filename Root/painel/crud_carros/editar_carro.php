@@ -29,6 +29,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const precoInput = document.getElementById("preco");
+
+    precoInput.addEventListener("input", function () {
+        let valor = precoInput.value;
+
+        // Remove tudo que não for número
+        valor = valor.replace(/\D/g, "");
+
+        // Converte para formato de moeda (2 casas decimais)
+        valor = (valor / 100).toFixed(2).replace(".", ",");
+
+        // Adiciona pontos como separadores de milhar
+        valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+        precoInput.value = valor;
+    });
+
+    // Antes de enviar o form, converte de volta para o formato correto
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function () {
+        let valor = precoInput.value;
+
+        // Remove os pontos e troca vírgula por ponto
+        valor = valor.replace(/\./g, "").replace(",", ".");
+        precoInput.value = valor; // Agora está pronto para o banco
+    });
+});
+</script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <input type="text" id="modelo" name="modelo" required value="<?= htmlspecialchars($carro['modelo']) ?>" /><br /><br />
 
     <label for="preco">Preço (ex: 55000.50):</label><br />
-    <input type="number" id="preco" name="preco" step="0.01" min="0" required value="<?= htmlspecialchars($carro['preco']) ?>" /><br /><br />
+    <input type="text" id="preco" name="preco" step="0.01" min="0" required value="<?= htmlspecialchars($carro['preco']) ?>" /><br /><br />
 
     <label for="velocidadeMaxima">Velocidade Máxima (km/h):</label><br />
     <input type="number" id="velocidadeMaxima" name="velocidadeMaxima" min="0" required value="<?= htmlspecialchars($carro['velocidadeMaxima']) ?>" /><br /><br />
@@ -74,6 +105,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <label for="consumoMedio">Consumo Médio (km/l):</label><br />
     <input type="number" id="consumoMedio" name="consumoMedio" step="0.01" min="0" required value="<?= htmlspecialchars($carro['consumoMedio']) ?>" /><br /><br />
+    
+    <label for="capacidadePortaMalas">Capacidade do Porta-Malas (litros):</label><br />
+    <input type="number" id="capacidadePortaMalas" name="capacidadePortaMalas" min="0" required value="<?= htmlspecialchars($carro['capacidadePortaMalas']) ?>" /><br /><br />
 
     <label>Imagem Atual 1:</label><br />
     <img src="../../<?= htmlspecialchars($carro['imagem1']) ?>" alt="Imagem 1" style="width:150px;"><br />
