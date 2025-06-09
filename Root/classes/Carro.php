@@ -4,7 +4,7 @@ require_once __DIR__ . '/../conexao.php';
 class Carro {
     private $conn;
     private $modelo, $preco, $velocidadeMaxima, $potencia, $numeroPortas;
-    private $aceleracao, $numeroAssentos, $pesoTotal, $consumoMedio;
+    private $aceleracao, $numeroAssentos, $pesoTotal, $consumoMedio, $capacidadePortaMalas;
     private $imagem1, $imagem2;
 
     public function __construct() {
@@ -21,13 +21,14 @@ class Carro {
     public function setNumeroAssentos($n) { $this->numeroAssentos = $n; }
     public function setPesoTotal($p) { $this->pesoTotal = $p; }
     public function setConsumoMedio($c) { $this->consumoMedio = $c; }
+    public function setCapacidadePortaMalas($c) { $this->capacidadePortaMalas = $c; }
     public function setImagem1($img) { $this->imagem1 = $img; }
     public function setImagem2($img) { $this->imagem2 = $img; }
 
     public function inserir() {
         $sql = "INSERT INTO carro 
-        (modelo, preco, velocidadeMaxima, potencia, numeroPortas, aceleracao, numeroAssentos, pesoTotal, consumoMedio, imagem1, imagem2)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        (modelo, preco, velocidadeMaxima, potencia, numeroPortas, aceleracao, numeroAssentos, pesoTotal, consumoMedio, capacidadePortaMalas, imagem1, imagem2)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([
@@ -40,6 +41,7 @@ class Carro {
             $this->numeroAssentos,
             $this->pesoTotal,
             $this->consumoMedio,
+            $this->capacidadePortaMalas,
             $this->imagem1,
             $this->imagem2
         ]);
