@@ -16,6 +16,7 @@ class CarroController {
             $carro->setNumeroAssentos($dados['numeroAssentos']);
             $carro->setPesoTotal($dados['pesoTotal']);
             $carro->setConsumoMedio($dados['consumoMedio']);
+            $carro->setCapacidadePortaMalas($dados['capacidadePortaMalas']);
 
             $uploadDir = __DIR__ . '/../uploads/';
             if (!is_dir($uploadDir)) {
@@ -44,14 +45,12 @@ class CarroController {
             }
             $carro->setImagem2('uploads/' . $nomeImg2);
 
-            // Insere no banco
             if (!$carro->inserir()) {
                 throw new Exception('Erro ao inserir o carro no banco de dados.');
             }
 
-            return true; // sucesso
+            return true;
         } catch (Exception $e) {
-            // Aqui você pode logar o erro, se quiser, ou simplesmente repassar a exceção
             throw $e;
         }
     }
@@ -61,85 +60,76 @@ class CarroController {
     }
 
     public static function buscarPorId($id) {
-    $conn = conectaPDO();
-    $stmt = $conn->prepare("SELECT * FROM carro WHERE idCarro = ?");
-    $stmt->execute([$id]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+        $conn = conectaPDO();
+        $stmt = $conn->prepare("SELECT * FROM carro WHERE idCarro = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function atualizarCarro($id, $dados, $arquivos) {
-    $conn = conectaPDO();
+        $conn = conectaPDO();
+        $carroAtual = self::buscarPorId($id);
+        if (!$carroAtual) {
+            throw new Exception("Carro não encontrado para atualização");
+        }
 
-    // Aqui você pode repetir o processo de upload das imagens, similar ao inserir,
-    // mas as imagens são opcionais: só atualize se o usuário enviar uma nova imagem.
+        $uploadDir = __DIR__ . '/../uploads/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
 
-    // Primeiro, buscar dados atuais para manter imagens antigas se não vier nova
-    $carroAtual = self::buscarPorId($id);
-    if (!$carroAtual) {
-        throw new Exception("Carro não encontrado para atualização");
+        $imagem1Path = $carroAtual['imagem1'];
+        if (isset($arquivos['imagem1']) && $arquivos['imagem1']['error'] === UPLOAD_ERR_OK) {
+            $novoNome1 = uniqid() . "_" . basename($arquivos['imagem1']['name']);
+            move_uploaded_file($arquivos['imagem1']['tmp_name'], $uploadDir . $novoNome1);
+            $imagem1Path = "uploads/" . $novoNome1;
+        }
+
+        $imagem2Path = $carroAtual['imagem2'];
+        if (isset($arquivos['imagem2']) && $arquivos['imagem2']['error'] === UPLOAD_ERR_OK) {
+            $novoNome2 = uniqid() . "_" . basename($arquivos['imagem2']['name']);
+            move_uploaded_file($arquivos['imagem2']['tmp_name'], $uploadDir . $novoNome2);
+            $imagem2Path = "uploads/" . $novoNome2;
+        }
+
+        $sql = "UPDATE carro SET
+            modelo = ?, preco = ?, velocidadeMaxima = ?, potencia = ?, numeroPortas = ?,
+            aceleracao = ?, numeroAssentos = ?, pesoTotal = ?, consumoMedio = ?, capacidadePortaMalas = ?,
+            imagem1 = ?, imagem2 = ?
+            WHERE idCarro = ?";
+
+        $stmt = $conn->prepare($sql);
+        return $stmt->execute([
+            $dados['modelo'],
+            $dados['preco'],
+            $dados['velocidadeMaxima'],
+            $dados['potencia'],
+            $dados['numeroPortas'],
+            $dados['aceleracao'],
+            $dados['numeroAssentos'],
+            $dados['pesoTotal'],
+            $dados['consumoMedio'],
+            $dados['capacidadePortaMalas'],
+            $imagem1Path,
+            $imagem2Path,
+            $id
+        ]);
     }
-
-    // Tratamento das imagens:
-    $uploadDir = '../../uploads/';
-
-    $imagem1Path = $carroAtual['imagem1'];
-    if (isset($arquivos['imagem1']) && $arquivos['imagem1']['error'] === UPLOAD_ERR_OK) {
-        $tmpName = $arquivos['imagem1']['tmp_name'];
-        $nomeArquivo = basename($arquivos['imagem1']['name']);
-        $novoNome1 = uniqid() . "_" . $nomeArquivo;
-        move_uploaded_file($tmpName, $uploadDir . $novoNome1);
-        $imagem1Path = "uploads/" . $novoNome1;
-    }
-
-    $imagem2Path = $carroAtual['imagem2'];
-    if (isset($arquivos['imagem2']) && $arquivos['imagem2']['error'] === UPLOAD_ERR_OK) {
-        $tmpName = $arquivos['imagem2']['tmp_name'];
-        $nomeArquivo = basename($arquivos['imagem2']['name']);
-        $novoNome2 = uniqid() . "_" . $nomeArquivo;
-        move_uploaded_file($tmpName, $uploadDir . $novoNome2);
-        $imagem2Path = "uploads/" . $novoNome2;
-    }
-
-    $sql = "UPDATE carro SET
-        modelo = ?, preco = ?, velocidadeMaxima = ?, potencia = ?, numeroPortas = ?,
-        aceleracao = ?, numeroAssentos = ?, pesoTotal = ?, consumoMedio = ?,
-        imagem1 = ?, imagem2 = ?
-        WHERE idCarro = ?";
-
-    $stmt = $conn->prepare($sql);
-    return $stmt->execute([
-        $dados['modelo'],
-        $dados['preco'],
-        $dados['velocidadeMaxima'],
-        $dados['potencia'],
-        $dados['numeroPortas'],
-        $dados['aceleracao'],
-        $dados['numeroAssentos'],
-        $dados['pesoTotal'],
-        $dados['consumoMedio'],
-        $imagem1Path,
-        $imagem2Path,
-        $id
-    ]);
-    }   
 
     public static function excluirCarro($id) {
-    $conn = conectaPDO();
+        $conn = conectaPDO();
 
-    // Opcional: buscar imagens para excluir fisicamente do servidor
-    $carro = self::buscarPorId($id);
-    if ($carro) {
-        if (file_exists('../../' . $carro['imagem1'])) {
-            unlink('../../' . $carro['imagem1']);
+        $carro = self::buscarPorId($id);
+        if ($carro) {
+            if (file_exists(__DIR__ . '/../' . $carro['imagem1'])) {
+                unlink(__DIR__ . '/../' . $carro['imagem1']);
+            }
+            if (file_exists(__DIR__ . '/../' . $carro['imagem2'])) {
+                unlink(__DIR__ . '/../' . $carro['imagem2']);
+            }
         }
-        if (file_exists('../../' . $carro['imagem2'])) {
-            unlink('../../' . $carro['imagem2']);
-        }
+
+        $stmt = $conn->prepare("DELETE FROM carro WHERE idCarro = ?");
+        return $stmt->execute([$id]);
     }
-
-    $stmt = $conn->prepare("DELETE FROM carro WHERE idCarro = ?");
-    return $stmt->execute([$id]);
-    }
-
-
 }
