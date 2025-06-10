@@ -132,4 +132,8 @@ class CarroController {
         $stmt = $conn->prepare("DELETE FROM carro WHERE idCarro = ?");
         return $stmt->execute([$id]);
     }
+
+    public static function buscarCarroPorId($id) {
+        return Carro::buscarPorId($id);
+    }
 }
