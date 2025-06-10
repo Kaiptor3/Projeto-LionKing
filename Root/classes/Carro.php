@@ -58,6 +58,14 @@ class Carro {
     $sql = "DELETE FROM carro WHERE idCarro = ?";
     $stmt = $this->conn->prepare($sql);
     return $stmt->execute([$id]);
-}
+    }
+
+    public static function buscarPorId($id) {
+    $conn = conectaPDO();
+    $stmt = $conn->prepare("SELECT * FROM carro WHERE idCarro = ?");
+    $stmt->execute([$id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
 }
 ?>
