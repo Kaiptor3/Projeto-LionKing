@@ -1,99 +1,106 @@
 <?php
 session_start();
 
-function validarCPF($cpf) {
-    $cpf = preg_replace('/[^0-9]/', '', $cpf);
-    
-    if (strlen($cpf) != 11 || preg_match('/(\d)\1{10}/', $cpf)) {
-        return false;
-    }
-
-    for ($t = 9; $t < 11; $t++) {
-        for ($d = 0, $c = 0; $c < $t; $c++) {
-            $d += $cpf[$c] * (($t + 1) - $c);
-        }
-        $d = ((10 * $d) % 11) % 10;
-        if ($cpf[$c] != $d) {
-            return false;
-        }
-    }
-    return true;
-}
-
-$dados = filter_input_array(INPUT_POST, [
-    'nome_completo' => FILTER_SANITIZE_STRING,
-    'data_nascimento' => FILTER_SANITIZE_STRING,
-    'cpf' => FILTER_SANITIZE_STRING,
-    'email' => FILTER_SANITIZE_EMAIL,
-    'telefone' => FILTER_SANITIZE_STRING,
-    'endereco' => FILTER_SANITIZE_STRING,
-    'login' => FILTER_SANITIZE_STRING,
-    'senha' => FILTER_SANITIZE_STRING,
-    'confirmacao_senha' => FILTER_SANITIZE_STRING
-]);
-
-// Validações
-$erros = [];
-
-if (strlen($dados['nome_completo']) < 15 || strlen($dados['nome_completo']) > 80 || !preg_match('/^[a-zA-Z\s]+$/', $dados['nome_completo'])) {
-    $erros[] = "Nome inválido (15-80 caracteres alfabéticos)";
-}
-
-if (!validarCPF($dados['cpf'])) {
-    $erros[] = "CPF inválido";
-}
-
-if (strlen($dados['login']) !== 6 || !ctype_alpha($dados['login'])) {
-    $erros[] = "Login deve ter 6 caracteres alfabéticos";
-}
-
-if (strlen($dados['senha']) !== 8 || !ctype_alpha($dados['senha'])) {
-    $erros[] = "Senha deve ter 8 caracteres alfabéticos";
-}
-
-if ($dados['senha'] !== $dados['confirmacao_senha']) {
-    $erros[] = "Senhas não coincidem";
-}
-
-if (!empty($erros)) {
-    $_SESSION['erros'] = $erros;
-    header("Location: cadastro.php");
-    exit;
-}
-
 // Conexão com banco de dados
-$pdo = new PDO('mysql:host=localhost;dbname=seu_banco;charset=utf8', 'usuario', 'senha');
+$host = 'localhost';
+$dbname = 'lion_king';
+$user = 'root';
+$pass = '';
 
-// Verifica se CPF ou login já existem
-$stmt = $pdo->prepare("SELECT id FROM usuarios WHERE cpf = ? OR login = ?");
-$stmt->execute([$dados['cpf'], $dados['login']]);
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erro de conexão: " . $e->getMessage());
+}
 
-if ($stmt->fetch()) {
-    $_SESSION['erros'] = ["CPF ou Login já cadastrados"];
+// Funções de segurança
+function gerarHashSeguro($resposta, $tipo = null) {
+    $salt = bin2hex(random_bytes(16));
+    $respostaNormalizada = normalizarResposta($resposta, $tipo);
+    $hash = hash('sha256', $respostaNormalizada . $salt);
+    return ['hash' => $hash, 'salt' => $salt];
+}
+
+function normalizarResposta($resposta, $tipo = null) {
+    $resposta = mb_strtolower(trim($resposta), 'UTF-8');
+    
+    if ($tipo === 'cep') {
+        return preg_replace('/[^\d]/', '', $resposta);
+    }
+    
+    // Remove caracteres especiais mas mantém espaços para nomes
+    return preg_replace('/[^\w\s]/u', '', $resposta);
+}
+
+// Processar formulário
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Gerar hashes seguros para os dados sensíveis
+    $hashNomeMae = gerarHashSeguro($_POST['nome_mae'], 'nome_mae');
+    $hashCep = gerarHashSeguro($_POST['cep'], 'cep');
+
+    try {
+        // Inserir usuário
+        $stmt = $pdo->prepare("INSERT INTO usuarios (
+            nome_completo, data_nascimento, cpf, email, telefone, endereco,
+            nome_mae, cep, login, senha,
+            hash_nome_mae, salt_nome_mae, hash_cep, salt_cep
+        ) VALUES (
+            :nome_completo, :data_nascimento, :cpf, :email, :telefone, :endereco,
+            :nome_mae, :cep, :login, :senha,
+            :hash_nome_mae, :salt_nome_mae, :hash_cep, :salt_cep
+        )");
+
+        $stmt->execute([
+            ':nome_completo' => $_POST['nome_completo'],
+            ':data_nascimento' => $_POST['data_nascimento'],
+            ':cpf' => $_POST['cpf'],
+            ':email' => $_POST['email'],
+            ':telefone' => $_POST['telefone'],
+            ':endereco' => $_POST['endereco'],
+            ':nome_mae' => $_POST['nome_mae'],  // Armazenamos o texto também para exibição
+            ':cep' => $_POST['cep'],            // Armazenamos o texto também
+            ':login' => $_POST['login'],
+            ':senha' => password_hash($_POST['senha'], PASSWORD_BCRYPT),
+            ':hash_nome_mae' => $hashNomeMae['hash'],
+            ':salt_nome_mae' => $hashNomeMae['salt'],
+            ':hash_cep' => $hashCep['hash'],
+            ':salt_cep' => $hashCep['salt']
+        ]);
+
+if ($stmt->rowCount() > 0) {
+    $_SESSION['usuario_id'] = $pdo->lastInsertId();
+    $_SESSION['cadastro_sucesso'] = true;
+    header("Location: 2fa.php");
+    exit;
+} else {
+    $_SESSION['erro_cadastro'] = "Falha ao cadastrar. Tente novamente.";
     header("Location: cadastro.php");
     exit;
 }
 
-// Insere no banco
-$stmt = $pdo->prepare("INSERT INTO usuarios (nome_completo, data_nascimento, cpf, email, telefone, endereco, login, senha) 
-                      VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-
-$senhaHash = password_hash($dados['senha'], PASSWORD_DEFAULT);
-$sucesso = $stmt->execute([
-    $dados['nome_completo'],
-    $dados['data_nascimento'],
-    $dados['cpf'],
-    $dados['email'],
-    $dados['telefone'],
-    $dados['endereco'],
-    $dados['login'],
-    $senhaHash
-]);
-
-if ($sucesso) {
-    $_SESSION['usuario_id'] = $pdo->lastInsertId();
-    header("Location: 2fa.php");
+    } catch (PDOException $e) {
+        // Tratamento de erros específicos
+        if ($e->errorInfo[1] == 1062) {
+            $erro = "Erro: ";
+            if (strpos($e->getMessage(), 'email') !== false) {
+                $erro .= "Este e-mail já está cadastrado.";
+            } elseif (strpos($e->getMessage(), 'cpf') !== false) {
+                $erro .= "Este CPF já está cadastrado.";
+            } elseif (strpos($e->getMessage(), 'login') !== false) {
+                $erro .= "Este login já está em uso.";
+            } else {
+                $erro .= "Dados duplicados.";
+            }
+            $_SESSION['erro_cadastro'] = $erro;
+        } else {
+            $_SESSION['erro_cadastro'] = "Erro no cadastro: " . $e->getMessage();
+        }
+        header("Location: cadastro.php");
+        exit;
+    }
 } else {
-    $_SESSION['erros'] = ["Erro no cadastro"];
     header("Location: cadastro.php");
+    exit;
 }
+?>
