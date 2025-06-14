@@ -1,59 +1,65 @@
 <?php
-// Verifica se usuário está logado e se é admin (idPermissao == 2)
+session_start();
+
+// Só admin pode acessar (idPermissao == 2)
 if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['idPermissao'] != 2) {
-    // Redireciona para página de login, por exemplo
     header('Location: ../login/login.html');
     exit;
 }
 
-// Ativar erros para debug
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// Classe de Conexão
+class Database {
+    private $pdo;
 
-// Conexão com o banco de dados
-$host = 'localhost';
-$db   = 'lion_king';
-$user = 'root';
-$pass = '';
-$charset = 'utf8mb4';
+    public function __construct() {
+        $this->pdo = new PDO('mysql:host=localhost;dbname=lion_king;charset=utf8mb4', 'root', '', [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]);
+    }
 
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-];
-
-try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
-
-    $sql = "
-        SELECT 
-            u.nomeCompleto AS nome,
-            u.email,
-            u.telefone,
-            u.estado,
-            u.cidade,
-            u.bairro,
-            u.rua,
-            u.numero,
-            u.cpf,
-            u.login,
-            c.modelo AS carro,
-            c.preco,
-            co.dataCompra
-        FROM usuario u
-        JOIN compra co ON u.idUsuario = co.idUsuario
-        JOIN compraCarro cc ON co.idCompra = cc.idCompra
-        JOIN carro c ON cc.idCarro = c.idCarro
-    ";
-
-    $stmt = $pdo->query($sql);
-    $dados = $stmt->fetchAll();
-} catch (PDOException $e) {
-    echo "Erro ao conectar: " . $e->getMessage();
-    exit;
+    public function getConnection() {
+        return $this->pdo;
+    }
 }
+
+// Classe de Relatório
+class Relatorio {
+    private $pdo;
+
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
+    }
+
+    public function listarComprasUsuarios() {
+        $sql = "
+            SELECT 
+                u.nomeCompleto AS nome,
+                u.email,
+                u.telefone,
+                u.estado,
+                u.cidade,
+                u.bairro,
+                u.rua,
+                u.numero,
+                u.cpf,
+                u.login,
+                c.modelo AS carro,
+                c.preco,
+                co.dataCompra
+            FROM usuario u
+            JOIN compra co ON u.idUsuario = co.idUsuario
+            JOIN compraCarro cc ON co.idCompra = cc.idCompra
+            JOIN carro c ON cc.idCarro = c.idCarro
+        ";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll();
+    }
+}
+
+$db = new Database();
+$pdo = $db->getConnection();
+$relatorio = new Relatorio($pdo);
+$dados = $relatorio->listarComprasUsuarios();
 ?>
 
 <!DOCTYPE html>
@@ -62,28 +68,15 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lion King - Administração</title>
-    <link rel="icon" type="image/png" href="./imgs/favicon.png" sizes="16x16">
-
-    <!-- CSS Pessoal -->
-    <link rel="stylesheet" href="perfil.css">
-
-    <!-- Google Fonts e FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400&display=swap"
-        rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-
-    <!-- DataTables CSS -->
+    <title>Admin - Lista de Compras</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css">
-
-    <!-- jQuery e DataTables JS -->
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
 </head>
 
 <body>
 
-    <h1>Lista de Compras - Lion King</h1>
+    <h1>Lista de Compras - Painel Administrativo</h1>
 
     <table id="example" class="display">
         <thead>
@@ -126,16 +119,13 @@ try {
 
     <script>
     $(document).ready(function() {
-        if (!$.fn.DataTable.isDataTable('#example')) {
-            $('#example').DataTable({
-                language: {
-                    url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
-                }
-            });
-        }
+        $('#example').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
+            }
+        });
     });
     </script>
-
 
 </body>
 
