@@ -1,84 +1,32 @@
 <?php
 session_start();
+require_once '../controllers/UsuarioController.php';
+$usuarios = UsuarioController::listarUsuarios();
 
-// Só admin pode acessar (idPermissao == 2)
 if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['idPermissao'] != 1) {
-    header('/Projeto-LionKing-main/Root/login/login.php');
+    header('Location: /Projeto-LionKing-main/Root/login/login.php');
     exit;
 }
-
-// Classe de Conexão
-class Database {
-    private $pdo;
-
-    public function __construct() {
-        $this->pdo = new PDO('mysql:host=localhost;dbname=lion_king;charset=utf8mb4', 'root', '', [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        ]);
-    }
-
-    public function getConnection() {
-        return $this->pdo;
-    }
-}
-
-// Classe de Relatório
-class Relatorio {
-    private $pdo;
-
-    public function __construct($pdo) {
-        $this->pdo = $pdo;
-    }
-
-    public function listarComprasUsuarios() {
-        $sql = "
-            SELECT 
-                u.nomeCompleto AS nome,
-                u.email,
-                u.telefone,
-                u.estado,
-                u.cidade,
-                u.bairro,
-                u.rua,
-                u.numero,
-                u.cpf,
-                u.login,
-                c.modelo AS carro,
-                c.preco,
-                co.dataCompra
-            FROM usuario u
-            JOIN compra co ON u.idUsuario = co.idUsuario
-            JOIN compraCarro cc ON co.idCompra = cc.idCompra
-            JOIN carro c ON cc.idCarro = c.idCarro
-        ";
-        $stmt = $this->pdo->query($sql);
-        return $stmt->fetchAll();
-    }
-}
-
-$db = new Database();
-$pdo = $db->getConnection();
-$relatorio = new Relatorio($pdo);
-$dados = $relatorio->listarComprasUsuarios();
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Lista de Compras</title>
+    <title>Admin - Lista de Usuários</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
 </head>
+<body class="p-4">
 
-<body>
+    <h1 class="mb-4">Lista de Usuários - Painel Administrativo</h1>
 
-    <h1>Lista de Compras - Painel Administrativo</h1>
-
-    <table id="example" class="display">
+    <table id="example" class="table table-striped">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -91,31 +39,43 @@ $dados = $relatorio->listarComprasUsuarios();
                 <th>Número</th>
                 <th>CPF</th>
                 <th>Login</th>
-                <th>Modelo do Carro</th>
-                <th>Preço</th>
-                <th>Data da Compra</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($dados as $linha): ?>
+            <?php foreach ($usuarios as $usuario): ?>
             <tr>
-                <td><?= htmlspecialchars($linha['nome']) ?></td>
-                <td><?= htmlspecialchars($linha['email']) ?></td>
-                <td><?= htmlspecialchars($linha['telefone']) ?></td>
-                <td><?= htmlspecialchars($linha['estado']) ?></td>
-                <td><?= htmlspecialchars($linha['cidade']) ?></td>
-                <td><?= htmlspecialchars($linha['bairro']) ?></td>
-                <td><?= htmlspecialchars($linha['rua']) ?></td>
-                <td><?= htmlspecialchars($linha['numero']) ?></td>
-                <td><?= htmlspecialchars($linha['cpf']) ?></td>
-                <td><?= htmlspecialchars($linha['login']) ?></td>
-                <td><?= htmlspecialchars($linha['carro']) ?></td>
-                <td data-order="<?= $linha['preco'] ?>">R$ <?= number_format($linha['preco'], 2, ',', '.') ?></td>
-                <td><?= date('d/m/Y', strtotime($linha['dataCompra'])) ?></td>
+                <td><?= htmlspecialchars($usuario['nomeCompleto']) ?></td>
+                <td><?= htmlspecialchars($usuario['email']) ?></td>
+                <td><?= htmlspecialchars($usuario['telefone']) ?></td>
+                <td><?= htmlspecialchars($usuario['estado']) ?></td>
+                <td><?= htmlspecialchars($usuario['cidade']) ?></td>
+                <td><?= htmlspecialchars($usuario['bairro']) ?></td>
+                <td><?= htmlspecialchars($usuario['rua']) ?></td>
+                <td><?= htmlspecialchars($usuario['numero']) ?></td>
+                <td><?= htmlspecialchars($usuario['cpf']) ?></td>
+                <td><?= htmlspecialchars($usuario['login']) ?></td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="ver_log.php?id=<?= $usuario['idUsuario'] ?>" class="btn btn-sm btn-primary">
+                            Ver Log
+                        </a>
+                        <a href="excluir_usuario.php?id=<?= $usuario['idUsuario'] ?>"
+                         class="btn btn-sm btn-danger"
+                         onclick="return confirm('Tem certeza que deseja excluir este usuário?');">
+                            Excluir
+                        </a>
+    </div>
+</td>
+                </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <!-- jQuery + DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
 
     <script>
     $(document).ready(function() {
@@ -127,6 +87,7 @@ $dados = $relatorio->listarComprasUsuarios();
     });
     </script>
 
+    <!-- Bootstrap JS Bundle (opcional, apenas se for usar componentes JS do Bootstrap futuramente) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
