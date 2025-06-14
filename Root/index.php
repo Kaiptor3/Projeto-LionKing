@@ -313,3 +313,11 @@ showImage(currentIndex);
     <script src="animar.js"></script>
 </body>
 </html>
+
+
+<?php if (isset($_SESSION['nome'])): ?>
+    <p>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?>!</p>
+    <a href="login/logout.php">Sair</a>
+<?php else: ?>
+    <a href="login/login.php">Login</a>
+<?php endif; ?>
