@@ -1,0 +1,974 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+/* Header */
+.container {
+    display: flex;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-usuario {
+    margin-right: 5%;
+    color: black;
+}
+
+.nav-usuario span {
+    font-size: 20px;
+    margin: 0 10px 0 10px;
+}
+
+.nav-usuario img {
+    width: 40px;
+    height: 40px;
+}
+
+.logo {
+    margin-left: 5%;
+    size: 10%;
+    margin-right: 10px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    transform: scale(1.1);
+}
+
+.logo img {
+    height: 55px;
+    width: auto;
+}
+
+.logodark {
+    margin-left: 5%;
+    size: 10%;
+    margin-right: 10px;
+}
+
+.logodark {
+    display: none;
+}
+
+.logodark img {
+    height: 55px;
+    width: auto; 
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1; /* Faz os links ocuparem o espaço entre logo e formulário de login */
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaçamento entre os links */
+    font-size: 20px;
+}
+
+.nav-links a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+}
+
+.login-form {
+    display: flex;
+    align-items: center;
+    margin-right: 5%;
+}
+
+.login-form input {
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    color: black;
+    border-radius: 5px;
+}
+
+.login-form button {
+    padding: 5px 10px;
+    border: 1px solid #ffffff;
+    background-color: #000000;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.login-form button:hover {
+    background-color: #ffffff;
+    color: black;
+}
+
+.menu-mobile {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    font-size: 20px;
+    visibility: hidden;
+    background-color: white;
+}
+
+.menu-mobile nav a {
+    color: black;
+    text-decoration: none;
+    display: block;
+    padding: 10px 40px;
+}
+
+.menu-mobile a:hover {
+    background-color: rgba(0, 0, 0, 0.671);
+    color: white;
+}
+
+.btn-menu {
+    position: absolute;
+    display: block;
+    top: 6%;
+    right: 7%;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid black;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+.btn-menu.ativar .linha:nth-child(1) {
+    transform: translateY(4px) rotate(-45deg);
+}
+
+.btn-menu.ativar .linha:nth-child(2) {
+    display: none;
+}
+
+.btn-menu.ativar .linha:nth-child(3) {
+    transform: translateY(-4px) rotate(45deg);
+}
+#increaseFont,
+#decreaseFont {
+    font-size: 24px; /* Tamanho dos ícones */
+    color: #fff; /* Cor dos ícones */
+    background-color: #000; /* Fundo preto */
+    border: none;
+    border-radius: 50%; /* Botões redondos */
+    width: 50px; /* Largura do botão */
+    height: 50px; /* Altura do botão */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: fixed; /* Fixa a posição */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#increaseFont {
+    top: 150px; /* Distância do topo */
+    right: 80px; /* Distância da borda direita */
+    z-index: 9999999;
+}
+
+#decreaseFont {
+    top: 150px;
+    right: 20px; /* Colocado ao lado do botão "aumentar" */
+    z-index: 9999999;
+
+}
+
+#increaseFont:hover,
+#decreaseFont:hover {
+    transform: scale(1.1); /* Aumenta ligeiramente ao passar o mouse */
+}
+
+#increaseFont:active,
+#decreaseFont:active {
+    transform: scale(0.9); /* Botão parece "pressionado" */
+}
+
+
+
+
+.linha {
+    display: block;
+    background-color: black;
+    width: 30px;
+    height: 3px;
+    margin: 5px auto;
+    position: relative;
+    transform-origin: center;
+    transition: 0.2;
+}
+
+.texto-M {
+    visibility: hidden;
+}
+
+/* Dark Mode - Ajustes */
+body.dark-mode {
+    background-color: #000000; /* Cor de fundo escuro */
+    color: #e0e0e0; /* Cor de texto clara */
+}
+
+body.dark-mode .btn-menu{
+    border-color: #e0e0e0;
+}
+
+body.dark-mode .facebook{
+    content: url('/Root/imgs/facebook-dark.png');
+}
+
+body.dark-mode .linkedin{
+    content: url('/Root/imgs/linkedin-dark.png');
+}
+
+body.dark-mode .x{
+    content: url('/Root/imgs/x-dark.png');
+}
+
+body.dark-mode .linha{
+    background-color: #e0e0e0;
+}
+body.dark-mode .logodark {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    transform: scale(1.1);
+}
+body.dark-mode .logodark img {
+        height: 55px;
+        width: auto; 
+}
+body.dark-mode .container {
+    background-color: #000000;
+}
+
+body.dark-mode .nav-links a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .nav-usuario img{
+    background-color: white;
+    border-radius: 20px;
+}
+
+body.dark-mode .bem-vindo-usuario{
+    color: #e0e0e0;
+}
+
+body.dark-mode .nav-links a:hover {
+    background-color: #ffffff;
+}
+
+body.dark-mode .footer-logo img{
+    content: url('/Root/imgs/LK-Menu-Dark.png');
+}
+
+body.dark-mode .login-form input {
+    background-color: #444;
+    border: 1px solid #666;
+    color: #e0e0e0;
+}
+
+body.dark-mode .butao-comprar button{
+    background-color: #444;
+}
+
+body.dark-mode .login-form input::placeholder{
+    color: white;
+}
+
+body.dark-mode .logo img{
+    content: url('/Root/imgs/LK-Menu-Dark.png');
+}
+
+body.dark-mode .login-form button {
+    background-color: #444;
+    border: 1px solid #666;
+    color: white;
+}
+
+body.dark-mode .footer-search button {
+    background-color: #ffffff;
+    color: black;
+}
+body.dark-mode h2 {
+    color: white;
+}
+
+body.dark-mode .butao-comprar button::placeholder{
+    color: white;
+}
+
+body.dark-mode p2 {
+    color: white;
+}
+
+
+
+body.dark-mode p {
+    color: white;
+}
+body.dark-mode .footer-links ul li a {
+    color: #ffffff;
+}
+.dark-mode-toggle {
+    position: fixed; 
+    top: 11%;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px; 
+    background-color: #f1f1f1; 
+    color: #000000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer; 
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+.dark-mode-toggle:hover {
+    background-color: #ddd;
+    color: #222;
+    transform: scale(1.1);
+    z-index: 100;
+}
+
+
+body.dark-mode .dark-mode-toggle {
+    background-color: #444;
+    color: #f1f1f1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+}
+
+
+body.dark-mode .dark-mode-toggle:hover {
+    background-color: #333;
+    color: #fff;
+    transform: scale(1.1);
+    z-index: 100;
+}
+
+body.dark-mode .menu-mobile {
+    background-color: #000000;
+}
+
+body.dark-mode .menu-mobile nav a {
+    color: #e0e0e0;
+}
+
+body.dark-mode .menu-mobile a:hover {
+    background-color: #555;
+}
+
+/* Responsivo */
+@media screen and (max-width: 1020px) {
+    .navbar {
+        visibility: hidden;
+    }
+    .menu-mobile.abrir {
+        visibility: visible;
+    }
+
+    .btn-menu {
+        visibility: visible;
+    }
+
+    .nav-usuario {
+        padding: 10px 40px;
+    }
+}
+
+     .modelo {
+         background-color: rgb(255, 255, 255);
+         /* Mudou para branco */
+         color: rgb(0, 0, 0);
+         /* Mudou para preto */
+         padding: 10px 20px;
+         font-size: 16px;
+         cursor: pointer;
+         transition: transform 0.3s;
+         border-radius: 5px;
+     }
+
+     .modelo button:hover {
+         transform: scale(1.1);
+     }
+
+
+body {
+    background-color: transparent;
+    width: 100%;
+    height: auto;
+    transition: background-color 0.3s, color 0.3s; /* Transição suave para Dark Mode */
+    /* Permite que a altura se ajuste ao conteúdo */
+    color: rgb(0, 0, 0);
+    overflow-y: auto;
+
+}
+
+.container-car {
+    
+    display: grid;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centraliza os carros */
+    background-color: transparent;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.car {
+    text-align: center;
+    position: flex;
+    background-color: transparent;
+    margin: 15px;
+    /* Margens para espaçamento */
+
+
+}
+
+.image-container {
+    position: flex;
+    overflow: hidden;
+    width: 100%;
+    /* Largura flexível */
+    height: 25vw;
+    background-color: transparent;
+    border-radius: 10px;
+    transform: scale(100%);
+
+
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+
+}
+
+#image {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+
+
+
+}
+
+
+#image:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s, background 0.3s;
+}
+
+.logo1 {
+    position: absolute;
+    height: 95px;
+    width: auto;
+    margin-left: 0px;
+    margin-top: 0px;
+    z-index: 1;
+
+}
+
+.logo2 {
+    position: absolute;
+    height: 45px;
+    width: auto;
+    margin-left: 5px;
+    margin-top: 5px;
+
+    z-index: 1;
+
+}
+
+.logo3 {
+    position: absolute;
+    height: 60px;
+    width: auto;
+    margin-left: 0px;
+    margin-top: 0px;
+    z-index: 1;
+
+
+}
+
+
+
+
+.butao-comprar button {
+    border: none;
+    padding: 10px 120px;
+    margin-top: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 20px;
+    font-size: 20px;
+    background-color: #000000;
+    color: #ffffff;
+    transition: transform 0.3s, background 0.3s;
+
+
+
+}
+
+
+
+
+button:hover {
+    transform: scale(1.05);
+}
+
+.car h2 {
+    margin-top: 1%;
+    position: relative;
+    font-size: 30px;
+    color: #000000;
+    margin-left: 0px;
+    font-family: bebas kai;
+    letter-spacing: 3px;
+    font-weight: 0;
+    font-size: 1.1em;
+}
+
+p {
+    margin-top: 1%;
+    color: #000000;
+    margin-left: 0px;
+    font-family: "", sans-serif;
+    font-size: 20px;
+    color: rgb(77, 77, 77);
+    font-size: 1.1em;
+}
+
+.button-up-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.button-up-arrow {
+    width: 14px;
+    height: 14px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    transform: rotate(135deg);
+}
+
+#button-up {
+   margin-right: 1%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    
+    .dark-mode-toggle{
+        margin-top: 0%;
+        top: 100px;
+    }
+
+    .bmw{
+         margin-top: 110px;
+    }
+
+    .image-container {
+        height: 25vw;
+    }
+    .butao-comprar button {
+        padding: 10px 60px;
+        font-size: 15px;
+
+
+    }
+
+
+    .car h2 {
+        font-size: 20px;
+        font-size: 1.1em;
+
+    }
+
+    .car p {
+        font-size: 15px;
+        font-size: 1.1em;
+    }
+
+    .logo1 {
+        height: 75px;
+
+
+    }
+
+    .logo2 {
+        height: 35px;
+
+    }
+
+    .logo3 {
+        height: 45px;
+
+
+    }
+}
+
+@media (max-width: 767px) {
+    .bmw{
+       margin-top: 110px;
+    }
+
+    .butao-comprar button {
+        padding: 10px 50px;
+        font-size: 10px;
+
+
+    }
+
+    .car h2 {
+        font-size: 15px;
+        font-size: 1.1em;
+
+    }
+
+    .car p {
+        font-size: 10px;
+        font-size: 1.1em;
+
+
+
+    }
+
+    .logo1 {
+        height: 50px;
+
+
+    }
+
+    .logo2 {
+        height: 25px;
+
+    }
+
+    .logo3 {
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bmw{
+        margin-top: 110px;
+    }
+    
+    /* Layout em uma coluna para o contêiner de carros */
+    .container-car {
+        display: grid;
+        grid-template-columns: 1fr;
+        /* Define uma única coluna */
+        gap: 10px;
+        /* Espaçamento entre os itens */
+        margin-top: 80px;
+        /* Ajuste a margem conforme necessário */
+    }
+
+    /* Ajustes para os botões */
+
+    .butao-comprar button {
+        padding: 10px 30px;
+        font-size: 12px;
+        
+    }
+
+    /* Ajuste do texto para carros */
+    .car h2 {
+        font-size: 12px;
+        font-size: 1.1em;
+
+    }
+
+    .car p {
+        font-size: 8px;
+        font-size: 1.1em;
+    }
+
+    /* Ajustes nas logos */
+    .logo1 {
+        height: 45px;
+    }
+
+    .logo2 {
+        height: 25px;
+    }
+
+    .logo3 {
+        height: 35px;
+    }
+
+    /* Imagens em contêineres flexíveis */
+    .image-container {
+        height: 50vw;
+        /* Ajusta a altura da imagem para se adequar a uma coluna */
+    }
+
+   
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        /* Altera a direção para coluna */
+        align-items: center;
+        /* Centraliza os itens horizontalmente */
+    }
+
+    .footer-links {
+        margin-bottom: 20px;
+        /* Espaço abaixo dos links */
+        font-size: 25px;
+    }
+
+    .footer-socials {
+        /* Ajuste adicional, se necessário */
+        text-align: center;
+        /* Centraliza os ícones sociais, se desejado */
+    }
+
+    .footer-logo,
+    .footer-search {
+        display: none;
+    }
+
+ 
+ 
+
+    .cart {
+        display: none;
+    }
+
+    #slideshow {
+        height: 400px;
+        width: 100%;
+        overflow: hidden;
+        /* Garante que o conteúdo que ultrapasse os limites seja escondido */
+    }
+
+    .entire-content {
+        display: flex;
+        justify-content: center;
+        /* Centraliza o carrossel na página */
+        align-items: center;
+    }
+
+    .content-carrousel figure {
+        flex-shrink: 0;
+        /* Garante que os itens não diminuam */
+        margin: 0 5px;
+        /* Espaçamento entre os itens */
+    }
+
+    figure img {
+        display: block;
+        /* Remove espaços extras ao redor das imagens */
+        max-width: 100%;
+        /* Garante que as imagens não ultrapassem seus contêineres */
+        height: auto;
+        /* Mantém a proporção das imagens */
+    }
+
+    .conteudo {
+        margin-bottom: 10px;
+    }
+    
+    .conteudo p{
+       font-size: 20px;
+       width: 80%;
+    }
+
+    .modelo{
+       font-size: 20px;
+    }
+
+    .center{
+       width: 85%;
+    }
+        /* Responsivo */
+   .footer-container {
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+   }
+
+   .footer-links {
+       visibility: hidden;
+   }
+
+   .footer-socials {
+       text-align: center;
+   }
+
+   .footer-logo,
+   .footer-search {
+       display: none;
+   }
+
+   .footer-copyright {
+       font-size: 20px;
+   }
+
+}
+
+
+
+
+.button-up-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.button-up-arrow {
+    width: 14px;
+    height: 14px;
+    border-left: 2px solid black;
+    border-bottom: 2px solid black;
+    transform: rotate(135deg);
+}
+
+#button-up {
+    margin-right: 1%;
+    display: flex;
+    justify-content: flex-end;
+}
+footer {
+   margin-top: -2%;
+   color: black;
+   text-align: center;
+   padding: 20px;
+   position: relative;
+
+}
+
+.footer-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 20px;
+   margin-top: 1%;
+}
+
+.footer-logo img {
+   width: 100px;
+   height: auto;
+}
+
+.footer-links ul {
+   list-style-type: none;
+   display: flex;
+   gap: 15px;
+}
+
+.footer-links ul li a {
+   text-decoration: none; /* Remove o sublinhado */
+   color: black; /* Garante que a cor do link será preta */
+   font-size: 1.1em;
+}
+
+.footer-links ul li a:hover {
+   color: #000000; /* Define a cor ao passar o mouse (opção laranja, pode mudar) */
+}
+
+/* Adiciona um estilo para o link visitado (caso necessário) */
+.footer-links ul li a:visited {
+   color: #000000; /* Cor roxa após o link ser visitado */
+}
+
+/* Adiciona um estilo para o link ativo (quando está sendo clicado) */
+.footer-links ul li a:active {
+   color: #000000; /* Cor vermelha quando o link é clicado */
+}
+
+/* Estilos para os ícones sociais */
+.footer-socials {
+   display: flex;
+   gap: 10px;
+   justify-content: center;
+   align-items: center;
+}
+
+.footer-socials img {
+   width: 40px;
+   height: auto;
+   cursor: pointer;
+   transition: transform 0.3s;
+}
+
+.footer-socials img:hover {
+   transform: scale(1.1);
+}
+
+.footer-search {
+   margin-top: 1%;
+}
+
+.footer-search input {
+   padding: 10px;
+   width: 200px;
+   border: 1px solid #000000;
+   border-radius: 5px;
+}
+
+.footer-search button {
+   padding: 10px 15px;
+   background-color: #000000;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+}
+
+.footer-copyright {
+   margin-top: -1%;
+   text-align: center;
+   color: black;
+   font-size: 0.8em;
+}
+
+
