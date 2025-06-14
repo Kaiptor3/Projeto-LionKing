@@ -315,9 +315,15 @@ showImage(currentIndex);
 </html>
 
 
-<?php if (isset($_SESSION['nome'])): ?>
-    <p>Bem-vindo, <?= htmlspecialchars($_SESSION['nome']) ?>!</p>
-    <a href="login/logout.php">Sair</a>
-<?php else: ?>
-    <a href="login/login.php">Login</a>
+<?php if (isset($_SESSION['usuario'])): ?>
+      <p>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario']['nomeCompleto']) ?></p>
+      <a href="login/logout.php">Sair</a>
+    <?php else: ?>
+      <a href="login/login.php">Login</a>
+    <?php endif; ?>
+
+<?php if (isset($_SESSION['usuario'])): ?>
+    <a href="login/editar_usuario.php?id=<?= $_SESSION['usuario']['idUsuario'] ?>" class="btn btn-warning">
+        Editar meus dados
+    </a>
 <?php endif; ?>
