@@ -14,7 +14,7 @@
             <video src="../vds/Video.mp4" autoplay loop muted></video>
         </div>
 
-        <a href="/Root/login/cadastro.html"><button type="button" class="botao-voltar">←</button></a>
+        <a href="/Root/login/cadastro.php"><button type="button" class="botao-voltar">←</button></a>
         <form id="login" action="processa_login.php" method="POST">
             <div class="box2">
                 <img id="logo2" src="./imgs/LK - Logo preta.png" alt="logo">
