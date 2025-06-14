@@ -95,7 +95,7 @@ class Usuario {
     // Listar todos os usuários
     public static function listarTodos() {
         $conn = conectaPDO();
-        $stmt = $conn->prepare("SELECT idUsuario, nomeCompleto, email, login FROM usuario ORDER BY idUsuario DESC");
+        $stmt = $conn->prepare("SELECT * FROM usuario ORDER BY idUsuario DESC");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
