@@ -1,17 +1,13 @@
 <?php
-// Inicia a sessão e exibe erros para debug
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
-// ✅ Verificação de permissão: apenas administradores (idPermissao == 1)
+// Só admin pode acessar (idPermissao == 2)
 if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['idPermissao'] != 1) {
-    header('Location: /Projeto-LionKing-main/Root/login/login.php');
+    header('/Projeto-LionKing-main/Root/login/login.php');
     exit;
 }
 
-// ✅ Classe para conexão com o banco usando PDO
+// Classe de Conexão
 class Database {
     private $pdo;
 
@@ -26,7 +22,7 @@ class Database {
     }
 }
 
-// ✅ Classe de relatório que busca dados da tabela compra
+// Classe de Relatório
 class Relatorio {
     private $pdo;
 
@@ -60,7 +56,6 @@ class Relatorio {
     }
 }
 
-// ✅ Executando e obtendo os dados
 $db = new Database();
 $pdo = $db->getConnection();
 $relatorio = new Relatorio($pdo);
@@ -77,34 +72,6 @@ $dados = $relatorio->listarComprasUsuarios();
     <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
-    <style>
-    body {
-        background-color: #111;
-        color: white;
-        font-family: Arial, sans-serif;
-        padding: 20px;
-    }
-
-    h1 {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    table.display {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    table.display th,
-    table.display td {
-        padding: 10px;
-        text-align: left;
-    }
-
-    table.display tbody tr:nth-child(even) {
-        background-color: #222;
-    }
-    </style>
 </head>
 
 <body>
