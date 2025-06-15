@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
 
     if ($usuario->atualizar($atualizados)) {
-        header("Location: user_perfil.php?atualizado=1");
+        header("Location: ../perfil/user_perfil.php?atualizado=1");
         exit;
     }
 }
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     .profile-button:hover {
-        background: rgb(0, 0, 0);
+        background: rgb(30, 30, 30);
     }
 
     .labels {
@@ -128,38 +128,61 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="p-3 py-5">
                         <h4 class="text-right mb-4">Edite seu Perfil</h4>
                         <div class="row mt-2">
-                            <div class="col-md-6"><label class="labels">Nome Completo</label><input type="text"
-                                    class="form-control" name="nomeCompleto"
-                                    value="<?= htmlspecialchars($dados['nomeCompleto']) ?>"></div>
-                            <div class="col-md-6"><label class="labels">Telefone</label><input type="text"
-                                    class="form-control" name="telefone"
-                                    value="<?= htmlspecialchars($dados['telefone']) ?>"></div>
+                            <div class="col-md-6">
+                                <label class="labels">Nome Completo</label>
+                                <input type="text" class="form-control" name="nomeCompleto"
+                                    value="<?= htmlspecialchars($dados['nomeCompleto']) ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Telefone</label>
+                                <input type="text" class="form-control" name="telefone"
+                                    value="<?= htmlspecialchars($dados['telefone']) ?>">
+                            </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-6"><label class="labels">Email</label><input type="email"
-                                    class="form-control" name="email" value="<?= htmlspecialchars($dados['email']) ?>">
+                            <div class="col-md-6">
+                                <label class="labels">Email</label>
+                                <input type="email" class="form-control" name="email"
+                                    value="<?= htmlspecialchars($dados['email']) ?>">
                             </div>
-                            <div class="col-md-6"><label class="labels">Estado</label><input type="text"
-                                    class="form-control" name="estado"
-                                    value="<?= htmlspecialchars($dados['estado']) ?>"></div>
-                            <div class="col-md-6"><label class="labels">Cidade</label><input type="text"
-                                    class="form-control" name="cidade"
-                                    value="<?= htmlspecialchars($dados['cidade']) ?>"></div>
-                            <div class="col-md-6"><label class="labels">Bairro</label><input type="text"
-                                    class="form-control" name="bairro"
-                                    value="<?= htmlspecialchars($dados['bairro']) ?>"></div>
-                            <div class="col-md-6"><label class="labels">Rua</label><input type="text"
-                                    class="form-control" name="rua" value="<?= htmlspecialchars($dados['rua']) ?>">
+                            <div class="col-md-6">
+                                <label class="labels">Estado</label>
+                                <input type="text" class="form-control" name="estado"
+                                    value="<?= htmlspecialchars($dados['estado']) ?>">
                             </div>
-                            <div class="col-md-6"><label class="labels">Número</label><input type="text"
-                                    class="form-control" name="numero"
-                                    value="<?= htmlspecialchars($dados['numero']) ?>"></div>
+                            <div class="col-md-6">
+                                <label class="labels">Cidade</label>
+                                <input type="text" class="form-control" name="cidade"
+                                    value="<?= htmlspecialchars($dados['cidade']) ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Bairro</label>
+                                <input type="text" class="form-control" name="bairro"
+                                    value="<?= htmlspecialchars($dados['bairro']) ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Rua</label>
+                                <input type="text" class="form-control" name="rua"
+                                    value="<?= htmlspecialchars($dados['rua']) ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Número</label>
+                                <input type="text" class="form-control" name="numero"
+                                    value="<?= htmlspecialchars($dados['numero']) ?>">
+                            </div>
                         </div>
                         <div class="mt-4 text-center">
                             <button class="btn btn-primary profile-button" type="submit">Salvar Alterações</button>
-                            <a href="user_perfil.php" class="btn btn-secondary">Cancelar</a>
-                            <a href="../perfil/user_perfil.php" class="btn btn-secondary">Voltar</a>
+                            <a href="../perfil/user_perfil.php" class="btn btn-primary profile-button">Cancelar</a>
+                            <a href="../index.php" class="btn btn-primary profile-button">Home</a>
 
+                            <?php if (isset($_SESSION['usuario'])): ?>
+                            <?php if ($_SESSION['usuario']['idPermissao'] == 2): ?>
+                            <a href="../perfil/user_perfil.php" class="btn btn-primary profile-button">Voltar</a>
+                            <?php elseif ($_SESSION['usuario']['idPermissao'] == 1): ?>
+                            <a href="../perfil/admin_dashboard.php" class="btn btn-primary profile-button">Voltar</a>
+                            <?php endif; ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
