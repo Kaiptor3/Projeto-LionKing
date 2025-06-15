@@ -29,8 +29,13 @@ $carros = CarroController::listarCarros();
         <div class="nav-links">
           <a href="../index.php">Home</a>
           <a href="catalogo.php">Carros</a>
+          <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['idPermissao'] == 1): ?>
+            <a href="/Root/painel_adm.php" class="btn btn-adm">Painel</a>
+          <?php endif; ?>
+          <?php if (!isset($_SESSION['usuario'])): ?>
           <a href="../login/cadastro.php">Cadastrar</a>
           <a href="../login/login.php">Login</a>
+          <?php endif; ?>
         </div>
         <nav class="navbar texto-M">
           <div class="nav-links">
@@ -43,7 +48,7 @@ $carros = CarroController::listarCarros();
               <img dark-mode-user src="../imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
               </a>
                <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
-              <a href="login/logout.php" class="btn btn-danger">
+              <a href="../login/logout.php" class="btn btn-danger">
                 <button>Logout</button>
               </a>
               </div>
@@ -66,8 +71,13 @@ $carros = CarroController::listarCarros();
       <nav>
         <a href="../index.php">Home</a>
         <a href="catalogo.php">Carros</a>
+        <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['idPermissao'] == 1): ?>
+          <a href="/Root/painel_adm.php" class="btn btn-adm">Painel</a>
+        <?php endif; ?>
+        <?php if (!isset($_SESSION['usuario'])): ?>
         <a href="../login/cadastro.php">Cadastrar</a>
         <a href="../login/login.php">Login</a>
+        <?php endif; ?>
         <div class="login-form nav-usuario">
           <?php if (isset($_SESSION['usuario'])): ?>
                 <a href="../perfil/user_perfil.php" title="Editar Perfil">
