@@ -1,30 +1,39 @@
 <?php
 session_start();
+require_once 'conexao.php';
 
-// Redirecionar se o usuário não estiver logado
-if (!isset($_SESSION['usuario_id'])) {
-    header("Location: cadastro.php");
+// Garante que o usuário passou pelo login e está em processo de 2FA
+if (!isset($_SESSION['usuario_temp'])) {
+    header("Location: login.php");
     exit;
 }
 
+// Busca a data de nascimento do usuário logado temporariamente
+$idUsuario = $_SESSION['usuario_temp']['idUsuario'];
 
+$stmt = $conn->prepare("SELECT dataNascimento FROM usuario WHERE idUsuario = ?");
+$stmt->bind_param("i", $idUsuario);
+$stmt->execute();
+$result = $stmt->get_result();
 
-// Perguntas de segurança (deveriam vir do banco de dados)
-$perguntas = [
-    'nome_mae' => "Qual o nome completo da sua mãe?",
-    'data_nascimento' => "Qual sua data de nascimento? (formato DD/MM/AAAA)",
-    'cep' => "Qual o CEP da sua residência atual?",
-];
+if ($result->num_rows !== 1) {
+    header("Location: login.php");
+    exit;
+}
 
-// Seleciona pergunta aleatória se não estiver definida
+$dados = $result->fetch_assoc();
+$respostaCorreta = date("d/m/Y", strtotime($dados['dataNascimento']));
+
+// Define pergunta e resposta na sessão se ainda não estiverem
 if (!isset($_SESSION['pergunta_2fa'])) {
-    $chave = array_rand($perguntas);
-    $_SESSION['pergunta_2fa'] = $chave;
+    $_SESSION['pergunta_2fa'] = "Qual sua data de nascimento? (formato DD/MM/AAAA)";
+    $_SESSION['resposta_correta'] = $respostaCorreta;
     $_SESSION['tentativas_2fa'] = 0;
 }
 
-$pergunta = $perguntas[$_SESSION['pergunta_2fa']];
+$pergunta = $_SESSION['pergunta_2fa'];
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -248,5 +257,14 @@ $pergunta = $perguntas[$_SESSION['pergunta_2fa']];
             <p style="margin-top: 15px;">Esta medida adicional protege sua conta contra acesso não autorizado</p>
         </div>
     </div>
+<script>
+document.querySelector('.input-field').addEventListener('input', function (e) {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length >= 2) v = v.slice(0,2) + '/' + v.slice(2);
+    if (v.length >= 5) v = v.slice(0,5) + '/' + v.slice(5,9);
+    e.target.value = v.slice(0, 10);
+});
+</script>
+
 </body>
 </html>
