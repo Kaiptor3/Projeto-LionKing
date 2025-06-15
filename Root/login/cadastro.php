@@ -24,18 +24,24 @@ if (isset($_SESSION['sucesso_cadastro'])) {
     <title>Cadastro de Usuário</title>
     <link rel="stylesheet" href="cd.css">
     <style>
-        .botao-voltar{
-        background-color: transparent;
-        color: #FFF;
-        padding: 10px 10px;
-        font-size: 30px;
-        border: 2px solid white;
-        border-radius: 15px;
-        margin-right: 100px;
-    }
-    .botao-voltar:hover{
-        transform: scale(1.1);
-    }
+    .botao-voltar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: transparent;
+    color: #FFF;
+    padding: 10px 15px;
+    font-size: 30px;
+    border: 2px solid white;
+    border-radius: 15px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+    .botao-voltar:hover {
+    transform: scale(1.1);
+}
     </style>
 </head>
 
