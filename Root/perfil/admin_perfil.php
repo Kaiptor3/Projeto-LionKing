@@ -99,7 +99,7 @@ $dados = $usuario->buscarDados($idUsuario);
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../admin_log.php" class="nav-link">
+                            <a href="../admin_log.php?id=<?= $_SESSION['usuario']['idUsuario'] ?>" class="nav-link">
                                 <i class="nav-icon fas fa-file-alt"></i>
                                 <p>Logs</p>
                             </a>
