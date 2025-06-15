@@ -80,12 +80,15 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['idPermissao'] != 1) {
 
     <script>
     $(document).ready(function() {
+    if ( ! $.fn.DataTable.isDataTable('#example') ) {
         $('#example').DataTable({
             language: {
                 url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
             }
         });
+    }
     });
+
     </script>
 
     <!-- Bootstrap JS Bundle (opcional, apenas se for usar componentes JS do Bootstrap futuramente) -->
