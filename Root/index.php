@@ -26,6 +26,7 @@ session_start();
                 <a href="index.php">Home</a>
                 <a href="catálogo/catalogo.php">Carros</a>
                 <a href="login/cadastro.php">Cadastrar</a>
+                <a href="login/login.php">Login</a>
               </div>
               <nav class="navbar texto-M">
                 <div class="nav-links">
