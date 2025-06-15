@@ -23,8 +23,8 @@ session_start();
             </div>
             <nav class="navbar">
               <div class="nav-links">
-                <a href="/Root/">Home</a>
-                <a href="/Root/catálogo/catalogo.php">Carros</a>
+                <a href="index.php">Home</a>
+                <a href="catálogo/catalogo.php">Carros</a>
                 <a href="login/cadastro.php">Cadastrar</a>
               </div>
               <nav class="navbar texto-M">
@@ -55,10 +55,10 @@ session_start();
     
           <div class="menu-mobile" id="menu-mobile">
             <nav>
-              <a href="/Root/">Home</a>
-              <a href="/Root/catálogo/catalogo.php">Carros</a>
-              <a href="/login/cadastro.php">Cadastrar</a>
-              <a href="/login/login.php">Login</a>
+              <a href="index.php">Home</a>
+              <a href="catálogo/catalogo.php">Carros</a>
+              <a href="login/cadastro.php">Cadastrar</a>
+              <a href="login/login.php">Login</a>
               <div class="login-form nav-usuario">
                 <?php if (isset($_SESSION['usuario'])): ?>
                 <a href="editar_usuario.php" title="Editar Perfil">
