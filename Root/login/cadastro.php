@@ -23,7 +23,22 @@ if (isset($_SESSION['sucesso_cadastro'])) {
     <meta charset="UTF-8">
     <title>Cadastro de Usuário</title>
     <link rel="stylesheet" href="cd.css">
+    <style>
+        .botao-voltar{
+        background-color: transparent;
+        color: #FFF;
+        padding: 10px 10px;
+        font-size: 30px;
+        border: 2px solid white;
+        border-radius: 15px;
+        margin-right: 100px;
+    }
+    .botao-voltar:hover{
+        transform: scale(1.1);
+    }
+    </style>
 </head>
+
 
 <body>
     <section>
@@ -32,7 +47,7 @@ if (isset($_SESSION['sucesso_cadastro'])) {
         </div>
 
         <button id="darkModeToggle" class="dark-mode-toggle">🌓</button>
-
+        <a href="../index.php"><button type="button" class="botao-voltar">←</button></a>
         <div class="container">
             <h1>Cadastro de Usuário</h1>
 
