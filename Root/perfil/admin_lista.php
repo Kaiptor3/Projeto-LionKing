@@ -57,7 +57,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['idPermissao'] != 1) {
                 <td><?= htmlspecialchars($usuario['login']) ?></td>
                 <td>
                     <div class="d-flex gap-2">
-                        <a href="ver_log.php?id=<?= $usuario['idUsuario'] ?>" class="btn btn-sm btn-primary">
+                        <a href="../admin_log.php?id=<?= $usuario['idUsuario'] ?>" class="btn btn-sm btn-primary">
                             Ver Log
                         </a>
                         <a href="excluir_usuario.php?id=<?= $usuario['idUsuario'] ?>"
