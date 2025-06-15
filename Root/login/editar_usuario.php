@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once '../controllers/UsuarioController.php';
+require_once 'conexao.php';
+require_once 'log_helper.php';
 
 if (!isset($_SESSION['usuario'])) {
     header("Location: ../login/login.php");
@@ -43,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // Atualiza usuário via controller
         UsuarioController::atualizarUsuario($idUsuarioLogado, $dadosAtualizados);
+
+         registrarLog($conn, $idUsuarioLogado, 'Usuário atualizou seus dados');
 
         // Atualiza dados da sessão para refletir as alterações
         $_SESSION['usuario']['nomeCompleto'] = $dadosAtualizados['nomeCompleto'];
