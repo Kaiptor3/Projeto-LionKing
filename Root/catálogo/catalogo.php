@@ -39,7 +39,7 @@ $carros = CarroController::listarCarros();
         </nav>
               <?php if (isset($_SESSION['usuario'])): ?>
               <div class="login-form nav-usuario">
-              <a href="editar_usuario.php" title="Editar Perfil">
+              <a href="../login/editar_usuario.php" title="Editar Perfil">
               <img dark-mode-user src="../imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
               </a>
                <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
@@ -70,7 +70,7 @@ $carros = CarroController::listarCarros();
         <a href="../login/login.php">Login</a>
         <div class="login-form nav-usuario">
           <?php if (isset($_SESSION['usuario'])): ?>
-                <a href="editar_usuario.php" title="Editar Perfil">
+                <a href="../login/editar_usuario.php" title="Editar Perfil">
               <img dark-mode-user src="../imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
               </a>
                <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
