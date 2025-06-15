@@ -20,10 +20,10 @@ $carros = CarroController::listarCarros();
 ?>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     const precoInput = document.getElementById("preco");
 
-    precoInput.addEventListener("input", function () {
+    precoInput.addEventListener("input", function() {
         let valor = precoInput.value;
 
         // Remove tudo que não for número
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Antes de enviar o form, converte de volta para o formato correto
     const form = document.querySelector("form");
-    form.addEventListener("submit", function () {
+    form.addEventListener("submit", function() {
         let valor = precoInput.value;
 
         // Remove os pontos e troca vírgula por ponto
@@ -53,100 +53,96 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Painel de Carros</title>
-    <style>
-        /* Seu CSS aqui */
-        .thumbnail {
-            width: 100px;
-            height: auto;
-        }
-        /* Estilos extras para mensagens */
-        .mensagem-erro { color: red; }
-        .mensagem-sucesso { color: green; }
-    </style>
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-<h1>Cadastro de Carro</h1>
+    <h1>Cadastro de Carro</h1>
 
-<?php if (isset($_GET['msg']) && $_GET['msg'] === 'deletado'): ?>
+    <?php if (isset($_GET['msg']) && $_GET['msg'] === 'deletado'): ?>
     <p style="color: green; font-weight: bold;">Carro deletado com sucesso.</p>
-<?php endif; ?>
+    <?php endif; ?>
 
 
-<?php if (!empty($_GET['success'])): ?>
+    <?php if (!empty($_GET['success'])): ?>
     <p class="mensagem-sucesso">Carro cadastrado com sucesso!</p>
-<?php endif; ?>
+    <?php endif; ?>
 
-<?php if ($mensagemErro): ?>
+    <?php if ($mensagemErro): ?>
     <p class="mensagem-erro"><?= htmlspecialchars($mensagemErro) ?></p>
-<?php endif; ?>
+    <?php endif; ?>
 
-<form action="painel_carros.php" method="POST" enctype="multipart/form-data">
-    <label for="modelo">Modelo:</label><br />
-    <input type="text" id="modelo" name="modelo" required /><br /><br />
+    <form action="painel_carros.php" method="POST" enctype="multipart/form-data">
+        <label for="modelo">Modelo:</label><br />
+        <input type="text" id="modelo" name="modelo" required /><br /><br />
 
-    <label for="preco">Preço (ex: 55000.50):</label><br />
-    <input type="text" id="preco" name="preco" step="0.01" min="0" required /><br /><br />
+        <label for="preco">Preço (ex: 55000.50):</label><br />
+        <input type="text" id="preco" name="preco" step="0.01" min="0" required /><br /><br />
 
-    <label for="velocidadeMaxima">Velocidade Máxima (km/h):</label><br />
-    <input type="number" id="velocidadeMaxima" name="velocidadeMaxima" min="0" required /><br /><br />
+        <label for="velocidadeMaxima">Velocidade Máxima (km/h):</label><br />
+        <input type="number" id="velocidadeMaxima" name="velocidadeMaxima" min="0" required /><br /><br />
 
-    <label for="potencia">Potência (cv):</label><br />
-    <input type="number" id="potencia" name="potencia" min="0" required /><br /><br />
+        <label for="potencia">Potência (cv):</label><br />
+        <input type="number" id="potencia" name="potencia" min="0" required /><br /><br />
 
-    <label for="numeroPortas">Número de Portas:</label><br />
-    <input type="number" id="numeroPortas" name="numeroPortas" min="1" required /><br /><br />
+        <label for="numeroPortas">Número de Portas:</label><br />
+        <input type="number" id="numeroPortas" name="numeroPortas" min="1" required /><br /><br />
 
-    <label for="aceleracao">Aceleração 0-100 km/h (segundos):</label><br />
-    <input type="number" id="aceleracao" name="aceleracao" step="0.01" min="0" required /><br /><br />
+        <label for="aceleracao">Aceleração 0-100 km/h (segundos):</label><br />
+        <input type="number" id="aceleracao" name="aceleracao" step="0.01" min="0" required /><br /><br />
 
-    <label for="numeroAssentos">Número de Assentos:</label><br />
-    <input type="number" id="numeroAssentos" name="numeroAssentos" min="1" required /><br /><br />
+        <label for="numeroAssentos">Número de Assentos:</label><br />
+        <input type="number" id="numeroAssentos" name="numeroAssentos" min="1" required /><br /><br />
 
-    <label for="pesoTotal">Peso Total (kg):</label><br />
-    <input type="number" id="pesoTotal" name="pesoTotal" min="0" required /><br /><br />
+        <label for="pesoTotal">Peso Total (kg):</label><br />
+        <input type="number" id="pesoTotal" name="pesoTotal" min="0" required /><br /><br />
 
-    <label for="consumoMedio">Consumo Médio (km/l):</label><br />
-    <input type="number" id="consumoMedio" name="consumoMedio" step="0.01" min="0" required /><br /><br />
+        <label for="consumoMedio">Consumo Médio (km/l):</label><br />
+        <input type="number" id="consumoMedio" name="consumoMedio" step="0.01" min="0" required /><br /><br />
 
-    <label for="capacidadePortaMalas">Capacidade do Porta-Malas (litros):</label><br />
-    <input type="number" id="capacidadePortaMalas" name="capacidadePortaMalas" min="0" required /><br /><br />
+        <label for="capacidadePortaMalas">Capacidade do Porta-Malas (litros):</label><br />
+        <input type="number" id="capacidadePortaMalas" name="capacidadePortaMalas" min="0" required /><br /><br />
 
-    <label for="imagem1">Imagem 1:</label><br />
-    <input type="file" id="imagem1" name="imagem1" accept="image/*" required /><br /><br />
+        <label for="imagem1">Imagem 1:</label><br />
+        <input type="file" id="imagem1" name="imagem1" accept="image/*" required /><br /><br />
 
-    <label for="imagem2">Imagem 2:</label><br />
-    <input type="file" id="imagem2" name="imagem2" accept="image/*" required /><br /><br />
+        <label for="imagem2">Imagem 2:</label><br />
+        <input type="file" id="imagem2" name="imagem2" accept="image/*" required /><br /><br />
 
-    <button type="submit">Cadastrar Carro</button>
-</form>
+        <button type="submit">Cadastrar Carro</button>
+    </form>
 
-<hr>
+    <hr>
 
-<h2>Carros Cadastrados</h2>
+    <h2>Carros Cadastrados</h2>
 
-<table>
-    <tr>
-        <th>Imagem</th>
-        <th>Modelo</th>
-        <th>Preço</th>
-        <th>Ações</th>
-    </tr>
-    <?php foreach ($carros as $carro): ?>
+    <table>
+        <tr>
+            <th>Imagem</th>
+            <th>Modelo</th>
+            <th>Preço</th>
+            <th>Ações</th>
+        </tr>
+        <?php foreach ($carros as $carro): ?>
         <tr>
             <td><img src="../../<?= htmlspecialchars($carro['imagem1']) ?>" class="thumbnail"></td>
             <td><?= htmlspecialchars($carro['modelo']) ?></td>
             <td>R$ <?= number_format($carro['preco'], 2, ',', '.') ?></td>
             <td>
                 <button onclick="location.href='editar_carro.php?id=<?= $carro['idCarro'] ?>'">Alterar</button>
-                <button onclick="if(confirm('Tem certeza que deseja deletar este carro?')) { location.href='excluir_carro.php?id=<?= $carro['idCarro'] ?>'; }">Deletar</button>
+                <button
+                    onclick="if(confirm('Tem certeza que deseja deletar este carro?')) { location.href='excluir_carro.php?id=<?= $carro['idCarro'] ?>'; }">Deletar</button>
             </td>
         </tr>
-    <?php endforeach; ?>
-</table>
+        <?php endforeach; ?>
+    </table>
 
 </body>
+
 </html>
