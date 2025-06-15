@@ -41,7 +41,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['idPermissao'] != 1) {
 
         <!-- Sidebar -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a href="#" class="brand-link">
+            <a href="../index.php" class="brand-link">
                 <span class="brand-text font-weight-light">Lion King</span>
             </a>
             <div class="sidebar">
