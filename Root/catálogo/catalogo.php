@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../controllers/CarroController.php'; // ajuste o caminho conforme necessário
 $carros = CarroController::listarCarros();
 ?>
@@ -26,27 +27,27 @@ $carros = CarroController::listarCarros();
       </div>
       <nav class="navbar">
         <div class="nav-links">
-          <a href="../index.html">Home</a>
-          <a href="../catálogo/catalogo.html">Carros</a>
+          <a href="../index.php">Home</a>
+          <a href="catalogo.php">Carros</a>
           <a href="../login/cadastro.php">Cadastrar</a>
+          <a href="../login/login.php">Login</a>
         </div>
         <nav class="navbar texto-M">
           <div class="nav-links">
             <p>Lion King Motors</p>
           </div>
         </nav>
-        <form id="login" class="login-form">
-          <input type="text" id="email" name="email" placeholder="Email" required />
-          <input type="password" id="senha" name="senha" placeholder="Senha" required />
-          <p id="mensagem-erro" style="font-size: 17px; color: red;"></p>
-          <button type="submit" class="cadastro" id="entrar" value="Entrar">Login</button>
-        </form>
-        <div class="login-form nav-usuario">
-          <img src="../imgs/user-placeholder.png" />
-          <span class="bem-vindo-usuario"></span>
-          <button onclick="logout()">Logout</button>
-        </div>
-      </nav>
+              <?php if (isset($_SESSION['usuario'])): ?>
+              <div class="login-form nav-usuario">
+              <a href="editar_usuario.php" title="Editar Perfil">
+              <img dark-mode-user src="../imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
+              </a>
+               <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
+              <a href="login/logout.php" class="btn btn-danger">
+                <button>Logout</button>
+              </a>
+              </div>
+              <?php endif; ?>
 
       <!-- Botão Dark Mode -->
       <button id="darkModeToggle" class="dark-mode-toggle">🌙</button>
@@ -63,14 +64,20 @@ $carros = CarroController::listarCarros();
 
     <div class="menu-mobile" id="menu-mobile" style="z-index: 9999999999999999;">
       <nav>
-        <a href="/Root/index.html">Home</a>
-        <a href="/Root/catálogo/catalogo.html">Carros</a>
-        <a href="/Root/login/cadastro.html">Cadastrar</a>
-        <a href="/Root/login/login.html">Login</a>
+        <a href="../index.php">Home</a>
+        <a href="catalogo.php">Carros</a>
+        <a href="../login/cadastro.php">Cadastrar</a>
+        <a href="../login/login.php">Login</a>
         <div class="login-form nav-usuario">
-          <img src="../imgs/user-placeholder.png" />
-          <span class="bem-vindo-usuario"></span>
-          <button onclick="logout()">Logout</button>
+          <?php if (isset($_SESSION['usuario'])): ?>
+                <a href="editar_usuario.php" title="Editar Perfil">
+              <img dark-mode-user src="../imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
+              </a>
+               <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
+              <a href="login/logout.php" class="btn btn-danger">
+                <button>Logout</button>
+              </a>
+                <?php endif; ?>
         </div>
       </nav>
     </div>
