@@ -32,17 +32,17 @@ session_start();
                   <p>Lion King Motors</p>
                 </div>
               </nav>
-              <form id="login" class="login-form">
-                <input type="text" id="email" name="email" placeholder="Email" required />
-                <input type="password" id="senha" name="senha" placeholder="Senha" required />
-                <p id="mensagem-erro" style="font-size: 17px; color: red;"></p>
-                <button type="submit" class="cadastro" id="entrar" value="Entrar">Login</button>
-              </form>
+              <?php if (isset($_SESSION['usuario'])): ?>
               <div class="login-form nav-usuario">
-                <img dark-mode-user src="imgs/user-placeholder.png" />
-                <span class="bem-vindo-usuario"></span>
-                <button onclick="logout()">Logout</button>
+              <a href="editar_usuario.php" title="Editar Perfil">
+              <img dark-mode-user src="imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
+              </a>
+               <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
+              <a href="login/logout.php" class="btn btn-danger">
+                <button>Logout</button>
+              </a>
               </div>
+              <?php endif; ?>
             </nav>
             <!-- Botão Dark Mode -->
             <button id="darkModeToggle" class="dark-mode-toggle" >🌙</button>
@@ -60,9 +60,15 @@ session_start();
               <a href="/login/cadastro.php">Cadastrar</a>
               <a href="/login/login.php">Login</a>
               <div class="login-form nav-usuario">
-                <img src="imgs/user-placeholder.png" />
-                <span class="bem-vindo-usuario"></span>
-                <button onclick="logout()">Logout</button>
+                <?php if (isset($_SESSION['usuario'])): ?>
+                <a href="editar_usuario.php" title="Editar Perfil">
+              <img dark-mode-user src="imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
+              </a>
+               <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
+              <a href="login/logout.php" class="btn btn-danger">
+                <button>Logout</button>
+              </a>
+                <?php endif; ?>
               </div>
             </nav>
           </div>
@@ -313,17 +319,3 @@ showImage(currentIndex);
     <script src="animar.js"></script>
 </body>
 </html>
-
-
-<?php if (isset($_SESSION['usuario'])): ?>
-      <p>Bem-vindo, <?= htmlspecialchars($_SESSION['usuario']['nomeCompleto']) ?></p>
-      <a href="login/logout.php">Sair</a>
-    <?php else: ?>
-      <a href="login/login.php">Login</a>
-    <?php endif; ?>
-
-<?php if (isset($_SESSION['usuario'])): ?>
-    <a href="login/editar_usuario.php?id=<?= $_SESSION['usuario']['idUsuario'] ?>" class="btn btn-warning">
-        Editar meus dados
-    </a>
-<?php endif; ?>
