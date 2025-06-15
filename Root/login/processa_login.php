@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $stmt = $conn->prepare("SELECT idUsuario, nomeCompleto, email, idPermissao, senha FROM usuario WHERE email = ?");
+    $stmt = $conn->prepare("SELECT idUsuario, nomeCompleto, email, idPermissao, senha, dataNascimento FROM usuario WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $resultado = $stmt->get_result();
@@ -16,17 +16,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usuario = $resultado->fetch_assoc();
 
         if (password_verify($senha, $usuario['senha'])) {
-            $_SESSION['usuario'] = [
+            $_SESSION['usuario_temp'] = [
                 'idUsuario'     => $usuario['idUsuario'],
                 'nomeCompleto'  => $usuario['nomeCompleto'],
                 'email'         => $usuario['email'],
                 'idPermissao'   => $usuario['idPermissao']
             ];
 
-            // Log de login
-            registrarLog($conn, $usuario['idUsuario'], 'Login realizado');
+            
 
-            header("Location: http://localhost/Projeto-LionKing-main/Root/");
+            $_SESSION['resposta_correta'] = $usuario['dataNascimento'];
+
+            header("Location: 2fa.php");
             exit();
         }
     }
