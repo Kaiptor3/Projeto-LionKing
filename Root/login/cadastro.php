@@ -1,5 +1,19 @@
 <?php
 session_start();
+
+$erro = '';
+$sucesso = '';
+
+if (isset($_SESSION['erro_cadastro'])) {
+    $erro = $_SESSION['erro_cadastro'];
+    unset($_SESSION['erro_cadastro']);
+}
+
+if (isset($_SESSION['sucesso_cadastro'])) {
+    $sucesso = $_SESSION['sucesso_cadastro'];
+    unset($_SESSION['sucesso_cadastro']);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -99,11 +113,11 @@ session_start();
                 <div class="linha-inputs">
                     <div>
                         <label>Senha</label>
-                        <input type="password" name="senha" placeholder="Senha" required>
+                        <input type="password" name="senha" id="senha" placeholder="Senha" required>
                     </div>
                     <div>
                         <label>Confirmar Senha</label>
-                        <input type="password" name="confirmar_senha" placeholder="Repita a senha" required>
+                        <input type="password" name="confirmar_senha" id="confirmar_senha" placeholder="Repita a senha" required>
                     </div>
                 </div>
 
@@ -119,6 +133,17 @@ session_start();
     const toggle = document.getElementById("darkModeToggle");
     toggle.onclick = () => document.body.classList.toggle("dark-mode");
     </script>
+    <script>
+document.querySelector("form").addEventListener("submit", function(e) {
+    const senha = document.getElementById("senha").value;
+    const confirmarSenha = document.getElementById("confirmar_senha").value;
+
+    if (senha !== confirmarSenha) {
+        e.preventDefault(); // Impede o envio do formulário
+        alert("As senhas não coincidem. Verifique e tente novamente.");
+    }
+});
+</script>
 </body>
 
 </html>
