@@ -103,9 +103,9 @@ registrarLog($nomeUsuario, "Acessou o painel de logs");
     <div class="navbar">
         <div><strong>Admin</strong></div>
         <div>
-            <a href="#">Dashboard</a>
-            <a href="#">Usuários</a>
-            <a href="#">Configurações</a>
+            <a href="/Projeto-LionKing-main/Root/">Home</a>
+            <a href="perfil/admin_lista.php">Usuários</a>
+            <a href="perfil/admin_perfil.php">Configurações</a>
             <a href="login/logout.php">Sair</a>
         </div>
     </div>
