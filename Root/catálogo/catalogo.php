@@ -30,7 +30,7 @@ $carros = CarroController::listarCarros();
           <a href="../index.php">Home</a>
           <a href="catalogo.php">Carros</a>
           <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['idPermissao'] == 1): ?>
-            <a href="/Root/painel_adm.php" class="btn btn-adm">Painel</a>
+            <a href="../perfil/admin_dashboard.php" class="btn btn-adm">Painel</a>
           <?php endif; ?>
           <?php if (!isset($_SESSION['usuario'])): ?>
           <a href="../login/cadastro.php">Cadastrar</a>
@@ -72,7 +72,7 @@ $carros = CarroController::listarCarros();
         <a href="../index.php">Home</a>
         <a href="catalogo.php">Carros</a>
         <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['idPermissao'] == 1): ?>
-          <a href="/Root/painel_adm.php" class="btn btn-adm">Painel</a>
+          <a href="../perfil/admin_dashboard.php" class="btn btn-adm">Painel</a>
         <?php endif; ?>
         <?php if (!isset($_SESSION['usuario'])): ?>
         <a href="../login/cadastro.php">Cadastrar</a>
