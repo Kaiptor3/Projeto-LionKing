@@ -2,6 +2,13 @@
 session_start();
 require_once __DIR__ . '/../controllers/UsuarioController.php';
 
+if ($_POST['senha'] !== $_POST['confirmar_senha']) {
+    $_SESSION['msg'] = 'As senhas não coincidem!';
+    $_SESSION['msg_type'] = 'error';
+    header('Location: cadastro.php');
+    exit;
+}
+
 try {
     $dados = [
         'cpf' => $_POST['cpf'],
@@ -23,7 +30,7 @@ try {
     UsuarioController::inserirUsuario($dados);
 
     $_SESSION['sucesso_cadastro'] = 'Usuário cadastrado com sucesso!';
-    header('Location: cadastro.php');
+    header('Location: login.php');
     exit;
 
 } catch (Exception $e) {
