@@ -1,0 +1,12 @@
+# Ativa o sistema de reescrita de URL do Apache
+RewriteEngine On
+
+# Se não for um arquivo ou pasta existente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redireciona tudo que não existe para a página de erro
+RewriteRule ^.*$ /Projeto-LionKing-main/Root/404.php [L]
+
+# Define explicitamente a página de erro 404
+ErrorDocument 404 /Projeto-LionKing-main/Root/404.php
