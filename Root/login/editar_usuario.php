@@ -1,173 +1,172 @@
 <?php
 session_start();
-require_once '../controllers/UsuarioController.php';
-require_once 'conexao.php';
-require_once 'log_helper.php';
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
+// ✅ Verifica se o usuário está logado
 if (!isset($_SESSION['usuario'])) {
-    header("Location: ../login/login.php");
+    header('Location: /Projeto-LionKing-main/Root/login/login.php');
     exit;
 }
 
-$idUsuarioLogado = $_SESSION['usuario']['idUsuario'];
+// ✅ Conexão com o banco
+class Database {
+    private $pdo;
 
-// Busca os dados do usuário logado
-$usuario = UsuarioController::buscarPorId($idUsuarioLogado);
+    public function __construct() {
+        $this->pdo = new PDO('mysql:host=localhost;dbname=lion_king;charset=utf8mb4', 'root', '', [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]);
+    }
 
-if (!$usuario) {
-    // Usuário não encontrado, logout forçado
-    session_destroy();
-    header("Location: ../login/login.php");
-    exit;
-}
-
-$mensagemErro = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Coleta dados do POST
-    $dadosAtualizados = [
-        'cpf'           => $_POST['cpf'] ?? '',
-        'nomeCompleto'  => $_POST['nomeCompleto'] ?? '',
-        'dataNascimento'=> $_POST['dataNascimento'] ?? '',
-        'nomeMae'       => $_POST['nomeMae'] ?? '',
-        'email'         => $_POST['email'] ?? '',
-        'telefone'      => $_POST['telefone'] ?? '',
-        'estado'        => $_POST['estado'] ?? '',
-        'cidade'        => $_POST['cidade'] ?? '',
-        'bairro'        => $_POST['bairro'] ?? '',
-        'rua'           => $_POST['rua'] ?? '',
-        'numero'        => $_POST['numero'] ?? '',
-        'login'         => $_POST['login'] ?? '',
-        'senha'         => $_POST['senha'] ?? '', // Senha pode ser vazia para não alterar
-        'idPermissao'   => $usuario['idPermissao'], // Mantém a permissão atual
-    ];
-
-    try {
-        // Atualiza usuário via controller
-        UsuarioController::atualizarUsuario($idUsuarioLogado, $dadosAtualizados);
-
-         registrarLog($conn, $idUsuarioLogado, 'Usuário atualizou seus dados');
-
-        // Atualiza dados da sessão para refletir as alterações
-        $_SESSION['usuario']['nomeCompleto'] = $dadosAtualizados['nomeCompleto'];
-        $_SESSION['usuario']['email'] = $dadosAtualizados['email'];
-
-        // Redireciona para index com sucesso
-        header("Location: ../index.php?msg=Dados atualizados com sucesso");
-        exit;
-
-    } catch (Exception $e) {
-        $mensagemErro = $e->getMessage();
+    public function getConnection() {
+        return $this->pdo;
     }
 }
-?>
 
-<?php
+// ✅ Classe de usuário
+class Usuario {
+    private $pdo;
 
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
+    }
 
-if (!isset($_SESSION['usuario'])) {
-    // Redireciona para a página de login
-    header("Location: login.php");
-    exit();
+    public function buscar($id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM usuario WHERE idUsuario = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch();
+    }
+
+    public function atualizar($dados) {
+        $stmt = $this->pdo->prepare("UPDATE usuario SET nomeCompleto = ?, email = ?, telefone = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ? WHERE idUsuario = ?");
+        return $stmt->execute([
+            $dados['nomeCompleto'], $dados['email'], $dados['telefone'],
+            $dados['estado'], $dados['cidade'], $dados['bairro'],
+            $dados['rua'], $dados['numero'], $dados['idUsuario']
+        ]);
+    }
+}
+
+$db = new Database();
+$pdo = $db->getConnection();
+$usuario = new Usuario($pdo);
+
+// ✅ ID do usuário da sessão
+$idUsuario = $_SESSION['usuario']['idUsuario'];
+$dados = $usuario->buscar($idUsuario);
+
+// ✅ Se formulário enviado
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $atualizados = [
+        'nomeCompleto' => $_POST['nomeCompleto'],
+        'email' => $_POST['email'],
+        'telefone' => $_POST['telefone'],
+        'estado' => $_POST['estado'],
+        'cidade' => $_POST['cidade'],
+        'bairro' => $_POST['bairro'],
+        'rua' => $_POST['rua'],
+        'numero' => $_POST['numero'],
+        'idUsuario' => $idUsuario
+    ];
+
+    if ($usuario->atualizar($atualizados)) {
+        header("Location: user_perfil.php?atualizado=1");
+        exit;
+    }
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8" />
-    <title>Editar Meus Dados</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>Editar Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+    body {
+        background: rgb(0, 0, 0);
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: rgb(0, 0, 0);
+    }
+
+    .profile-button {
+        background: rgb(0, 0, 0);
+        box-shadow: none;
+        border: none;
+    }
+
+    .profile-button:hover {
+        background: rgb(0, 0, 0);
+    }
+
+    .labels {
+        font-size: 13px;
+        color: #555;
+    }
+    </style>
 </head>
-<body class="container mt-4">
 
-    <h1>Editar Meus Dados</h1>
+<body>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <form method="POST">
+            <div class="row">
+                <div class="col-md-3 border-right">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" width="150px"
+                            src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+                        <span class="font-weight-bold"><?= htmlspecialchars($dados['nomeCompleto']) ?></span>
+                        <span class="text-black-50"><?= htmlspecialchars($dados['email']) ?></span>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="p-3 py-5">
+                        <h4 class="text-right mb-4">Edite seu Perfil</h4>
+                        <div class="row mt-2">
+                            <div class="col-md-6"><label class="labels">Nome Completo</label><input type="text"
+                                    class="form-control" name="nomeCompleto"
+                                    value="<?= htmlspecialchars($dados['nomeCompleto']) ?>"></div>
+                            <div class="col-md-6"><label class="labels">Telefone</label><input type="text"
+                                    class="form-control" name="telefone"
+                                    value="<?= htmlspecialchars($dados['telefone']) ?>"></div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6"><label class="labels">Email</label><input type="email"
+                                    class="form-control" name="email" value="<?= htmlspecialchars($dados['email']) ?>">
+                            </div>
+                            <div class="col-md-6"><label class="labels">Estado</label><input type="text"
+                                    class="form-control" name="estado"
+                                    value="<?= htmlspecialchars($dados['estado']) ?>"></div>
+                            <div class="col-md-6"><label class="labels">Cidade</label><input type="text"
+                                    class="form-control" name="cidade"
+                                    value="<?= htmlspecialchars($dados['cidade']) ?>"></div>
+                            <div class="col-md-6"><label class="labels">Bairro</label><input type="text"
+                                    class="form-control" name="bairro"
+                                    value="<?= htmlspecialchars($dados['bairro']) ?>"></div>
+                            <div class="col-md-6"><label class="labels">Rua</label><input type="text"
+                                    class="form-control" name="rua" value="<?= htmlspecialchars($dados['rua']) ?>">
+                            </div>
+                            <div class="col-md-6"><label class="labels">Número</label><input type="text"
+                                    class="form-control" name="numero"
+                                    value="<?= htmlspecialchars($dados['numero']) ?>"></div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <button class="btn btn-primary profile-button" type="submit">Salvar Alterações</button>
+                            <a href="user_perfil.php" class="btn btn-secondary">Cancelar</a>
+                            <a href="../perfil/user_perfil.php" class="btn btn-secondary">Voltar</a>
 
-    <?php if ($mensagemErro): ?>
-        <div class="alert alert-danger"><?= htmlspecialchars($mensagemErro) ?></div>
-    <?php endif; ?>
-
-    <form method="post" action="" class="mt-3">
-        <div class="mb-3">
-            <label for="nomeCompleto" class="form-label">Nome Completo</label>
-            <input type="text" id="nomeCompleto" name="nomeCompleto" class="form-control" required
-                value="<?= htmlspecialchars($usuario['nomeCompleto']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="cpf" class="form-label">CPF</label>
-            <input type="text" id="cpf" name="cpf" class="form-control" required
-                value="<?= htmlspecialchars($usuario['cpf']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="dataNascimento" class="form-label">Data de Nascimento</label>
-            <input type="date" id="dataNascimento" name="dataNascimento" class="form-control" required
-                value="<?= htmlspecialchars($usuario['dataNascimento']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="nomeMae" class="form-label">Nome da Mãe</label>
-            <input type="text" id="nomeMae" name="nomeMae" class="form-control" required
-                value="<?= htmlspecialchars($usuario['nomeMae']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" id="email" name="email" class="form-control" required
-                value="<?= htmlspecialchars($usuario['email']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="telefone" class="form-label">Telefone</label>
-            <input type="text" id="telefone" name="telefone" class="form-control"
-                value="<?= htmlspecialchars($usuario['telefone']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="estado" class="form-label">Estado</label>
-            <input type="text" id="estado" name="estado" class="form-control"
-                value="<?= htmlspecialchars($usuario['estado']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="cidade" class="form-label">Cidade</label>
-            <input type="text" id="cidade" name="cidade" class="form-control"
-                value="<?= htmlspecialchars($usuario['cidade']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="bairro" class="form-label">Bairro</label>
-            <input type="text" id="bairro" name="bairro" class="form-control"
-                value="<?= htmlspecialchars($usuario['bairro']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="rua" class="form-label">Rua</label>
-            <input type="text" id="rua" name="rua" class="form-control"
-                value="<?= htmlspecialchars($usuario['rua']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="numero" class="form-label">Número</label>
-            <input type="text" id="numero" name="numero" class="form-control"
-                value="<?= htmlspecialchars($usuario['numero']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="login" class="form-label">Login</label>
-            <input type="text" id="login" name="login" class="form-control" required
-                value="<?= htmlspecialchars($usuario['login']) ?>">
-        </div>
-
-        <div class="mb-3">
-            <label for="senha" class="form-label">Nova Senha (deixe vazio para manter a atual)</label>
-            <input type="password" id="senha" name="senha" class="form-control" autocomplete="new-password">
-        </div>
-
-        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-        <a href="../index.php" class="btn btn-secondary">Cancelar</a>
-    </form>
-
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
