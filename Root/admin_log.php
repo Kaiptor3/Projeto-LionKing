@@ -1,32 +1,37 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+require_once 'login/conexao.php';
 
-// Proteção: exige login
-if (!isset($_SESSION['usuario'])) {
-    header("Location: login/login.php"); // redireciona para o login
-    exit();
+if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['idPermissao'] != 1) {
+    header("Location: /Projeto-LionKing-main/Root/login/login.php");
+    exit;
 }
 
-// Nome do usuário logado
-$nomeUsuario = $_SESSION['usuario']['nomeCompleto'];
-
-// Caminho do arquivo de log
-$logFile = "log.txt";
-
-// Lê o arquivo se existir e inverte a ordem para mostrar os mais recentes primeiro
-$logs = file_exists($logFile) ? array_reverse(file($logFile)) : [];
-
-// Função para registrar log
-function registrarLog($nome, $acao) {
-    $data = date("Y-m-d H:i:s");
-    $linha = "$data - $nome - $acao\n";
-    file_put_contents("log.txt", $linha, FILE_APPEND);
+// Pega o id do usuário via GET, ex: ver_log.php?id=5
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    echo "ID do usuário inválido.";
+    exit;
 }
 
-// Registra que acessou o painel
-registrarLog($nomeUsuario, "Acessou o painel de logs");
+$idUsuario = (int) $_GET['id'];
+
+// Busca o nome do usuário (opcional, pra mostrar no título)
+$stmtUser = $conn->prepare("SELECT nomeCompleto FROM usuario WHERE idUsuario = ?");
+$stmtUser->bind_param("i", $idUsuario);
+$stmtUser->execute();
+$resultUser = $stmtUser->get_result();
+if ($resultUser->num_rows === 0) {
+    echo "Usuário não encontrado.";
+    exit;
+}
+$usuario = $resultUser->fetch_assoc();
+
+// Busca os logs desse usuário
+$stmtLog = $conn->prepare("SELECT dataHora, acao FROM log_usuario WHERE idUsuario = ? ORDER BY dataHora DESC");
+$stmtLog->bind_param("i", $idUsuario);
+$stmtLog->execute();
+$resultLog = $stmtLog->get_result();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -110,25 +115,19 @@ registrarLog($nomeUsuario, "Acessou o painel de logs");
         </div>
     </div>
     <div class="container">
-        <h1><?php echo htmlspecialchars($nomeUsuario); ?></h1>
+        <h1><?= htmlspecialchars($usuario['nomeCompleto']) ?></h1>
         <div class="log-box">
             <h2>Log</h2>
-            <?php if (empty($logs)): ?>
+            <?php if ($resultLog->num_rows === 0): ?>
             <p class="log-entry">Nenhum log encontrado.</p>
             <?php else: ?>
-            <?php foreach ($logs as $linha): ?>
-            <div class="log-entry">
-                <?php
-                        $linha = trim($linha);
-                        $partes = explode(" - ", $linha, 3);
-                        if (count($partes) === 3) {
-                            echo "<time>{$partes[0]}</time><strong>{$partes[1]}</strong>: {$partes[2]}";
-                        } else {
-                            echo htmlspecialchars($linha);
-                        }
-                        ?>
-            </div>
-            <?php endforeach; ?>
+             <?php while ($log = $resultLog->fetch_assoc()): ?>
+                <div class="log-entry">
+                    <time><?= htmlspecialchars($log['dataHora']) ?></time>
+                    <strong><?= htmlspecialchars($usuario['nomeCompleto']) ?></strong>: 
+                    <?= htmlspecialchars($log['acao']) ?>
+                    </div>
+                <?php endwhile; ?>
             <?php endif; ?>
         </div>
     </div>
