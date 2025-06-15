@@ -25,8 +25,13 @@ session_start();
               <div class="nav-links">
                 <a href="index.php">Home</a>
                 <a href="catálogo/catalogo.php">Carros</a>
+                <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['idPermissao'] == 1): ?>
+                 <a href="/Root/painel_adm.php" class="btn btn-adm">Painel</a>
+                <?php endif; ?>
+                <?php if (!isset($_SESSION['usuario'])): ?>
                 <a href="login/cadastro.php">Cadastrar</a>
                 <a href="login/login.php">Login</a>
+                <?php endif; ?>
               </div>
               <nav class="navbar texto-M">
                 <div class="nav-links">
@@ -58,8 +63,13 @@ session_start();
             <nav>
               <a href="index.php">Home</a>
               <a href="catálogo/catalogo.php">Carros</a>
+              <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario']['idPermissao'] == 1): ?>
+                 <a href="/Root/painel_adm.php" class="btn btn-adm">Painel</a>
+                <?php endif; ?>
+              <?php if (!isset($_SESSION['usuario'])): ?>
               <a href="login/cadastro.php">Cadastrar</a>
               <a href="login/login.php">Login</a>
+              <?php endif; ?>
               <div class="login-form nav-usuario">
                 <?php if (isset($_SESSION['usuario'])): ?>
                 <a href="perfil/user_perfil.php" title="Editar Perfil">
