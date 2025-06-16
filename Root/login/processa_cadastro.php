@@ -73,8 +73,9 @@ if (!preg_match('/^\d{11}$/', $telefone)) {
     exit;
 }
 
-if (!preg_match('/^[A-Za-z]{6}$/', $login)) {
-    $_SESSION['msg'] = 'Login inválido. Deve conter exatamente 6 letras.';
+// Alteração aqui: login até 6 letras (mínimo 1)
+if (!preg_match('/^[A-Za-z]{1,6}$/', $login)) {
+    $_SESSION['msg'] = 'Login inválido. Deve conter até 6 letras (mínimo 1).';
     $_SESSION['msg_type'] = 'error';
     header('Location: cadastro.php');
     exit;
@@ -89,13 +90,13 @@ if (!preg_match('/^[A-Za-z]{8}$/', $senha)) {
 
 $dataNascimento = $_POST['dataNascimento'];
 
-// Se estiver no formato dd/mm/yyyy (por exemplo, "06/04/2006"), converta:
+// Se estiver no formato dd/mm/yyyy, converte para yyyy-mm-dd
 if (preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $dataNascimento)) {
     $partes = explode('/', $dataNascimento);
     $dataNascimento = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
 }
 
-// Valide e crie o objeto DateTime
+// Valida data
 $dataNasc = date_create($dataNascimento);
 
 if (!$dataNasc) {
@@ -105,11 +106,18 @@ if (!$dataNasc) {
     exit;
 }
 
-// Use a data formatada para enviar ao banco (YYYY-MM-DD)
 $dataFormatada = $dataNasc->format('Y-m-d');
 
+// Validação da idade mínima (18 anos)
+$hoje = new DateTime();
+$idade = $hoje->diff($dataNasc)->y;
 
-
+if ($idade < 18) {
+    $_SESSION['msg'] = 'Você precisa ser maior de 18 anos para se cadastrar.';
+    $_SESSION['msg_type'] = 'error';
+    header('Location: cadastro.php');
+    exit;
+}
 
 // Se chegou até aqui, tudo está válido
 try {
@@ -127,7 +135,7 @@ try {
         'numero' => $_POST['numero'],
         'bairro' => $_POST['bairro'],
         'login' => $login,
-        'senha' => password_hash($senha, PASSWORD_DEFAULT),
+        'senha' => password_hash($senha, PASSWORD_DEFAULT), // sempre hash para segurança!
         'idPermissao' => 2
     ];
 
@@ -140,7 +148,6 @@ try {
 } catch (Exception $e) {
     $mensagem = $e->getMessage();
 
-    // Verifica se é erro conhecido
     if (str_contains($mensagem, 'já cadastrado') || str_contains($mensagem, 'Duplicate')) {
         $_SESSION['msg'] = 'CPF ou e-mail já está em uso. Use outros dados.';
     } else {
@@ -151,4 +158,3 @@ try {
     header('Location: cadastro.php');
     exit;
 }
-
