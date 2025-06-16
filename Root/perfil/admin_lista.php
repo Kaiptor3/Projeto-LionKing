@@ -34,6 +34,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['idPermissao'] != 1) {
                 <th>Nome</th>
                 <th>Email</th>
                 <th>Telefone</th>
+                <th>Cep</th>
                 <th>Estado</th>
                 <th>Cidade</th>
                 <th>Bairro</th>
@@ -50,6 +51,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['idPermissao'] != 1) {
                 <td><?= htmlspecialchars($usuario['nomeCompleto']) ?></td>
                 <td><?= htmlspecialchars($usuario['email']) ?></td>
                 <td><?= htmlspecialchars($usuario['telefone']) ?></td>
+                <td><?= htmlspecialchars($usuario['cep']) ?></td>
                 <td><?= htmlspecialchars($usuario['estado']) ?></td>
                 <td><?= htmlspecialchars($usuario['cidade']) ?></td>
                 <td><?= htmlspecialchars($usuario['bairro']) ?></td>
