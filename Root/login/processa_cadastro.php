@@ -73,9 +73,8 @@ if (!preg_match('/^\d{11}$/', $telefone)) {
     exit;
 }
 
-// Alteração aqui: login até 6 letras (mínimo 1)
 if (!preg_match('/^[A-Za-z]{1,6}$/', $login)) {
-    $_SESSION['msg'] = 'Login inválido. Deve conter até 6 letras (mínimo 1).';
+    $_SESSION['msg'] = 'Login inválido. Deve conter exatamente 6 letras.';
     $_SESSION['msg_type'] = 'error';
     header('Location: cadastro.php');
     exit;
@@ -108,17 +107,6 @@ if (!$dataNasc) {
 
 $dataFormatada = $dataNasc->format('Y-m-d');
 
-// Validação da idade mínima (18 anos)
-$hoje = new DateTime();
-$idade = $hoje->diff($dataNasc)->y;
-
-if ($idade < 18) {
-    $_SESSION['msg'] = 'Você precisa ser maior de 18 anos para se cadastrar.';
-    $_SESSION['msg_type'] = 'error';
-    header('Location: cadastro.php');
-    exit;
-}
-
 // Se chegou até aqui, tudo está válido
 try {
     $dados = [
@@ -135,7 +123,7 @@ try {
         'numero' => $_POST['numero'],
         'bairro' => $_POST['bairro'],
         'login' => $login,
-        'senha' => password_hash($senha, PASSWORD_DEFAULT), // sempre hash para segurança!
+        'senha' => $senha, // <-- senha salva em texto puro (não recomendado, mas conforme pedido)
         'idPermissao' => 2
     ];
 
