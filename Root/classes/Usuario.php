@@ -11,6 +11,7 @@ class Usuario {
     private $nomeMae;
     private $email;
     private $telefone;
+    private $cep;
     private $estado;
     private $cidade;
     private $rua;
@@ -32,6 +33,7 @@ class Usuario {
     public function setNomeMae($nomeMae) { $this->nomeMae = $nomeMae; }
     public function setEmail($email) { $this->email = $email; }
     public function setTelefone($tel) { $this->telefone = $tel; }
+    public function setCep($cep) { $this->cep = $cep; }
     public function setEstado($estado) { $this->estado = $estado; }
     public function setCidade($cidade) { $this->cidade = $cidade; }
     public function setRua($rua) { $this->rua = $rua; }
@@ -41,11 +43,10 @@ class Usuario {
     public function setSenha($senha) { $this->senha = $senha; }
     public function setIdPermissao($idPermissao) { $this->idPermissao = $idPermissao; }
 
-    // Inserir novo usuário
     public function inserir() {
         $sql = "INSERT INTO usuario (
-            cpf, nomeCompleto, dataNascimento, nomeMae, email, telefone, estado, cidade, rua, numero, bairro, login, senha, idPermissao
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            cpf, nomeCompleto, dataNascimento, nomeMae, email, telefone, cep, estado, cidade, rua, numero, bairro, login, senha, idPermissao
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute([
@@ -55,6 +56,7 @@ class Usuario {
             $this->nomeMae,
             $this->email,
             $this->telefone,
+            $this->cep,
             $this->estado,
             $this->cidade,
             $this->rua,
@@ -66,10 +68,9 @@ class Usuario {
         ]);
     }
 
-    // Atualizar usuário existente
     public function atualizar() {
         $sql = "UPDATE usuario SET
-            cpf = ?, nomeCompleto = ?, dataNascimento = ?, nomeMae = ?, email = ?, telefone = ?, estado = ?, cidade = ?, rua = ?, numero = ?, bairro = ?, login = ?, senha = ?, idPermissao = ?
+            cpf = ?, nomeCompleto = ?, dataNascimento = ?, nomeMae = ?, email = ?, telefone = ?, cep = ?, estado = ?, cidade = ?, rua = ?, numero = ?, bairro = ?, login = ?, senha = ?, idPermissao = ?
             WHERE idUsuario = ?";
 
         $stmt = $this->conn->prepare($sql);
@@ -80,6 +81,7 @@ class Usuario {
             $this->nomeMae,
             $this->email,
             $this->telefone,
+            $this->cep,
             $this->estado,
             $this->cidade,
             $this->rua,
@@ -92,7 +94,6 @@ class Usuario {
         ]);
     }
 
-    // Listar todos os usuários
     public static function listarTodos() {
         $conn = conectaPDO();
         $stmt = $conn->prepare("SELECT * FROM usuario ORDER BY idUsuario DESC");
@@ -100,7 +101,6 @@ class Usuario {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Buscar usuário por ID
     public static function buscarPorId($id) {
         $conn = conectaPDO();
         $stmt = $conn->prepare("SELECT * FROM usuario WHERE idUsuario = ?");
@@ -108,7 +108,6 @@ class Usuario {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    // Deletar usuário por ID
     public function deletar($id) {
         $sql = "DELETE FROM usuario WHERE idUsuario = ?";
         $stmt = $this->conn->prepare($sql);
