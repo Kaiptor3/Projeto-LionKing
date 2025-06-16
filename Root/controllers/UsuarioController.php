@@ -13,6 +13,7 @@ class UsuarioController {
             $usuario->setNomeMae($dados['nomeMae']);
             $usuario->setEmail($dados['email']);
             $usuario->setTelefone($dados['telefone']);
+            $usuario->setCep($dados['cep']);
             $usuario->setEstado($dados['estado']);
             $usuario->setCidade($dados['cidade']);
             $usuario->setRua($dados['rua']);
@@ -51,6 +52,7 @@ class UsuarioController {
         $usuario->setNomeMae($dados['nomeMae']);
         $usuario->setEmail($dados['email']);
         $usuario->setTelefone($dados['telefone']);
+        $usuario->setCep($dados['cep']);
         $usuario->setEstado($dados['estado']);
         $usuario->setCidade($dados['cidade']);
         $usuario->setRua($dados['rua']);
