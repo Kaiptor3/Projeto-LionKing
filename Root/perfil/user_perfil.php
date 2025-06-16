@@ -118,6 +118,8 @@ $dados = $usuario->buscarDados($idUsuario);
                     <div class="row mt-3">
                         <div class="col-md-12"><label class="labels">Telefone</label><input type="text"
                                 class="form-control" value="<?= htmlspecialchars($dados['telefone']) ?>" readonly></div>
+                                <div class="col-md-12"><label class="labels">Cep</label><input type="text"
+                                class="form-control" value="<?= htmlspecialchars($dados['cep']) ?>" readonly></div>
                         <div class="col-md-12"><label class="labels">Rua</label><input type="text" class="form-control"
                                 value="<?= htmlspecialchars($dados['rua']) ?>" readonly></div>
                         <div class="col-md-12"><label class="labels">Número</label><input type="text"
