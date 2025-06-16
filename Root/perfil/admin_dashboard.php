@@ -135,7 +135,9 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['idPermissao'] != 1) {
                 <div class="container-fluid">
                     <!-- Cards e Gráficos podem ir aqui como no admin_dashboard.php -->
                     <p>Bem-vindo ao painel administrativo. Use a navegação para acessar os módulos.</p>
+                    <p>Abaixo está o DER do nosso sistema:</p>
                 </div>
+                <img src="../uploads/image.png"> 
             </section>
         </div>
     </div>
