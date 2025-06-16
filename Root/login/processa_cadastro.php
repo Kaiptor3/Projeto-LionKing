@@ -87,12 +87,36 @@ if (!preg_match('/^[A-Za-z]{8}$/', $senha)) {
     exit;
 }
 
+$dataNascimento = $_POST['dataNascimento'];
+
+// Se estiver no formato dd/mm/yyyy (por exemplo, "06/04/2006"), converta:
+if (preg_match('/^\d{2}\/\d{2}\/\d{4}$/', $dataNascimento)) {
+    $partes = explode('/', $dataNascimento);
+    $dataNascimento = "{$partes[2]}-{$partes[1]}-{$partes[0]}";
+}
+
+// Valide e crie o objeto DateTime
+$dataNasc = date_create($dataNascimento);
+
+if (!$dataNasc) {
+    $_SESSION['msg'] = 'Data de nascimento inválida.';
+    $_SESSION['msg_type'] = 'error';
+    header('Location: cadastro.php');
+    exit;
+}
+
+// Use a data formatada para enviar ao banco (YYYY-MM-DD)
+$dataFormatada = $dataNasc->format('Y-m-d');
+
+
+
+
 // Se chegou até aqui, tudo está válido
 try {
     $dados = [
         'cpf' => $cpf,
         'nomeCompleto' => $nomeCompleto,
-        'dataNascimento' => $_POST['dataNascimento'],
+        'dataNascimento' => $dataFormatada,
         'nomeMae' => $_POST['nomeMae'],
         'email' => $email,
         'telefone' => $telefone,
