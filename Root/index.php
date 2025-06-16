@@ -42,7 +42,7 @@ session_start();
                     <img dark-mode-user src="imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
                 </a>
                 <span
-                    class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
+                    class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['login'] ?? '') ?></span>
                 <a href="login/logout.php" class="btn btn-danger">
                     <button>Logout</button>
                 </a>
@@ -75,7 +75,7 @@ session_start();
                     <img dark-mode-user src="imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
                 </a>
                 <span
-                    class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
+                    class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['login'] ?? '') ?></span>
                 <a href="login/logout.php" class="btn btn-danger">
                     <button>Logout</button>
                 </a>
@@ -103,7 +103,7 @@ session_start();
                     personalizado e sofisticação em cada detalhe. Encontre o seu próximo sonho sobre rodas!</p>
             </div>
             <div class="botão meio">
-                <a href="./catálogo/catalogo.php" class="modelo">Todos os nossos modelos</a>
+                <a href="catálogo/catalogo.php" class="modelo">Todos os nossos modelos</a>
             </div>
         </div>
     </section>
@@ -123,7 +123,7 @@ session_start();
             </h2>
             <p2> onde o legado encontra a velocidade, e cada curva se transforma em arte sobre rodas!</p2>
         </div>
-        <a href="./catálogo/carros/porsche911turboS.html" class="carrinho"> Saiba mais!</a>
+        <a href="/Projeto-LionKing-main/Root/catálogo/detalhes.php?id=27" class="carrinho"> Saiba mais!</a>
     </div>
     </script>
 
