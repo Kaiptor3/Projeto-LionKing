@@ -187,9 +187,6 @@ session_start();
                 <img src="./360/45.png">
 
 
-
-
-
             </div>
         </div>
     </div>
@@ -197,47 +194,47 @@ session_start();
         <div class="entire-content">
             <div class="content-carrousel">
                 <figure class="shadow">
-                    <a href="catálogo/carros/" target="_top">
+                    <a href="./catálogo/catalogo.php" target="_top">
                         <img src="imgs/Carro1.webp" alt="bmwx6m" />
                     </a>
                 </figure>
                 <figure class="shadow">
-                    <a href="catálogo/carros/jaguarf-typer.html" target="_top">
+                    <a href="./catálogo/catalogo.php" target="_top">
                         <img src="imgs/Carro2.jpeg" alt="jaguar-f-typer" />
                     </a>
                 </figure>
                 <figure class="shadow">
-                    <a href="catálogo/carros/jaguare-pace.html" target="_top">
+                    <a href="./catálogo/catalogo.php" target="_top">
                         <img src="imgs/Carro3.jpg" alt="jaguar-e-pace" />
                     </a>
                 </figure>
                 <figure class="shadow">
-                    <a href="catálogo/carros/porschemacan.html" target="_top">
+                    <a href="./catálogo/catalogo.php" target="_top">
                         <img src="imgs/carro4.avif" alt="porsche-macan" />
                     </a>
                 </figure>
                 <figure class="shadow">
-                    <a href="catálogo/carros/bmwixm60.html" target="_top">
+                    <a href="./catálogo/catalogo.php" target="_top">
                         <img src="imgs/Carro5.jpg" alt="bmw-ixm-60" />
                     </a>
                 </figure>
                 <figure class="shadow">
-                    <a href="catálogo/carros/porschecayenne.html" target="_top">
+                    <a href="./catálogo/catalogo.php" target="_top">
                         <img src="imgs/Carro6.jpg" alt="porsche-cayenne" />
                     </a>
                 </figure>
                 <figure class="shadow">
-                    <a href="catálogo/carros/porschetaycan.html" target="_top">
+                    <a href="./catálogo/catalogo.php" target="_top">
                         <img src="../Root/catálogo/imagem/saiba+porschetaycan1.jpg" alt="porsche-taycan">
                     </a>
                 </figure>
                 <figure class="shadow">
-                    <a href="catálogo/carros/porschepanamera.html" target="_top">
+                    <a href="./catálogo/catalogo.php" target="_top">
                         <img src="./catálogo/imagem/saiba+porschepanamera.jpg" alt="porshce-panamera">
                     </a>
                 </figure>
                 <figure class="shadow">
-                    <a href="catálogo/carros/jaguari-pace.html" target="_top">
+                    <a href="./catálogo/catalogo.php" target="_top">
                         <img src="./catálogo/imagem/saiba+jaguari-pace.jpg" alt="jaguar-i-pace" />
                     </a>
                 </figure>
