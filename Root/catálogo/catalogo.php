@@ -47,7 +47,7 @@ $carros = CarroController::listarCarros();
               <a href="../perfil/user_perfil.php" title="Editar Perfil">
               <img dark-mode-user src="../imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
               </a>
-               <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
+               <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['login'] ?? '') ?></span>
               <a href="../login/logout.php" class="btn btn-danger">
                 <button>Logout</button>
               </a>
@@ -83,7 +83,7 @@ $carros = CarroController::listarCarros();
                 <a href="../perfil/user_perfil.php" title="Editar Perfil">
               <img dark-mode-user src="../imgs/user-placeholder.png" alt="Usuário" style="cursor:pointer;" />
               </a>
-               <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['nomeCompleto'] ?? '') ?></span>
+               <span class="bem-vindo-usuario"><?= htmlspecialchars($_SESSION['usuario']['login'] ?? $_SESSION['usuario']['login'] ?? '') ?></span>
               <a href="login/logout.php" class="btn btn-danger">
                 <button>Logout</button>
               </a>
