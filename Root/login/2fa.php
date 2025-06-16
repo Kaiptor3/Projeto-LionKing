@@ -2,16 +2,15 @@
 session_start();
 require_once 'conexao.php';
 
-// Garante que o usuário passou pelo login e está em processo de 2FA
+// Verifica se o usuário chegou corretamente aqui
 if (!isset($_SESSION['usuario_temp'])) {
     header("Location: login.php");
     exit;
 }
 
-// Busca a data de nascimento do usuário logado temporariamente
 $idUsuario = $_SESSION['usuario_temp']['idUsuario'];
 
-$stmt = $conn->prepare("SELECT dataNascimento FROM usuario WHERE idUsuario = ?");
+$stmt = $conn->prepare("SELECT dataNascimento, nomeMae, cep FROM usuario WHERE idUsuario = ?");
 $stmt->bind_param("i", $idUsuario);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -22,18 +21,40 @@ if ($result->num_rows !== 1) {
 }
 
 $dados = $result->fetch_assoc();
-$respostaCorreta = date("d/m/Y", strtotime($dados['dataNascimento']));
 
-// Define pergunta e resposta na sessão se ainda não estiverem
+// Se ainda não sorteou uma pergunta:
 if (!isset($_SESSION['pergunta_2fa'])) {
-    $_SESSION['pergunta_2fa'] = "Qual sua data de nascimento? (formato DD/MM/AAAA)";
+    $perguntas = [
+        'dataNascimento' => "Qual sua data de nascimento? (formato DD/MM/AAAA)",
+        'nomeMae' => "Qual o nome da sua mãe?",
+        'cep' => "Qual o seu CEP?"
+    ];
+
+    $chaves = array_keys($perguntas);
+    $indiceSorteado = $chaves[array_rand($chaves)];
+
+    $_SESSION['pergunta_2fa'] = $perguntas[$indiceSorteado];
     $_SESSION['tentativas_2fa'] = 0;
+
+    // Armazena resposta correta
+    switch ($indiceSorteado) {
+        case 'dataNascimento':
+            $_SESSION['resposta_correta'] = date("Y-m-d", strtotime($dados['dataNascimento'])); // formato ISO
+            $_SESSION['resposta_tipo'] = 'data';
+            break;
+        case 'nomeMae':
+            $_SESSION['resposta_correta'] = trim(strtolower($dados['nomeMae']));
+            $_SESSION['resposta_tipo'] = 'texto';
+            break;
+        case 'cep':
+            $_SESSION['resposta_correta'] = preg_replace('/\D/', '', $dados['cep']); // remove traços
+            $_SESSION['resposta_tipo'] = 'cep';
+            break;
+    }
 }
 
 $pergunta = $_SESSION['pergunta_2fa'];
 ?>
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -41,6 +62,7 @@ $pergunta = $_SESSION['pergunta_2fa'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verificação de Segurança - Lion King</title>
     <style>
+        /* Seu CSS existente (inalterado) */
         * {
             margin: 0;
             padding: 0;
@@ -214,11 +236,11 @@ $pergunta = $_SESSION['pergunta_2fa'];
             .security-container {
                 padding: 30px 20px;
             }
-            
+
             .security-header h1 {
                 font-size: 24px;
             }
-            
+
             .security-question {
                 font-size: 16px;
             }
@@ -231,39 +253,55 @@ $pergunta = $_SESSION['pergunta_2fa'];
             <h1>Verificação de Segurança</h1>
             <p>Por favor, responda à pergunta abaixo para confirmar sua identidade</p>
         </div>
-        
+
         <form class="security-form" method="POST" action="processa_2fa.php">
             <div class="question-container">
-                <p class="security-question"><?= $pergunta ?></p>
+                <p id="pergunta" class="security-question"><?= $pergunta ?></p>
             </div>
-            
+
             <div class="input-group">
                 <input type="text" class="input-field" name="resposta" placeholder="Digite sua resposta..." required>
             </div>
-            
+
             <?php if (isset($_SESSION['erro_2fa'])): ?>
                 <div class="attempts-warning">
                     <?= $_SESSION['erro_2fa'] ?>
                 </div>
                 <?php unset($_SESSION['erro_2fa']); ?>
             <?php endif; ?>
-            
+
             <button type="submit" class="verify-btn">Verificar Identidade</button>
         </form>
-        
+
         <div class="security-footer">
             <div class="security-badge">Sistema Seguro</div>
             <p style="margin-top: 15px;">Esta medida adicional protege sua conta contra acesso não autorizado</p>
         </div>
     </div>
-<script>
-document.querySelector('.input-field').addEventListener('input', function (e) {
-    let v = e.target.value.replace(/\D/g, '');
-    if (v.length >= 2) v = v.slice(0,2) + '/' + v.slice(2);
-    if (v.length >= 5) v = v.slice(0,5) + '/' + v.slice(5,9);
-    e.target.value = v.slice(0, 10);
-});
-</script>
 
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const campoResposta = document.querySelector('.input-field');
+        const perguntaTexto = document.getElementById('pergunta').textContent.toLowerCase();
+
+        // Máscara de data: DD/MM/AAAA
+        function aplicarMascaraData(e) {
+            let v = e.target.value.replace(/\D/g, '');
+            if (v.length >= 3 && v.length <= 4)
+                v = v.replace(/(\d{2})(\d{1,2})/, '$1/$2');
+            else if (v.length > 4)
+                v = v.replace(/(\d{2})(\d{2})(\d{1,4})/, '$1/$2/$3');
+
+            e.target.value = v.slice(0, 10);
+        }
+
+        if (perguntaTexto.includes('data de nascimento')) {
+            campoResposta.placeholder = 'DD/MM/AAAA';
+            campoResposta.addEventListener('input', aplicarMascaraData);
+        } else {
+            campoResposta.placeholder = 'Digite sua resposta...';
+        }
+    });
+    </script>
 </body>
 </html>
