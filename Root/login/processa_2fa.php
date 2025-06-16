@@ -20,21 +20,39 @@ function formatarParaDataISO($data) {
 }
 
 // Verifica se o usuário está na etapa de 2FA
-if (!isset($_SESSION['usuario_temp']) || !isset($_SESSION['resposta_correta'])) {
+if (
+    !isset($_SESSION['usuario_temp']) ||
+    !isset($_SESSION['resposta_correta']) ||
+    !isset($_SESSION['resposta_tipo'])
+) {
     header("Location: login.php");
     exit;
 }
 
-$resposta = $_POST['resposta'];
-$respostaISO = formatarParaDataISO($resposta);
+$respostaUsuario = trim(strtolower($_POST['resposta']));
+$respostaTipo = $_SESSION['resposta_tipo'];
 $respostaCorreta = $_SESSION['resposta_correta'];
 
-if ($respostaISO && $respostaISO === $respostaCorreta) {
+$verificacaoOK = false;
+
+// Verifica conforme o tipo da pergunta
+if ($respostaTipo === 'data') {
+    $respostaFormatada = formatarParaDataISO($respostaUsuario);
+    $verificacaoOK = ($respostaFormatada === $respostaCorreta);
+} elseif ($respostaTipo === 'texto') {
+    $verificacaoOK = ($respostaUsuario === $respostaCorreta);
+} elseif ($respostaTipo === 'cep') {
+    $respostaNumeros = preg_replace('/\D/', '', $respostaUsuario);
+    $verificacaoOK = ($respostaNumeros === $respostaCorreta);
+}
+
+if ($verificacaoOK) {
+    // Libera o login
     $_SESSION['usuario'] = $_SESSION['usuario_temp'];
     $idUsuario = $_SESSION['usuario']['idUsuario'];
 
     // Limpa dados temporários
-    unset($_SESSION['usuario_temp'], $_SESSION['resposta_correta'], $_SESSION['pergunta_2fa'], $_SESSION['tentativas_2fa']);
+    unset($_SESSION['usuario_temp'], $_SESSION['resposta_correta'], $_SESSION['pergunta_2fa'], $_SESSION['tentativas_2fa'], $_SESSION['resposta_tipo']);
 
     // Registra login no log
     registrarLog($conn, $idUsuario, 'Login realizado');
@@ -46,7 +64,7 @@ if ($respostaISO && $respostaISO === $respostaCorreta) {
     $_SESSION['tentativas_2fa'] = ($_SESSION['tentativas_2fa'] ?? 0) + 1;
 
     if ($_SESSION['tentativas_2fa'] >= 3) {
-        unset($_SESSION['usuario_temp'], $_SESSION['resposta_correta'], $_SESSION['pergunta_2fa'], $_SESSION['tentativas_2fa']);
+        unset($_SESSION['usuario_temp'], $_SESSION['resposta_correta'], $_SESSION['pergunta_2fa'], $_SESSION['tentativas_2fa'], $_SESSION['resposta_tipo']);
         header("Location: login.php?erro=2fa");
         exit;
     }
