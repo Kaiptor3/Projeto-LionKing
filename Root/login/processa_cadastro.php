@@ -103,7 +103,7 @@ try {
         'numero' => $_POST['numero'],
         'bairro' => $_POST['bairro'],
         'login' => $login,
-        'senha' => password_hash($senha, PASSWORD_DEFAULT), // Criptografa senha
+        'senha' => password_hash($senha, PASSWORD_DEFAULT),
         'idPermissao' => 2
     ];
 
@@ -114,7 +114,17 @@ try {
     exit;
 
 } catch (Exception $e) {
-    $_SESSION['erro_cadastro'] = 'Erro ao cadastrar: ' . $e->getMessage();
+    $mensagem = $e->getMessage();
+
+    // Verifica se é erro conhecido
+    if (str_contains($mensagem, 'já cadastrado') || str_contains($mensagem, 'Duplicate')) {
+        $_SESSION['msg'] = 'CPF ou e-mail já está em uso. Use outros dados.';
+    } else {
+        $_SESSION['msg'] = 'Erro ao cadastrar: ' . $mensagem;
+    }
+
+    $_SESSION['msg_type'] = 'error';
     header('Location: cadastro.php');
     exit;
 }
+
