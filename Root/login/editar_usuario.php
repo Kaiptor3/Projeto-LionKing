@@ -40,12 +40,14 @@ class Usuario {
     }
 
     public function atualizar($dados) {
-        $stmt = $this->pdo->prepare("UPDATE usuario SET nomeCompleto = ?, email = ?, telefone = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ? WHERE idUsuario = ?");
+        $stmt = $this->pdo->prepare("UPDATE usuario SET nomeCompleto = ?, email = ?, telefone = ?, cep = ?, estado = ?, cidade = ?, bairro = ?, rua = ?, numero = ?, login = ? WHERE idUsuario = ?");
         return $stmt->execute([
-            $dados['nomeCompleto'], $dados['email'], $dados['telefone'],
-            $dados['estado'], $dados['cidade'], $dados['bairro'],
-            $dados['rua'], $dados['numero'], $dados['idUsuario']
+        $dados['nomeCompleto'], $dados['email'], $dados['telefone'], $dados['cep'],
+        $dados['estado'], $dados['cidade'], $dados['bairro'],
+        $dados['rua'], $dados['numero'], $dados['login'],
+        $dados['idUsuario']
         ]);
+
     }
 }
 
@@ -63,6 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'nomeCompleto' => $_POST['nomeCompleto'],
         'email' => $_POST['email'],
         'telefone' => $_POST['telefone'],
+        'cep' => $_POST['cep'],
+        'login' => $_POST['login'],
         'estado' => $_POST['estado'],
         'cidade' => $_POST['cidade'],
         'bairro' => $_POST['bairro'],
@@ -146,6 +150,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     value="<?= htmlspecialchars($dados['email']) ?>">
                             </div>
                             <div class="col-md-6">
+                                <label class="labels">Cep</label>
+                                <input type="text" class="form-control" name="cep"
+                                    value="<?= htmlspecialchars($dados['cep']) ?>">
+                            </div>
+                            <div class="col-md-6">
                                 <label class="labels">Estado</label>
                                 <input type="text" class="form-control" name="estado"
                                     value="<?= htmlspecialchars($dados['estado']) ?>">
@@ -169,6 +178,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <label class="labels">Número</label>
                                 <input type="text" class="form-control" name="numero"
                                     value="<?= htmlspecialchars($dados['numero']) ?>">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Login</label>
+                                <input type="text" class="form-control" name="login"
+                                    value="<?= htmlspecialchars($dados['login']) ?>">
                             </div>
                         </div>
                         <div class="mt-4 text-center">
